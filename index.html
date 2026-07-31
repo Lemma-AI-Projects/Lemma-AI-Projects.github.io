@@ -268964,4 +268964,1225 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             moelinkcloud@gmail.com
           </a>
-          <a href="#hero" class
+          <a href="#hero" class<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemma AI — 智能学习平台 | AI-Native Learning Platform</title>
+  <meta name="description" content="Lemma AI 是一个 AI Native 的智能学习平台，将全网优质学习资源自动编排为千人千面的体系化课程。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #FAFAFA;
+      color: #0A0A0A;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    table { border-collapse: collapse; width: 100%; }
+
+    /* ===== Language Toggle ===== */
+    body.lang-zh .en { display: none !important; }
+    body.lang-en .zh { display: none !important; }
+    body.lang-en { font-family: 'DM Sans', system-ui, sans-serif; }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 { font-family: 'Sora', sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ===== Layout ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 120px 0; position: relative; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #71717A;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #0A0A0A;
+    }
+    .section-title { font-size: clamp(28px, 4vw, 44px); margin-bottom: 24px; }
+    .section-subtitle { font-size: 18px; color: #52525B; max-width: 640px; line-height: 1.7; }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 250, 250, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #E4E4E7;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: #0A0A0A;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Sora', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.3), transparent 60%);
+    }
+    .logo-mark span { position: relative; z-index: 1; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 14px;
+      color: #52525B;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #0A0A0A; }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      padding: 3px;
+      border: 1px solid #E4E4E7;
+    }
+    .lang-btn {
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      color: #71717A;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .lang-btn.active { background: #0A0A0A; color: #fff; }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168, 85, 247, 0.05), transparent);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #52525B;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, #6366F1, #A855F7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: clamp(16px, 2vw, 20px);
+      color: #52525B;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary {
+      background: #0A0A0A;
+      color: #fff;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-secondary {
+      background: #fff;
+      color: #0A0A0A;
+      border: 1px solid #E4E4E7;
+    }
+    .btn-secondary:hover { border-color: #0A0A0A; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid #E4E4E7;
+      flex-wrap: wrap;
+    }
+    .hero-stat .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .hero-stat .label { font-size: 13px; color: #71717A; margin-top: 4px; }
+
+    /* ===== Cards ===== */
+    .card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: #D4D4D8;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #F4F4F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #6366F1;
+    }
+    .card h3 { font-size: 20px; margin-bottom: 12px; }
+    .card p { color: #52525B; font-size: 15px; line-height: 1.7; }
+
+    /* ===== Grid ===== */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+    /* ===== Comparison ===== */
+    .comparison-wrapper { overflow-x: auto; border-radius: 16px; border: 1px solid #E4E4E7; }
+    .comparison-table { min-width: 800px; background: #fff; }
+    .comparison-table th {
+      padding: 20px 24px;
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #E4E4E7;
+      white-space: nowrap;
+    }
+    .comparison-table th.highlight { background: #FAFAFA; color: #6366F1; }
+    .comparison-table td {
+      padding: 16px 24px;
+      font-size: 14px;
+      border-bottom: 1px solid #F4F4F5;
+      color: #52525B;
+      vertical-align: top;
+    }
+    .comparison-table td.highlight { background: #FAFAFA; }
+    .comparison-table td:first-child { font-weight: 600; color: #0A0A0A; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table .featured { color: #6366F1; font-weight: 600; }
+
+    /* ===== Stats ===== */
+    .stat-block { text-align: left; }
+    .stat-block .big {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-block .desc { font-size: 14px; color: #71717A; line-height: 1.5; }
+
+    /* ===== Timeline ===== */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, #6366F1, #E4E4E7);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #6366F1;
+      z-index: 1;
+    }
+    .timeline-item.active .timeline-dot { background: #6366F1; }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #6366F1;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .timeline-title { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .timeline-desc { font-size: 14px; color: #52525B; line-height: 1.6; }
+
+    /* ===== Team ===== */
+    .team-card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .team-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .team-name { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .team-role { font-size: 14px; color: #6366F1; font-weight: 500; margin-bottom: 16px; }
+    .team-bio { font-size: 14px; color: #52525B; line-height: 1.7; text-align: left; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .team-tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      color: #52525B;
+      font-weight: 500;
+    }
+
+    /* ===== Funding ===== */
+    .funding-highlight {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .funding-highlight .item { text-align: center; }
+    .funding-highlight .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .funding-highlight .label { font-size: 13px; color: #A1A1AA; }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 24px;
+      padding: 80px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99, 102, 241, 0.2), transparent);
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; }
+    .cta-section p { color: #A1A1AA; font-size: 16px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-section .btn-primary { background: #fff; color: #0A0A0A; }
+    .cta-section .btn-primary:hover { box-shadow: 0 8px 32px rgba(255,255,255,0.2); }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid #E4E4E7;
+      padding: 48px 0;
+      text-align: center;
+    }
+    footer .container { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    footer p { font-size: 13px; color: #71717A; }
+
+    /* ===== Animations ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: repeat(2, 1fr); padding: 32px; }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.lang-toggle-wrap) { display: none; }
+      .section { padding: 80px 0; }
+      .hero-stats { gap: 24px; }
+    }
+    @media (max-width: 600px) {
+      .grid-4 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+      .card { padding: 24px; }
+      .team-card { padding: 28px; }
+      .cta-section { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body class="lang-zh">
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <div class="logo-mark"><span>&lambda;</span></div>
+        Lemma AI
+      </a>
+      <div class="nav-links">
+        <a href="#summary"><span class="zh">摘要</span><span class="en">Summary</span></a>
+        <a href="#product"><span class="zh">产品</span><span class="en">Product</span></a>
+        <a href="#competition"><span class="zh">竞品</span><span class="en">Competition</span></a>
+        <a href="#team"><span class="zh">团队</span><span class="en">Team</span></a>
+        <a href="#funding"><span class="zh">融资</span><span class="en">Funding</span></a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span class="zh">天使轮融资中 · Angel Round Open</span>
+        <span class="en">Angel Round Open</span>
+      </div>
+      <h1>
+        <span class="zh">让每个人都拥有一位<br><span class="accent">永远在线的完美助教</span></span>
+        <span class="en">A perfect teaching assistant,<br><span class="accent">always online, for everyone</span></span>
+      </h1>
+      <p class="hero-desc">
+        <span class="zh">AI Native 智能学习平台 — 将全网分散的优质学习资源自动编排为千人千面的体系化课程，通过实时 AI Copilot 实现伴学、答疑与自适应练习。</span>
+        <span class="en">An AI-Native intelligent learning platform that transforms scattered quality educational resources into personalized systematic courses, with a real-time AI Copilot for learning companionship, Q&A, and adaptive practice.</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#summary" class="btn btn-primary">
+          <span class="zh">了解项目</span>
+          <span class="en">Learn More</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#funding" class="btn btn-secondary">
+          <span class="zh">融资详情</span>
+          <span class="en">Funding Details</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">¥840B+</div>
+          <div class="label"><span class="zh">AI 教育市场（2033）</span><span class="en">AI Education Market (2033)</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">37.2%</div>
+          <div class="label"><span class="zh">年复合增长率</span><span class="en">CAGR</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">¥3.5M</div>
+          <div class="label"><span class="zh">天使轮融资</span><span class="en">Angel Round</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="section" id="summary">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">01 / 项目摘要</span>
+        <span class="en">01 / Summary</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">我们不生成内容，我们赋能内容</span>
+        <span class="en">We don't generate content, we empower it</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">区别于竞品以 AI 完全替代人类教师的路径，Lemma AI 选择站在全球数百万优质创作者一侧，将静态、孤立的学习资源转化为动态、交互式的个性化学习体验。这一"赋能而非对抗"的战略，使我们的可覆盖市场（TAM）远大于任何 AIGC-only 的竞争者。</span>
+        <span class="en">Unlike competitors who aim to fully replace human teachers with AI, Lemma AI stands alongside millions of quality content creators worldwide, transforming static, isolated learning resources into dynamic, interactive personalized learning experiences. This "empower rather than compete" strategy gives us a TAM far greater than any AIGC-only competitor.</span>
+      </p>
+
+      <div class="grid-3" style="margin-bottom: 48px;">
+        <div class="card fade-in">
+          <div class="card-icon">01</div>
+          <h3><span class="zh">智能课程编排</span><span class="en">Smart Course Orchestration</span></h3>
+          <p><span class="zh">AI 检索全网优质学习资源（YouTube、B站、Coursera、PDF、论文等），基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span><span class="en">AI retrieves quality learning resources across the web (YouTube, Bilibili, Coursera, PDFs, papers), and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">02</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p><span class="zh">用户在观看视频课程时可随时暂停并提问。得益于视频级深度语义理解，用户无需补充上下文，可直接引用时间戳提问，获得基于该视频片段的精确解答。</span><span class="en">Users can pause and ask questions anytime while watching video courses. Thanks to video-level deep semantic understanding, users can reference timestamps directly without adding context, receiving precise answers based on the video segment.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">03</div>
+          <h3><span class="zh">AI Native 插件生态</span><span class="en">AI-Native Plugin Ecosystem</span></h3>
+          <p><span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。从英语词汇听写到交互式坐标系画板，通过插件化架构使平台能力无限扩展，覆盖全场景需求。</span><span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. From English vocabulary dictation to interactive coordinate plane canvases, the plugin architecture enables infinite platform capability expansion across all scenarios.</span></p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$331B</div>
+          <div class="desc"><span class="zh">K12 在线教育市场规模（2029年预测）<br>年复合增长率 21.1%</span><span class="en">K12 Online Education Market (2029 forecast)<br>CAGR 21.1%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$840B</div>
+          <div class="desc"><span class="zh">AI 教育市场规模（2033年预测）<br>年复合增长率 37.2%</span><span class="en">AI Education Market (2033 forecast)<br>CAGR 37.2%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">3</div>
+          <div class="desc"><span class="zh">结构性驱动力的交汇点<br>大模型能力拐点 × 创作者经济爆发 × 终身学习刚需</span><span class="en">Convergence of structural drivers<br>LLM capability inflection × Creator economy boom × Lifelong learning demand</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product -->
+  <section class="section" id="product" style="background: #fff;">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">02 / 产品架构</span>
+        <span class="en">02 / Product Architecture</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">四大核心模块，构建完整学习闭环</span>
+        <span class="en">Four Core Modules, A Complete Learning Loop</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">从课程编排到实时伴学，从插件生态到 AI 内容生成，Lemma AI 覆盖学习的每一个环节。</span>
+        <span class="en">From course orchestration to real-time companionship, from plugin ecosystem to AI content generation, Lemma AI covers every aspect of the learning journey.</span>
+      </p>
+
+      <div class="grid-2">
+        <div class="card fade-in">
+          <div class="card-icon">M1</div>
+          <h3><span class="zh">千人千面的智能课程编排引擎</span><span class="en">Personalized Course Orchestration Engine</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">输入用户的学习目标、当前知识水平、可用时间、偏好语言等，AI 检索全网优质学习资源，基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span>
+            <span class="en">Input: learning goals, current knowledge level, available time, language preferences. AI retrieves quality resources across the web and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span>
+          </p>
+          <p>
+            <span class="zh">输出类 Coursera 体验的完整课程 — 每一课包含教学视频、讲义/幻灯片、课后小测、笔记模板、作业。若用户未在预定时间内完成某单元，系统自动动态重排后续课程日程。</span>
+            <span class="en">Output: Coursera-style complete courses — each lesson includes teaching videos, notes/slides, quizzes, note templates, and assignments. If a user falls behind schedule, the system automatically reschedules subsequent lessons.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M2</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">用户在观看视频课程时，可随时暂停并在右侧 Copilot 交互区提问。关键技术差异：得益于底层对视频内容的深度语义理解，用户无需补充任何上下文，可直接引用时间戳提问。</span>
+            <span class="en">Users can pause anytime and ask questions in the Copilot panel. Key technical differentiation: thanks to deep semantic understanding of video content, users can reference timestamps directly without providing additional context.</span>
+          </p>
+          <p>
+            <span class="zh">延伸能力：AI 基于对整套课程及用户个人学习画像的理解，主动识别薄弱知识点（如用户多次就同一概念提问、反复倒退进度条），并针对性生成强化练习、笔记和小测。</span>
+            <span class="en">Extended capability: AI identifies weak knowledge points based on understanding of the entire course and user learning profile (e.g., repeated questions on the same concept, frequent rewinding), and generates targeted reinforcement exercises, notes, and quizzes.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M3</div>
+          <h3><span class="zh">AI Native 插件市场</span><span class="en">AI-Native Plugin Marketplace</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。英语词汇场景调用"单词听写"插件、数学场景调用"交互式坐标系画板"、文科场景调用古诗/课文默写插件、通用场景支持多题型自动生成。</span>
+            <span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. English vocabulary triggers dictation plugins, math scenarios trigger interactive coordinate canvases, humanities trigger poetry/text dictation, and universal scenarios support multi-format question generation.</span>
+          </p>
+          <p>
+            <span class="zh">开放生态（规划中）：后续开放 Plugin 开发规范，允许第三方开发者和教育创作者共建插件市场 — 形成"内容生态 + 工具生态"双飞轮。</span>
+            <span class="en">Open ecosystem (planned): Plugin development specs will be released, allowing third-party developers and educational creators to co-build the marketplace — forming a "content ecosystem + tool ecosystem" dual flywheel.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M4</div>
+          <h3><span class="zh">完整的 AI Native 生态</span><span class="en">Complete AI-Native Ecosystem</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">得益于 AI 对整套课程及用户个人画像的理解，AI 不仅可以找到最适合用户的学习课程和路径，还可以针对用户的痛点、薄弱点、知识本身的重点、易忘点等核心信息进行针对性的内容生成。</span>
+            <span class="en">With AI's understanding of the entire course curriculum and the user's personal profile, it not only finds the most suitable learning paths but also generates targeted content addressing user pain points, weak areas, key knowledge points, and easily forgotten concepts.</span>
+          </p>
+          <p>
+            <span class="zh">例如用户对知识点 A 掌握薄弱，在观看课程时多次提问并倒退进度条反复观看，则 AI 可针对该知识点生成具有针对性小测、笔记和作业，辅助用户更牢固地掌握知识。</span>
+            <span class="en">For example, if a user struggles with concept A, asking multiple questions and rewinding repeatedly, AI generates targeted quizzes, notes, and assignments for that specific concept to help the user master it more solidly.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiation -->
+  <section class="section" id="differentiation">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">03 / 战略差异化</span>
+        <span class="en">03 / Strategic Differentiation</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">AIGC-Only vs. AI-Augmented：行业范式之争</span>
+        <span class="en">AIGC-Only vs. AI-Augmented: The Paradigm Divide</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">当前 AI 教育赛道存在两条截然不同的路径。路径 A 以 AI 完全替代人类教师；路径 B 以 AI 赋能人类内容。Lemma AI 坚定选择路径 B。</span>
+        <span class="en">Two fundamentally different paths exist in AI education. Path A replaces human teachers entirely with AI; Path B empowers human content with AI. Lemma AI firmly chooses Path B.</span>
+      </p>
+
+      <div class="comparison-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th><span class="zh">维度</span><span class="en">Dimension</span></th>
+              <th><span class="zh">路径 A：AIGC-Only</span><span class="en">Path A: AIGC-Only</span></th>
+              <th class="highlight"><span class="zh">路径 B：AI-Augmented（Lemma AI）</span><span class="en">Path B: AI-Augmented (Lemma AI)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="zh">核心逻辑</span><span class="en">Core Logic</span></td>
+              <td><span class="zh">用 AI 替代人类教师，完全生成教学内容</span><span class="en">Replace human teachers with AI, fully generate content</span></td>
+              <td class="highlight featured"><span class="zh">以全球优质人类创作内容为基底，用 AI 将其转化为个性化交互体验</span><span class="en">Build on quality human-created content globally, transform it into personalized interactive experiences with AI</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">与创作者的关系</span><span class="en">Creator Relationship</span></td>
+              <td><span class="zh">对抗 — 与 YouTube 教育博主、Coursera 讲师、私人教师直接竞争</span><span class="en">Competitive — directly competes with YouTube educators, Coursera instructors, private tutors</span></td>
+              <td class="highlight featured"><span class="zh">共生 — 为创作者赋能，扩大其内容的触达与价值</span><span class="en">Symbiotic — empowers creators, expanding their content reach and value</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">可覆盖市场</span><span class="en">Addressable Market</span></td>
+              <td><span class="zh">仅覆盖"愿意相信 AI 生成内容优于人类教师"的细分用户</span><span class="en">Only covers users willing to believe AI content surpasses human teachers</span></td>
+              <td class="highlight featured"><span class="zh">覆盖所有存量和增量的人类创作内容 — 市场天花板根本性更高</span><span class="en">Covers all existing and future human-created content — fundamentally higher market ceiling</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">内容质量天花板</span><span class="en">Content Quality Ceiling</span></td>
+              <td><span class="zh">受限于 AI 生成能力，短期内无法匹敌顶级人类教师的深度与教学直觉</span><span class="en">Limited by AI generation capability, cannot match top human teachers' depth and pedagogical intuition in the short term</span></td>
+              <td class="highlight featured"><span class="zh">直接站在全球最优质内容的肩膀上，AI 负责"体验增强"而非"内容生产"</span><span class="en">Stands on the shoulders of the world's best content; AI handles "experience enhancement" rather than "content production"</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 48px; padding: 32px; background: #fff; border: 1px solid #E4E4E7; border-radius: 16px; border-left: 4px solid #6366F1;">
+        <p style="font-size: 16px; line-height: 1.8; color: #0A0A0A;">
+          <strong>
+            <span class="zh">我们的竞争壁垒不在于"生成更好的内容"，而在于"让所有好内容都变得更好用"。</span>
+            <span class="en">Our competitive moat is not about "generating better content" — it's about "making all good content more usable."</span>
+          </strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competition -->
+  <section class="section" id="competition" style="background: #fff;">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">04 / 竞品分析</span>
+        <span class="en">04 / Competitive Analysis</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">跨维度竞争格局</span>
+        <span class="en">Multi-Dimensional Competitive Landscape</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">从内容交互性、个性化程度、内容覆盖面三个维度，对比主流学习平台与 AI 教育产品。</span>
+        <span class="en">Comparing mainstream learning platforms and AI education products across three dimensions: content interactivity, personalization, and content coverage.</span>
+      </p>
+
+      <div class="comparison-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th><span class="zh">产品</span><span class="en">Product</span></th>
+              <th><span class="zh">内容交互性</span><span class="en">Interactivity</span></th>
+              <th><span class="zh">个性化程度</span><span class="en">Personalization</span></th>
+              <th><span class="zh">内容覆盖面</span><span class="en">Coverage</span></th>
+              <th><span class="zh">核心局限</span><span class="en">Core Limitation</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Coursera / 慕课</td>
+              <td>★☆☆☆☆ <span class="zh">单向"只读"</span><span class="en">One-way read-only</span></td>
+              <td>★☆☆☆☆ <span class="zh">标准化课程</span><span class="en">Standardized</span></td>
+              <td>★★★★★ <span class="zh">版权课程丰富</span><span class="en">Rich licensed</span></td>
+              <td><span class="zh">无 AI 交互、无个性化路径、疑惑无法即时解答</span><span class="en">No AI interaction, no personalized paths, no real-time Q&A</span></td>
+            </tr>
+            <tr>
+              <td>YouTube / B站</td>
+              <td>★☆☆☆☆ <span class="zh">纯视频播放</span><span class="en">Video playback</span></td>
+              <td>★☆☆☆☆ <span class="zh">算法推荐≠学习规划</span><span class="en">Recommendation ≠ planning</span></td>
+              <td>★★★★★ <span class="zh">UGC 内容海量</span><span class="en">Massive UGC</span></td>
+              <td><span class="zh">内容碎片化、无体系、无学习闭环</span><span class="en">Fragmented content, no structure, no learning loop</span></td>
+            </tr>
+            <tr>
+              <td>VideoTutor</td>
+              <td>★★★☆☆ <span class="zh">AI 生成视频</span><span class="en">AI-generated video</span></td>
+              <td>★★★☆☆ <span class="zh">一句话生成</span><span class="en">One-line generation</span></td>
+              <td>★★★★☆ <span class="zh">仅 Manim 可生成的理科</span><span class="en">Manim-compatible STEM only</span></td>
+              <td><span class="zh">AIGC 质量天花板、缺乏体系化知识串联、文科场景失效</span><span class="en">AIGC quality ceiling, lacks systematic knowledge linking, fails in humanities</span></td>
+            </tr>
+            <tr>
+              <td>Hyperknow</td>
+              <td>★★★☆☆ <span class="zh">AI 生成+多轮追问</span><span class="en">AI gen + multi-turn</span></td>
+              <td>★★★☆☆ <span class="zh">追问优化输出</span><span class="en">Query optimization</span></td>
+              <td>★★☆☆☆ <span class="zh">同 VideoTutor</span><span class="en">Same as VideoTutor</span></td>
+              <td><span class="zh">本质仍为 ChatBot+视频生成，无课程编排</span><span class="en">Essentially ChatBot + video gen, no course orchestration</span></td>
+            </tr>
+            <tr>
+              <td>ThetaWave</td>
+              <td>★★☆☆☆ <span class="zh">笔记+ChatBot</span><span class="en">Notes + ChatBot</span></td>
+              <td>★★★☆☆ <span class="zh">支持多格式</span><span class="en">Multi-format</span></td>
+              <td>★★☆☆☆ <span class="zh">未支持视频格式</span><span class="en">No video support</span></td>
+              <td><span class="zh">产品思路杂乱、深度交互有限、复刻成本极低</span><span class="en">Scattered product direction, limited deep interaction, easily replicable</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">AI 浏览器（Gemini/Atlas）</span><span class="en">AI Browsers (Gemini/Atlas)</span></td>
+              <td>★★☆☆☆ <span class="zh">网页问答</span><span class="en">Web Q&A</span></td>
+              <td>★☆☆☆☆ <span class="zh">无学习场景优化</span><span class="en">No learning optimization</span></td>
+              <td>★★★★★ <span class="zh">全网网页</span><span class="en">All web pages</span></td>
+              <td><span class="zh">本质是 ChatBot 的网页版，未针对学习场景做任何优化</span><span class="en">Essentially a web-based ChatBot, no learning-specific optimization</span></td>
+            </tr>
+            <tr style="background: #FAFAFA;">
+              <td class="featured">Lemma AI</td>
+              <td class="featured">★★★★★ <span class="zh">视频级深度交互+插件</span><span class="en">Video-level + plugins</span></td>
+              <td class="featured">★★★★★ <span class="zh">千人千面课程编排</span><span class="en">Hyper-personalized</span></td>
+              <td class="featured">★★★★★ <span class="zh">全格式全网</span><span class="en">All formats, web-wide</span></td>
+              <td class="featured"><span class="zh">需验证技术实现与市场接受度</span><span class="en">Technology and market acceptance to be validated</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Model -->
+  <section class="section" id="business">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">05 / 商业模式</span>
+        <span class="en">05 / Business Model</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">三层收入结构，渐进式飞轮</span>
+        <span class="en">Three-Tier Revenue Structure, Progressive Flywheel</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">从 C 端订阅到创作者生态再到 B 端赋能，每一层为下一层铺路。</span>
+        <span class="en">From C-end subscription to creator ecosystem to B-end empowerment, each tier paves the way for the next.</span>
+      </p>
+
+      <div class="grid-3">
+        <div class="card fade-in" style="border-top: 3px solid #6366F1;">
+          <div class="card-icon">L1</div>
+          <h3><span class="zh">C 端订阅</span><span class="en">C-End Subscription</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">核心收入引擎。Freemium → Premium 模式：免费用户享有基础课程编排和有限 AI 交互次数；付费用户解锁无限 AI Copilot 交互、深度个性化学习报告、高级插件、优先内容编排等。</span>
+            <span class="en">Core revenue engine. Freemium → Premium model: free users get basic course orchestration and limited AI interactions; paid users unlock unlimited AI Copilot, deep personalized learning reports, advanced plugins, and priority orchestration.</span>
+          </p>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #6366F1;">
+            <span class="zh">参考 Coursera Plus ¥59/月，ChatGPT Plus ¥20/月<br>预计 ¥39/月 或 ¥399/年</span>
+            <span class="en">Benchmark: Coursera Plus $59/mo, ChatGPT Plus $20/mo<br>Estimated ¥39/mo or ¥399/year</span>
+          </p>
+        </div>
+
+        <div class="card fade-in" style="border-top: 3px solid #8B5CF6;">
+          <div class="card-icon" style="color: #8B5CF6;">L2</div>
+          <h3><span class="zh">创作者生态分成</span><span class="en">Creator Ecosystem</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">开放"深度定制交互课程"上传功能（如考研名师定制课程、奥数教练竞赛训练包），平台对交易进行 15-30% 抽成。类似 App Store / Coursera instructor 分成模式。</span>
+            <span class="en">Open "deeply customized interactive courses" upload (e.g., exam prep courses, competition training packages), platform takes 15-30% commission. Similar to App Store / Coursera instructor model.</span>
+          </p>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8B5CF6;">
+            <span class="zh">启动时机：产品成熟期，用户规模达到一定基数后</span>
+            <span class="en">Launch: product maturity phase, after sufficient user base</span>
+          </p>
+        </div>
+
+        <div class="card fade-in" style="border-top: 3px solid #EC4899;">
+          <div class="card-icon" style="color: #EC4899;">L3</div>
+          <h3><span class="zh">B 端机构赋能</span><span class="en">B-End Empowerment</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">为教培机构、学校、企业培训部门提供 Lemma AI 的白标/SaaS 版本，含管理后台、学情分析、AI 辅助备课与答疑等。按席位/机构规模收费，年合同制。</span>
+            <span class="en">Provide white-label/SaaS versions for educational institutions, schools, and enterprise training departments, including admin dashboards, learning analytics, AI-assisted lesson prep and Q&A. Per-seat/institution pricing, annual contracts.</span>
+          </p>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #EC4899;">
+            <span class="zh">启动时机：规模化阶段，C 端验证完成后</span>
+            <span class="en">Launch: scaling phase, after C-end validation</span>
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 48px; padding: 32px; background: #0A0A0A; color: #fff; border-radius: 16px;">
+        <p style="font-size: 16px; line-height: 1.8;">
+          <strong style="color: #6366F1;">
+            <span class="zh">盈利逻辑的核心信念：</span>
+            <span class="en">Core belief:</span>
+          </strong>
+          <span class="zh">愿意为"学得更好、学得更快"付费的人，远比愿意为"看 AI 生成的视频"付费的人要多。前者是一个已被 Coursera、Duolingo、得到等产品反复验证的需求；后者仍是一个需要教育市场的新范式。</span>
+          <span class="en">People willing to pay for "learning better and faster" far outnumber those willing to pay for "watching AI-generated videos." The former is a proven demand validated by Coursera, Duolingo, and Dedao; the latter remains a new paradigm requiring market education.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Moat -->
+  <section class="section" id="moat" style="background: #fff;">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">06 / 竞争壁垒</span>
+        <span class="en">06 / Competitive Moat</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">护城河的阶段性构建</span>
+        <span class="en">Phased Moat Construction</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">从产品体验到数据飞轮再到生态网络效应，竞争壁垒层层递进。</span>
+        <span class="en">From product experience to data flywheel to ecosystem network effects, competitive barriers build progressively.</span>
+      </p>
+
+      <div class="grid-3">
+        <div class="card fade-in">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6366F1; margin-bottom: 8px;">PHASE 1 · 0-12 MONTHS</div>
+          <h3 style="font-size: 18px; margin-bottom: 16px;"><span class="zh">产品体验壁垒</span><span class="en">Product Experience</span></h3>
+          <ul style="display: flex; flex-direction: column; gap: 12px;">
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #6366F1;">→</span>
+              <span class="zh">视频级深度语义理解技术（用户无需补充上下文，直接引用时间戳提问）</span>
+              <span class="en">Video-level deep semantic understanding (users reference timestamps directly without context)</span>
+            </li>
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #6366F1;">→</span>
+              <span class="zh">课程编排引擎的知识图谱与教学法融合</span>
+              <span class="en">Knowledge graph and pedagogy fusion in orchestration engine</span>
+            </li>
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #6366F1;">→</span>
+              <span class="zh">"AI Native" 原生感的产品设计</span>
+              <span class="en">"AI-Native" product design philosophy</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card fade-in">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8B5CF6; margin-bottom: 8px;">PHASE 2 · 12-24 MONTHS</div>
+          <h3 style="font-size: 18px; margin-bottom: 16px;"><span class="zh">数据飞轮壁垒</span><span class="en">Data Flywheel</span></h3>
+          <ul style="display: flex; flex-direction: column; gap: 12px;">
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #8B5CF6;">→</span>
+              <span class="zh">用户学习行为数据积累（薄弱点、学习节奏、偏好内容类型、提问模式）</span>
+              <span class="en">Learning behavior data accumulation (weak points, pace, content preferences, question patterns)</span>
+            </li>
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #8B5CF6;">→</span>
+              <span class="zh">"越多人用 → AI 越懂学习者 → 体验越好 → 越多人用" 正向飞轮</span>
+              <span class="en">"More users → AI understands learners better → better experience → more users" positive flywheel</span>
+            </li>
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #8B5CF6;">→</span>
+              <span class="zh">竞品即使复制产品形态也无法复制的积累性优势</span>
+              <span class="en">Accumulative advantage that competitors cannot replicate even by copying the product</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card fade-in">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #EC4899; margin-bottom: 8px;">PHASE 3 · 24+ MONTHS</div>
+          <h3 style="font-size: 18px; margin-bottom: 16px;"><span class="zh">生态网络效应壁垒</span><span class="en">Ecosystem Network Effects</span></h3>
+          <ul style="display: flex; flex-direction: column; gap: 12px;">
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #EC4899;">→</span>
+              <span class="zh">开放插件市场后，第三方开发者和教育创作者入驻形成双边网络效应</span>
+              <span class="en">Open plugin marketplace creates bilateral network effects with developers and creators</span>
+            </li>
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #EC4899;">→</span>
+              <span class="zh">内容创作者入驻 → 丰富内容吸引更多学习者 → 学习者规模吸引更多创作者</span>
+              <span class="en">Creators join → rich content attracts learners → learner scale attracts more creators</span>
+            </li>
+            <li style="font-size: 14px; color: #52525B; padding-left: 16px; position: relative;">
+              <span style="position: absolute; left: 0; color: #EC4899;">→</span>
+              <span class="zh">对标参考：Notion 模板生态、Figma 插件生态</span>
+              <span class="en">Reference: Notion template ecosystem, Figma plugin ecosystem</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">07 / 核心团队</span>
+        <span class="en">07 / Core Team</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">深度用户洞察 × AI 技术实践 × 产品直觉</span>
+        <span class="en">User Insight × AI Engineering × Product Intuition</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">对在线学习痛点拥有第一手、长周期沉浸式认知的团队。</span>
+        <span class="en">A team with first-hand, long-term immersive understanding of online learning pain points.</span>
+      </p>
+
+      <div class="grid-2">
+        <!-- Founder -->
+        <div class="team-card fade-in">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #6366F1, #A855F7);">M</div>
+          <div class="team-name">Max <span style="font-size: 14px; color: #71717A; font-weight: 400;">（脾酪氨酸激酶）</span></div>
+          <div class="team-role">
+            <span class="zh">创始人 & CEO</span>
+            <span class="en">Founder & CEO</span>
+          </div>
+          <div class="team-bio">
+            <span class="zh">连续 6 年深度在线自学者（信息学竞赛 → 自主招生 → 长期休学自学），对学生在线学习痛点拥有第一手、长周期的沉浸式认知。独立完成多个 AI 项目，多次黑客松参赛经验。独立赚取第一桶金并从诈骗机构追回合同款，展现了远超同龄人的主观能动性与问题解决能力。六年级通读《乔布斯传》，对"用户体验至上"有深层信念。</span>
+            <span class="en">6-year continuous self-directed online learner (Informatics Olympiad → independent admission → extended self-study leave), possessing first-hand, long-term immersive understanding of online learning pain points. Independently completed multiple AI projects with hackathon experience. Independently earned first income and recovered contract funds from a fraudulent agency, demonstrating exceptional initiative and problem-solving ability. Read Steve Jobs biography in 6th grade, holding a deep belief in "user experience first."</span>
+          </div>
+          <div class="team-tags">
+            <span class="team-tag"><span class="zh">在线学习深度用户</span><span class="en">Deep Learner</span></span>
+            <span class="team-tag">AI Engineering</span>
+            <span class="team-tag"><span class="zh">产品直觉</span><span class="en">Product Intuition</span></span>
+          </div>
+        </div>
+
+        <!-- Co-founder: CeaserZhao -->
+        <div class="team-card fade-in">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #0A0A0A, #3B82F6);">C</div>
+          <div class="team-name">CeaserZhao</div>
+          <div class="team-role">
+            <span class="zh">联合创始人 · CIO · CCO · CTO</span>
+            <span class="en">Co-founder · CIO · CCO · CTO</span>
+          </div>
+          <div class="team-bio">
+            <span class="zh">联合创始人，兼任首席创新官（CIO）、首席内容官（CCO）与首席架构官（CTO）。负责 Lemma AI 的技术创新战略、内容生态规划与系统架构设计，确保产品在技术深度、内容质量与工程可扩展性三个维度上保持领先。</span>
+            <span class="en">Co-founder, serving as Chief Innovation Officer (CIO), Chief Content Officer (CCO), and Chief Technology Officer (CTO). Responsible for Lemma AI's technology innovation strategy, content ecosystem planning, and system architecture design, ensuring product leadership across technical depth, content quality, and engineering scalability.</span>
+          </div>
+          <div class="team-tags">
+            <span class="team-tag"><span class="zh">首席创新官 CIO</span><span class="en">Chief Innovation Officer</span></span>
+            <span class="team-tag"><span class="zh">首席内容官 CCO</span><span class="en">Chief Content Officer</span></span>
+            <span class="team-tag"><span class="zh">首席架构官 CTO</span><span class="en">Chief Technology Officer</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funding -->
+  <section class="section" id="funding" style="background: #fff;">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">08 / 融资需求</span>
+        <span class="en">08 / Funding</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">天使轮融资</span>
+        <span class="en">Angel Round</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">寻求志同道合的天使投资人，共同打造下一代智能学习平台。</span>
+        <span class="en">Seeking like-minded angel investors to build the next-generation intelligent learning platform.</span>
+      </p>
+
+      <div class="funding-highlight" style="margin-bottom: 48px;">
+        <div class="item">
+          <div class="num">¥350万</div>
+          <div class="label"><span class="zh">融资金额</span><span class="en">Amount</span></div>
+        </div>
+        <div class="item">
+          <div class="num">7%</div>
+          <div class="label"><span class="zh">出让股权</span><span class="en">Equity</span></div>
+        </div>
+        <div class="item">
+          <div class="num">¥5,000万</div>
+          <div class="label"><span class="zh">投后估值</span><span class="en">Post-money Valuation</span></div>
+        </div>
+        <div class="item">
+          <div class="num">8-10<span style="font-size: 18px;">月</span></div>
+          <div class="label"><span class="zh">Pre-A 计划</span><span class="en">Pre-A Timeline</span></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3 style="font-size: 18px; margin-bottom: 24px;">
+            <span class="zh">股权结构（融资后）</span>
+            <span class="en">Equity Structure (Post-round)</span>
+          </h3>
+          <div class="card" style="padding: 24px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #F4F4F5;">
+                <span style="font-size: 14px; font-weight: 600;"><span class="zh">创始人</span><span class="en">Founders</span></span>
+                <span class="mono" style="font-size: 16px; font-weight: 700; color: #6366F1;">80%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #F4F4F5;">
+                <span style="font-size: 14px; font-weight: 600;"><span class="zh">天使投资人</span><span class="en">Angel Investors</span></span>
+                <span class="mono" style="font-size: 16px; font-weight: 700;">7%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #F4F4F5;">
+                <span style="font-size: 14px; font-weight: 600;"><span class="zh">核心合伙人</span><span class="en">Core Partners</span></span>
+                <span class="mono" style="font-size: 16px; font-weight: 700;">6.5%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 14px; font-weight: 600;"><span class="zh">员工期权池（ESOP）</span><span class="en">Employee Option Pool</span></span>
+                <span class="mono" style="font-size: 16px; font-weight: 700;">6.5%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size: 18px; margin-bottom: 24px;">
+            <span class="zh">资金使用计划（12个月）</span>
+            <span class="en">Use of Funds (12 months)</span>
+          </h3>
+          <div class="card" style="padding: 24px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #F4F4F5;">
+                <div>
+                  <span style="font-size: 14px; font-weight: 600;"><span class="zh">人员薪酬</span><span class="en">Personnel</span></span>
+                  <p style="font-size: 12px; color: #71717A; margin-top: 2px;"><span class="zh">核心技术团队（2-3名全栈/AI工程师）</span><span class="en">Core tech team (2-3 full-stack/AI engineers)</span></p>
+                </div>
+                <div style="text-align: right;">
+                  <span class="mono" style="font-size: 16px; font-weight: 700; color: #6366F1;">¥150万</span>
+                  <span class="mono" style="font-size: 12px; color: #71717A; display: block;">43%</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #F4F4F5;">
+                <div>
+                  <span style="font-size: 14px; font-weight: 600;"><span class="zh">市场推广与运营</span><span class="en">Marketing & Ops</span></span>
+                  <p style="font-size: 12px; color: #71717A; margin-top: 2px;"><span class="zh">用户获取、内容营销、创作者合作、社群运营</span><span class="en">User acquisition, content marketing, creator partnerships, community</span></p>
+                </div>
+                <div style="text-align: right;">
+                  <span class="mono" style="font-size: 16px; font-weight: 700; color: #8B5CF6;">¥100万</span>
+                  <span class="mono" style="font-size: 12px; color: #71717A; display: block;">29%</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #F4F4F5;">
+                <div>
+                  <span style="font-size: 14px; font-weight: 600;"><span class="zh">研发投入</span><span class="en">R&D</span></span>
+                  <p style="font-size: 12px; color: #71717A; margin-top: 2px;"><span class="zh">AI引擎开发、底层架构搭建、API与数据pipeline</span><span class="en">AI engine, architecture, API & data pipeline</span></p>
+                </div>
+                <div style="text-align: right;">
+                  <span class="mono" style="font-size: 16px; font-weight: 700; color: #EC4899;">¥50万</span>
+                  <span class="mono" style="font-size: 12px; color: #71717A; display: block;">14%</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <span style="font-size: 14px; font-weight: 600;"><span class="zh">场地与设备</span><span class="en">Office & Equipment</span></span>
+                  <p style="font-size: 12px; color: #71717A; margin-top: 2px;"><span class="zh">办公空间、服务器/云计算资源、开发设备</span><span class="en">Office, cloud resources, dev equipment</span></p>
+                </div>
+                <div style="text-align: right;">
+                  <span class="mono" style="font-size: 16px; font-weight: 700; color: #F59E0B;">¥50万</span>
+                  <span class="mono" style="font-size: 12px; color: #71717A; display: block;">14%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="section" id="roadmap">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">09 / 路线图</span>
+        <span class="en">09 / Roadmap</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">从 MVP 到盈亏平衡</span>
+        <span class="en">From MVP to Break-Even</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">清晰的阶段性里程碑，每一步都有可验证的核心指标。</span>
+        <span class="en">Clear phased milestones, each with verifiable core metrics.</span>
+      </p>
+
+      <div style="max-width: 800px;">
+        <div class="timeline">
+          <div class="timeline-item active">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026 Q1</div>
+            <div class="timeline-title"><span class="zh">项目立项，完成核心功能 MVP</span><span class="en">Project initiation, MVP development</span></div>
+            <div class="timeline-desc"><span class="zh">课程编排引擎 + AI Copilot 基础功能可用</span><span class="en">Course orchestration engine + AI Copilot basic functionality ready</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026 Q2</div>
+            <div class="timeline-title"><span class="zh">封闭内测（Closed Beta）</span><span class="en">Closed Beta</span></div>
+            <div class="timeline-desc"><span class="zh">邀请 500-1000 名目标用户内测，验证核心假设：用户是否愿意在平台上完成完整学习流程</span><span class="en">Invite 500-1,000 target users for closed beta, validate core hypothesis: whether users will complete full learning workflows on the platform</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026 Q3</div>
+            <div class="timeline-title"><span class="zh">公开上线，海内外同步推广</span><span class="en">Public launch, global rollout</span></div>
+            <div class="timeline-desc"><span class="zh">注册用户 10万+，验证增长渠道效率</span><span class="en">100K+ registered users, validate growth channel efficiency</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026 Q4</div>
+            <div class="timeline-title"><span class="zh">付费体系上线，验证商业模型</span><span class="en">Monetization launch, validate business model</span></div>
+            <div class="timeline-desc"><span class="zh">月活用户（MAU）、付费转化率、用户日均学习时长等核心指标</span><span class="en">Key metrics: MAU, paid conversion rate, daily learning time per user</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2027 Q1</div>
+            <div class="timeline-title"><span class="zh">实现盈亏平衡，启动 Pre-A 轮融资</span><span class="en">Break-even, launch Pre-A round</span></div>
+            <div class="timeline-desc"><span class="zh">单月营收突破 ¥100万</span><span class="en">Monthly revenue exceeds ¥1M</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / CTA -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-section fade-in">
+        <h2>
+          <span class="zh">让每个人都拥有完美助教</span>
+          <span class="en">A perfect assistant for everyone</span>
+        </h2>
+        <p>
+          <span class="zh">感谢您的时间。如果您对 Lemma AI 感兴趣，欢迎与我们联系。</span>
+          <span class="en">Thank you for your time. If you're interested in Lemma AI, we'd love to hear from you.</span>
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="mailto:moelinkcloud@gmail.com" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            moelinkcloud@gmail.com
+          </a>
+          <a href="#hero" class="btn btn-secondary" style="background: transparent; color: #fff; border: 1px solid rgba(255,255,255,
