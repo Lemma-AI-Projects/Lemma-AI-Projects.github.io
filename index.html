@@ -86801,4 +86801,2156 @@
             <tr>
               <td><span class="zh">可覆盖市场</span><span class="en">Addressable Market</span></td>
               <td><span class="zh">仅覆盖"愿意相信 AI 生成内容优于人类教师"的细分用户</span><span class="en">Only covers users willing to believe AI content surpasses human teachers</span></td>
-              <td class="highlight featured"><span class="zh">覆盖所有存量和增量的人类创作内容 — 市场天花板
+              <td class="highlight featured"><span class="zh">覆盖所有存量和增量的人类创作内容 — 市场天花板<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemma AI — 智能学习平台 | AI-Native Learning Platform</title>
+  <meta name="description" content="Lemma AI 是一个 AI Native 的智能学习平台，将全网优质学习资源自动编排为千人千面的体系化课程。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #FAFAFA;
+      color: #0A0A0A;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    table { border-collapse: collapse; width: 100%; }
+
+    /* ===== Language Toggle ===== */
+    body.lang-zh .en { display: none !important; }
+    body.lang-en .zh { display: none !important; }
+    body.lang-en { font-family: 'DM Sans', system-ui, sans-serif; }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 { font-family: 'Sora', sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ===== Layout ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 120px 0; position: relative; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #71717A;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #0A0A0A;
+    }
+    .section-title { font-size: clamp(28px, 4vw, 44px); margin-bottom: 24px; }
+    .section-subtitle { font-size: 18px; color: #52525B; max-width: 640px; line-height: 1.7; }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 250, 250, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #E4E4E7;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: #0A0A0A;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Sora', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.3), transparent 60%);
+    }
+    .logo-mark span { position: relative; z-index: 1; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 14px;
+      color: #52525B;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #0A0A0A; }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      padding: 3px;
+      border: 1px solid #E4E4E7;
+    }
+    .lang-btn {
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      color: #71717A;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .lang-btn.active { background: #0A0A0A; color: #fff; }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168, 85, 247, 0.05), transparent);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #52525B;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, #6366F1, #A855F7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: clamp(16px, 2vw, 20px);
+      color: #52525B;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary {
+      background: #0A0A0A;
+      color: #fff;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-secondary {
+      background: #fff;
+      color: #0A0A0A;
+      border: 1px solid #E4E4E7;
+    }
+    .btn-secondary:hover { border-color: #0A0A0A; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid #E4E4E7;
+      flex-wrap: wrap;
+    }
+    .hero-stat .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .hero-stat .label { font-size: 13px; color: #71717A; margin-top: 4px; }
+
+    /* ===== Cards ===== */
+    .card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: #D4D4D8;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #F4F4F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #6366F1;
+    }
+    .card h3 { font-size: 20px; margin-bottom: 12px; }
+    .card p { color: #52525B; font-size: 15px; line-height: 1.7; }
+
+    /* ===== Grid ===== */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+    /* ===== Comparison ===== */
+    .comparison-wrapper { overflow-x: auto; border-radius: 16px; border: 1px solid #E4E4E7; }
+    .comparison-table { min-width: 800px; background: #fff; }
+    .comparison-table th {
+      padding: 20px 24px;
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #E4E4E7;
+      white-space: nowrap;
+    }
+    .comparison-table th.highlight { background: #FAFAFA; color: #6366F1; }
+    .comparison-table td {
+      padding: 16px 24px;
+      font-size: 14px;
+      border-bottom: 1px solid #F4F4F5;
+      color: #52525B;
+      vertical-align: top;
+    }
+    .comparison-table td.highlight { background: #FAFAFA; }
+    .comparison-table td:first-child { font-weight: 600; color: #0A0A0A; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table .featured { color: #6366F1; font-weight: 600; }
+
+    /* ===== Stats ===== */
+    .stat-block { text-align: left; }
+    .stat-block .big {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-block .desc { font-size: 14px; color: #71717A; line-height: 1.5; }
+
+    /* ===== Timeline ===== */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, #6366F1, #E4E4E7);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #6366F1;
+      z-index: 1;
+    }
+    .timeline-item.active .timeline-dot { background: #6366F1; }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #6366F1;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .timeline-title { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .timeline-desc { font-size: 14px; color: #52525B; line-height: 1.6; }
+
+    /* ===== Team ===== */
+    .team-card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .team-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .team-name { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .team-role { font-size: 14px; color: #6366F1; font-weight: 500; margin-bottom: 16px; }
+    .team-bio { font-size: 14px; color: #52525B; line-height: 1.7; text-align: left; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .team-tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      color: #52525B;
+      font-weight: 500;
+    }
+
+    /* ===== Funding ===== */
+    .funding-highlight {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .funding-highlight .item { text-align: center; }
+    .funding-highlight .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .funding-highlight .label { font-size: 13px; color: #A1A1AA; }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 24px;
+      padding: 80px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99, 102, 241, 0.2), transparent);
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; }
+    .cta-section p { color: #A1A1AA; font-size: 16px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-section .btn-primary { background: #fff; color: #0A0A0A; }
+    .cta-section .btn-primary:hover { box-shadow: 0 8px 32px rgba(255,255,255,0.2); }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid #E4E4E7;
+      padding: 48px 0;
+      text-align: center;
+    }
+    footer .container { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    footer p { font-size: 13px; color: #71717A; }
+
+    /* ===== Animations ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: repeat(2, 1fr); padding: 32px; }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.lang-toggle-wrap) { display: none; }
+      .section { padding: 80px 0; }
+      .hero-stats { gap: 24px; }
+    }
+    @media (max-width: 600px) {
+      .grid-4 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+      .card { padding: 24px; }
+      .team-card { padding: 28px; }
+      .cta-section { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body class="lang-zh">
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <div class="logo-mark"><span>&lambda;</span></div>
+        Lemma AI
+      </a>
+      <div class="nav-links">
+        <a href="#summary"><span class="zh">摘要</span><span class="en">Summary</span></a>
+        <a href="#product"><span class="zh">产品</span><span class="en">Product</span></a>
+        <a href="#competition"><span class="zh">竞品</span><span class="en">Competition</span></a>
+        <a href="#team"><span class="zh">团队</span><span class="en">Team</span></a>
+        <a href="#funding"><span class="zh">融资</span><span class="en">Funding</span></a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span class="zh">天使轮融资中 · Angel Round Open</span>
+        <span class="en">Angel Round Open</span>
+      </div>
+      <h1>
+        <span class="zh">让每个人都拥有一位<br><span class="accent">永远在线的完美助教</span></span>
+        <span class="en">A perfect teaching assistant,<br><span class="accent">always online, for everyone</span></span>
+      </h1>
+      <p class="hero-desc">
+        <span class="zh">AI Native 智能学习平台 — 将全网分散的优质学习资源自动编排为千人千面的体系化课程，通过实时 AI Copilot 实现伴学、答疑与自适应练习。</span>
+        <span class="en">An AI-Native intelligent learning platform that transforms scattered quality educational resources into personalized systematic courses, with a real-time AI Copilot for learning companionship, Q&A, and adaptive practice.</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#summary" class="btn btn-primary">
+          <span class="zh">了解项目</span>
+          <span class="en">Learn More</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#funding" class="btn btn-secondary">
+          <span class="zh">融资详情</span>
+          <span class="en">Funding Details</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">¥840B+</div>
+          <div class="label"><span class="zh">AI 教育市场（2033）</span><span class="en">AI Education Market (2033)</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">37.2%</div>
+          <div class="label"><span class="zh">年复合增长率</span><span class="en">CAGR</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">¥3.5M</div>
+          <div class="label"><span class="zh">天使轮融资</span><span class="en">Angel Round</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="section" id="summary">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">01 / 项目摘要</span>
+        <span class="en">01 / Summary</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">我们不生成内容，我们赋能内容</span>
+        <span class="en">We don't generate content, we empower it</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">区别于竞品以 AI 完全替代人类教师的路径，Lemma AI 选择站在全球数百万优质创作者一侧，将静态、孤立的学习资源转化为动态、交互式的个性化学习体验。这一"赋能而非对抗"的战略，使我们的可覆盖市场（TAM）远大于任何 AIGC-only 的竞争者。</span>
+        <span class="en">Unlike competitors who aim to fully replace human teachers with AI, Lemma AI stands alongside millions of quality content creators worldwide, transforming static, isolated learning resources into dynamic, interactive personalized learning experiences. This "empower rather than compete" strategy gives us a TAM far greater than any AIGC-only competitor.</span>
+      </p>
+
+      <div class="grid-3" style="margin-bottom: 48px;">
+        <div class="card fade-in">
+          <div class="card-icon">01</div>
+          <h3><span class="zh">智能课程编排</span><span class="en">Smart Course Orchestration</span></h3>
+          <p><span class="zh">AI 检索全网优质学习资源（YouTube、B站、Coursera、PDF、论文等），基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span><span class="en">AI retrieves quality learning resources across the web (YouTube, Bilibili, Coursera, PDFs, papers), and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">02</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p><span class="zh">用户在观看视频课程时可随时暂停并提问。得益于视频级深度语义理解，用户无需补充上下文，可直接引用时间戳提问，获得基于该视频片段的精确解答。</span><span class="en">Users can pause and ask questions anytime while watching video courses. Thanks to video-level deep semantic understanding, users can reference timestamps directly without adding context, receiving precise answers based on the video segment.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">03</div>
+          <h3><span class="zh">AI Native 插件生态</span><span class="en">AI-Native Plugin Ecosystem</span></h3>
+          <p><span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。从英语词汇听写到交互式坐标系画板，通过插件化架构使平台能力无限扩展，覆盖全场景需求。</span><span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. From English vocabulary dictation to interactive coordinate plane canvases, the plugin architecture enables infinite platform capability expansion across all scenarios.</span></p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$331B</div>
+          <div class="desc"><span class="zh">K12 在线教育市场规模（2029年预测）<br>年复合增长率 21.1%</span><span class="en">K12 Online Education Market (2029 forecast)<br>CAGR 21.1%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$840B</div>
+          <div class="desc"><span class="zh">AI 教育市场规模（2033年预测）<br>年复合增长率 37.2%</span><span class="en">AI Education Market (2033 forecast)<br>CAGR 37.2%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">3</div>
+          <div class="desc"><span class="zh">结构性驱动力的交汇点<br>大模型能力拐点 × 创作者经济爆发 × 终身学习刚需</span><span class="en">Convergence of structural drivers<br>LLM capability inflection × Creator economy boom × Lifelong learning demand</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product -->
+  <section class="section" id="product" style="background: #fff;">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">02 / 产品架构</span>
+        <span class="en">02 / Product Architecture</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">四大核心模块，构建完整学习闭环</span>
+        <span class="en">Four Core Modules, A Complete Learning Loop</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">从课程编排到实时伴学，从插件生态到 AI 内容生成，Lemma AI 覆盖学习的每一个环节。</span>
+        <span class="en">From course orchestration to real-time companionship, from plugin ecosystem to AI content generation, Lemma AI covers every aspect of the learning journey.</span>
+      </p>
+
+      <div class="grid-2">
+        <div class="card fade-in">
+          <div class="card-icon">M1</div>
+          <h3><span class="zh">千人千面的智能课程编排引擎</span><span class="en">Personalized Course Orchestration Engine</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">输入用户的学习目标、当前知识水平、可用时间、偏好语言等，AI 检索全网优质学习资源，基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span>
+            <span class="en">Input: learning goals, current knowledge level, available time, language preferences. AI retrieves quality resources across the web and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span>
+          </p>
+          <p>
+            <span class="zh">输出类 Coursera 体验的完整课程 — 每一课包含教学视频、讲义/幻灯片、课后小测、笔记模板、作业。若用户未在预定时间内完成某单元，系统自动动态重排后续课程日程。</span>
+            <span class="en">Output: Coursera-style complete courses — each lesson includes teaching videos, notes/slides, quizzes, note templates, and assignments. If a user falls behind schedule, the system automatically reschedules subsequent lessons.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M2</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">用户在观看视频课程时，可随时暂停并在右侧 Copilot 交互区提问。关键技术差异：得益于底层对视频内容的深度语义理解，用户无需补充任何上下文，可直接引用时间戳提问。</span>
+            <span class="en">Users can pause anytime and ask questions in the Copilot panel. Key technical differentiation: thanks to deep semantic understanding of video content, users can reference timestamps directly without providing additional context.</span>
+          </p>
+          <p>
+            <span class="zh">延伸能力：AI 基于对整套课程及用户个人学习画像的理解，主动识别薄弱知识点（如用户多次就同一概念提问、反复倒退进度条），并针对性生成强化练习、笔记和小测。</span>
+            <span class="en">Extended capability: AI identifies weak knowledge points based on understanding of the entire course and user learning profile (e.g., repeated questions on the same concept, frequent rewinding), and generates targeted reinforcement exercises, notes, and quizzes.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M3</div>
+          <h3><span class="zh">AI Native 插件市场</span><span class="en">AI-Native Plugin Marketplace</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。英语词汇场景调用"单词听写"插件、数学场景调用"交互式坐标系画板"、文科场景调用古诗/课文默写插件、通用场景支持多题型自动生成。</span>
+            <span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. English vocabulary triggers dictation plugins, math scenarios trigger interactive coordinate canvases, humanities trigger poetry/text dictation, and universal scenarios support multi-format question generation.</span>
+          </p>
+          <p>
+            <span class="zh">开放生态（规划中）：后续开放 Plugin 开发规范，允许第三方开发者和教育创作者共建插件市场 — 形成"内容生态 + 工具生态"双飞轮。</span>
+            <span class="en">Open ecosystem (planned): Plugin development specs will be released, allowing third-party developers and educational creators to co-build the marketplace — forming a "content ecosystem + tool ecosystem" dual flywheel.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M4</div>
+          <h3><span class="zh">完整的 AI Native 生态</span><span class="en">Complete AI-Native Ecosystem</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">得益于 AI 对整套课程及用户个人画像的理解，AI 不仅可以找到最适合用户的学习课程和路径，还可以针对用户的痛点、薄弱点、知识本身的重点、易忘点等核心信息进行针对性的内容生成。</span>
+            <span class="en">With AI's understanding of the entire course curriculum and the user's personal profile, it not only finds the most suitable learning paths but also generates targeted content addressing user pain points, weak areas, key knowledge points, and easily forgotten concepts.</span>
+          </p>
+          <p>
+            <span class="zh">例如用户对知识点 A 掌握薄弱，在观看课程时多次提问并倒退进度条反复观看，则 AI 可针对该知识点生成具有针对性小测、笔记和作业，辅助用户更牢固地掌握知识。</span>
+            <span class="en">For example, if a user struggles with concept A, asking multiple questions and rewinding repeatedly, AI generates targeted quizzes, notes, and assignments for that specific concept to help the user master it more solidly.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiation -->
+  <section class="section" id="differentiation">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">03 / 战略差异化</span>
+        <span class="en">03 / Strategic Differentiation</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">AIGC-Only vs. AI-Augmented：行业范式之争</span>
+        <span class="en">AIGC-Only vs. AI-Augmented: The Paradigm Divide</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">当前 AI 教育赛道存在两条截然不同的路径。路径 A 以 AI 完全替代人类教师；路径 B 以 AI 赋能人类内容。Lemma AI 坚定选择路径 B。</span>
+        <span class="en">Two fundamentally different paths exist in AI education. Path A replaces human teachers entirely with AI; Path B empowers human content with AI. Lemma AI firmly chooses Path B.</span>
+      </p>
+
+      <div class="comparison-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th><span class="zh">维度</span><span class="en">Dimension</span></th>
+              <th><span class="zh">路径 A：AIGC-Only</span><span class="en">Path A: AIGC-Only</span></th>
+              <th class="highlight"><span class="zh">路径 B：AI-Augmented（Lemma AI）</span><span class="en">Path B: AI-Augmented (Lemma AI)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="zh">核心逻辑</span><span class="en">Core Logic</span></td>
+              <td><span class="zh">用 AI 替代人类教师，完全生成教学内容</span><span class="en">Replace human teachers with AI, fully generate content</span></td>
+              <td class="highlight featured"><span class="zh">以全球优质人类创作内容为基底，用 AI 将其转化为个性化交互体验</span><span class="en">Build on quality human-created content globally, transform it into personalized interactive experiences with AI</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">与创作者的关系</span><span class="en">Creator Relationship</span></td>
+              <td><span class="zh">对抗 — 与 YouTube 教育博主、Coursera 讲师、私人教师直接竞争</span><span class="en">Competitive — directly competes with YouTube educators, Coursera instructors, private tutors</span></td>
+              <td class="highlight featured"><span class="zh">共生 — 为创作者赋能，扩大其内容的触达与价值</span><span class="en">Symbiotic — empowers creators, expanding their content reach and value</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">可覆盖市场</span><span class="en">Addressable Market</span></td>
+              <td><span class="zh">仅覆盖"愿意相信 AI 生成内容优于人类教师"的细分用户</span><span class="en">Only covers users willing to believe AI content surpasses human teachers</span></td>
+              <td class="highlight featured"><span class="zh">覆盖所有存量和增量的人类创作内容 — 市场天花板根本性更高</span><span class="en">Covers all existing and future human-created content —<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemma AI — 智能学习平台 | AI-Native Learning Platform</title>
+  <meta name="description" content="Lemma AI 是一个 AI Native 的智能学习平台，将全网优质学习资源自动编排为千人千面的体系化课程。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #FAFAFA;
+      color: #0A0A0A;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    table { border-collapse: collapse; width: 100%; }
+
+    /* ===== Language Toggle ===== */
+    body.lang-zh .en { display: none !important; }
+    body.lang-en .zh { display: none !important; }
+    body.lang-en { font-family: 'DM Sans', system-ui, sans-serif; }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 { font-family: 'Sora', sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ===== Layout ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 120px 0; position: relative; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #71717A;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #0A0A0A;
+    }
+    .section-title { font-size: clamp(28px, 4vw, 44px); margin-bottom: 24px; }
+    .section-subtitle { font-size: 18px; color: #52525B; max-width: 640px; line-height: 1.7; }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 250, 250, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #E4E4E7;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: #0A0A0A;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Sora', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.3), transparent 60%);
+    }
+    .logo-mark span { position: relative; z-index: 1; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 14px;
+      color: #52525B;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #0A0A0A; }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      padding: 3px;
+      border: 1px solid #E4E4E7;
+    }
+    .lang-btn {
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      color: #71717A;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .lang-btn.active { background: #0A0A0A; color: #fff; }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168, 85, 247, 0.05), transparent);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #52525B;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, #6366F1, #A855F7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: clamp(16px, 2vw, 20px);
+      color: #52525B;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary {
+      background: #0A0A0A;
+      color: #fff;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-secondary {
+      background: #fff;
+      color: #0A0A0A;
+      border: 1px solid #E4E4E7;
+    }
+    .btn-secondary:hover { border-color: #0A0A0A; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid #E4E4E7;
+      flex-wrap: wrap;
+    }
+    .hero-stat .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .hero-stat .label { font-size: 13px; color: #71717A; margin-top: 4px; }
+
+    /* ===== Cards ===== */
+    .card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: #D4D4D8;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #F4F4F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #6366F1;
+    }
+    .card h3 { font-size: 20px; margin-bottom: 12px; }
+    .card p { color: #52525B; font-size: 15px; line-height: 1.7; }
+
+    /* ===== Grid ===== */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+    /* ===== Comparison ===== */
+    .comparison-wrapper { overflow-x: auto; border-radius: 16px; border: 1px solid #E4E4E7; }
+    .comparison-table { min-width: 800px; background: #fff; }
+    .comparison-table th {
+      padding: 20px 24px;
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #E4E4E7;
+      white-space: nowrap;
+    }
+    .comparison-table th.highlight { background: #FAFAFA; color: #6366F1; }
+    .comparison-table td {
+      padding: 16px 24px;
+      font-size: 14px;
+      border-bottom: 1px solid #F4F4F5;
+      color: #52525B;
+      vertical-align: top;
+    }
+    .comparison-table td.highlight { background: #FAFAFA; }
+    .comparison-table td:first-child { font-weight: 600; color: #0A0A0A; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table .featured { color: #6366F1; font-weight: 600; }
+
+    /* ===== Stats ===== */
+    .stat-block { text-align: left; }
+    .stat-block .big {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-block .desc { font-size: 14px; color: #71717A; line-height: 1.5; }
+
+    /* ===== Timeline ===== */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, #6366F1, #E4E4E7);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #6366F1;
+      z-index: 1;
+    }
+    .timeline-item.active .timeline-dot { background: #6366F1; }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #6366F1;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .timeline-title { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .timeline-desc { font-size: 14px; color: #52525B; line-height: 1.6; }
+
+    /* ===== Team ===== */
+    .team-card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .team-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .team-name { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .team-role { font-size: 14px; color: #6366F1; font-weight: 500; margin-bottom: 16px; }
+    .team-bio { font-size: 14px; color: #52525B; line-height: 1.7; text-align: left; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .team-tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      color: #52525B;
+      font-weight: 500;
+    }
+
+    /* ===== Funding ===== */
+    .funding-highlight {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .funding-highlight .item { text-align: center; }
+    .funding-highlight .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .funding-highlight .label { font-size: 13px; color: #A1A1AA; }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 24px;
+      padding: 80px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99, 102, 241, 0.2), transparent);
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; }
+    .cta-section p { color: #A1A1AA; font-size: 16px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-section .btn-primary { background: #fff; color: #0A0A0A; }
+    .cta-section .btn-primary:hover { box-shadow: 0 8px 32px rgba(255,255,255,0.2); }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid #E4E4E7;
+      padding: 48px 0;
+      text-align: center;
+    }
+    footer .container { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    footer p { font-size: 13px; color: #71717A; }
+
+    /* ===== Animations ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: repeat(2, 1fr); padding: 32px; }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.lang-toggle-wrap) { display: none; }
+      .section { padding: 80px 0; }
+      .hero-stats { gap: 24px; }
+    }
+    @media (max-width: 600px) {
+      .grid-4 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+      .card { padding: 24px; }
+      .team-card { padding: 28px; }
+      .cta-section { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body class="lang-zh">
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <div class="logo-mark"><span>&lambda;</span></div>
+        Lemma AI
+      </a>
+      <div class="nav-links">
+        <a href="#summary"><span class="zh">摘要</span><span class="en">Summary</span></a>
+        <a href="#product"><span class="zh">产品</span><span class="en">Product</span></a>
+        <a href="#competition"><span class="zh">竞品</span><span class="en">Competition</span></a>
+        <a href="#team"><span class="zh">团队</span><span class="en">Team</span></a>
+        <a href="#funding"><span class="zh">融资</span><span class="en">Funding</span></a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span class="zh">天使轮融资中 · Angel Round Open</span>
+        <span class="en">Angel Round Open</span>
+      </div>
+      <h1>
+        <span class="zh">让每个人都拥有一位<br><span class="accent">永远在线的完美助教</span></span>
+        <span class="en">A perfect teaching assistant,<br><span class="accent">always online, for everyone</span></span>
+      </h1>
+      <p class="hero-desc">
+        <span class="zh">AI Native 智能学习平台 — 将全网分散的优质学习资源自动编排为千人千面的体系化课程，通过实时 AI Copilot 实现伴学、答疑与自适应练习。</span>
+        <span class="en">An AI-Native intelligent learning platform that transforms scattered quality educational resources into personalized systematic courses, with a real-time AI Copilot for learning companionship, Q&A, and adaptive practice.</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#summary" class="btn btn-primary">
+          <span class="zh">了解项目</span>
+          <span class="en">Learn More</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#funding" class="btn btn-secondary">
+          <span class="zh">融资详情</span>
+          <span class="en">Funding Details</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">¥840B+</div>
+          <div class="label"><span class="zh">AI 教育市场（2033）</span><span class="en">AI Education Market (2033)</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">37.2%</div>
+          <div class="label"><span class="zh">年复合增长率</span><span class="en">CAGR</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">¥3.5M</div>
+          <div class="label"><span class="zh">天使轮融资</span><span class="en">Angel Round</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="section" id="summary">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">01 / 项目摘要</span>
+        <span class="en">01 / Summary</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">我们不生成内容，我们赋能内容</span>
+        <span class="en">We don't generate content, we empower it</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">区别于竞品以 AI 完全替代人类教师的路径，Lemma AI 选择站在全球数百万优质创作者一侧，将静态、孤立的学习资源转化为动态、交互式的个性化学习体验。这一"赋能而非对抗"的战略，使我们的可覆盖市场（TAM）远大于任何 AIGC-only 的竞争者。</span>
+        <span class="en">Unlike competitors who aim to fully replace human teachers with AI, Lemma AI stands alongside millions of quality content creators worldwide, transforming static, isolated learning resources into dynamic, interactive personalized learning experiences. This "empower rather than compete" strategy gives us a TAM far greater than any AIGC-only competitor.</span>
+      </p>
+
+      <div class="grid-3" style="margin-bottom: 48px;">
+        <div class="card fade-in">
+          <div class="card-icon">01</div>
+          <h3><span class="zh">智能课程编排</span><span class="en">Smart Course Orchestration</span></h3>
+          <p><span class="zh">AI 检索全网优质学习资源（YouTube、B站、Coursera、PDF、论文等），基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span><span class="en">AI retrieves quality learning resources across the web (YouTube, Bilibili, Coursera, PDFs, papers), and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">02</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p><span class="zh">用户在观看视频课程时可随时暂停并提问。得益于视频级深度语义理解，用户无需补充上下文，可直接引用时间戳提问，获得基于该视频片段的精确解答。</span><span class="en">Users can pause and ask questions anytime while watching video courses. Thanks to video-level deep semantic understanding, users can reference timestamps directly without adding context, receiving precise answers based on the video segment.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">03</div>
+          <h3><span class="zh">AI Native 插件生态</span><span class="en">AI-Native Plugin Ecosystem</span></h3>
+          <p><span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。从英语词汇听写到交互式坐标系画板，通过插件化架构使平台能力无限扩展，覆盖全场景需求。</span><span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. From English vocabulary dictation to interactive coordinate plane canvases, the plugin architecture enables infinite platform capability expansion across all scenarios.</span></p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$331B</div>
+          <div class="desc"><span class="zh">K12 在线教育市场规模（2029年预测）<br>年复合增长率 21.1%</span><span class="en">K12 Online Education Market (2029 forecast)<br>CAGR 21.1%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$840B</div>
+          <div class="desc"><span class="zh">AI 教育市场规模（2033年预测）<br>年复合增长率 37.2%</span><span class="en">AI Education Market (2033 forecast)<br>CAGR 37.2%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">3</div>
+          <div class="desc"><span class="zh">结构性驱动力的交汇点<br>大模型能力拐点 × 创作者经济爆发 × 终身学习刚需</span><span class="en">Convergence of structural drivers<br>LLM capability inflection × Creator economy boom × Lifelong learning demand</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product -->
+  <section class="section" id="product" style="background: #fff;">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">02 / 产品架构</span>
+        <span class="en">02 / Product Architecture</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">四大核心模块，构建完整学习闭环</span>
+        <span class="en">Four Core Modules, A Complete Learning Loop</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">从课程编排到实时伴学，从插件生态到 AI 内容生成，Lemma AI 覆盖学习的每一个环节。</span>
+        <span class="en">From course orchestration to real-time companionship, from plugin ecosystem to AI content generation, Lemma AI covers every aspect of the learning journey.</span>
+      </p>
+
+      <div class="grid-2">
+        <div class="card fade-in">
+          <div class="card-icon">M1</div>
+          <h3><span class="zh">千人千面的智能课程编排引擎</span><span class="en">Personalized Course Orchestration Engine</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">输入用户的学习目标、当前知识水平、可用时间、偏好语言等，AI 检索全网优质学习资源，基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span>
+            <span class="en">Input: learning goals, current knowledge level, available time, language preferences. AI retrieves quality resources across the web and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span>
+          </p>
+          <p>
+            <span class="zh">输出类 Coursera 体验的完整课程 — 每一课包含教学视频、讲义/幻灯片、课后小测、笔记模板、作业。若用户未在预定时间内完成某单元，系统自动动态重排后续课程日程。</span>
+            <span class="en">Output: Coursera-style complete courses — each lesson includes teaching videos, notes/slides, quizzes, note templates, and assignments. If a user falls behind schedule, the system automatically reschedules subsequent lessons.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M2</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">用户在观看视频课程时，可随时暂停并在右侧 Copilot 交互区提问。关键技术差异：得益于底层对视频内容的深度语义理解，用户无需补充任何上下文，可直接引用时间戳提问。</span>
+            <span class="en">Users can pause anytime and ask questions in the Copilot panel. Key technical differentiation: thanks to deep semantic understanding of video content, users can reference timestamps directly without providing additional context.</span>
+          </p>
+          <p>
+            <span class="zh">延伸能力：AI 基于对整套课程及用户个人学习画像的理解，主动识别薄弱知识点（如用户多次就同一概念提问、反复倒退进度条），并针对性生成强化练习、笔记和小测。</span>
+            <span class="en">Extended capability: AI identifies weak knowledge points based on understanding of the entire course and user learning profile (e.g., repeated questions on the same concept, frequent rewinding), and generates targeted reinforcement exercises, notes, and quizzes.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M3</div>
+          <h3><span class="zh">AI Native 插件市场</span><span class="en">AI-Native Plugin Marketplace</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。英语词汇场景调用"单词听写"插件、数学场景调用"交互式坐标系画板"、文科场景调用古诗/课文默写插件、通用场景支持多题型自动生成。</span>
+            <span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. English vocabulary triggers dictation plugins, math scenarios trigger interactive coordinate canvases, humanities trigger poetry/text dictation, and universal scenarios support multi-format question generation.</span>
+          </p>
+          <p>
+            <span class="zh">开放生态（规划中）：后续开放 Plugin 开发规范，允许第三方开发者和教育创作者共建插件市场 — 形成"内容生态 + 工具生态"双飞轮。</span>
+            <span class="en">Open ecosystem (planned): Plugin development specs will be released, allowing third-party developers and educational creators to co-build the marketplace — forming a "content ecosystem + tool ecosystem" dual flywheel.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M4</div>
+          <h3><span class="zh">完整的 AI Native 生态</span><span class="en">Complete AI-Native Ecosystem</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">得益于 AI 对整套课程及用户个人画像的理解，AI 不仅可以找到最适合用户的学习课程和路径，还可以针对用户的痛点、薄弱点、知识本身的重点、易忘点等核心信息进行针对性的内容生成。</span>
+            <span class="en">With AI's understanding of the entire course curriculum and the user's personal profile, it not only finds the most suitable learning paths but also generates targeted content addressing user pain points, weak areas, key knowledge points, and easily forgotten concepts.</span>
+          </p>
+          <p>
+            <span class="zh">例如用户对知识点 A 掌握薄弱，在观看课程时多次提问并倒退进度条反复观看，则 AI 可针对该知识点生成具有针对性小测、笔记和作业，辅助用户更牢固地掌握知识。</span>
+            <span class="en">For example, if a user struggles with concept A, asking multiple questions and rewinding repeatedly, AI generates targeted quizzes, notes, and assignments for that specific concept to help the user master it more solidly.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiation -->
+  <section class="section" id="differentiation">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">03 / 战略差异化</span>
+        <span class="en">03 / Strategic Differentiation</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">AIGC-Only vs. AI-Augmented：行业范式之争</span>
+        <span class="en">AIGC-Only vs. AI-Augmented: The Paradigm Divide</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">当前 AI 教育赛道存在两条截然不同的路径。路径 A 以 AI 完全替代人类教师；路径 B 以 AI 赋能人类内容。Lemma AI 坚定选择路径 B。</span>
+        <span class="en">Two fundamentally different paths exist in AI education. Path A replaces human teachers entirely with AI; Path B empowers human content with AI. Lemma AI firmly chooses Path B.</span>
+      </p>
+
+      <div class="comparison-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th><span class="zh">维度</span><span class="en">Dimension</span></th>
+              <th><span class="zh">路径 A：AIGC-Only</span><span class="en">Path A: AIGC-Only</span></th>
+              <th class="highlight"><span class="zh">路径 B：AI-Augmented（Lemma AI）</span><span class="en">Path B: AI-Augmented (Lemma AI)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="zh">核心逻辑</span><span class="en">Core Logic</span></td>
+              <td><span class="zh">用 AI 替代人类教师，完全生成教学内容</span><span class="en">Replace human teachers with AI, fully generate content</span></td>
+              <td class="highlight featured"><span class="zh">以全球优质人类创作内容为基底，用 AI 将其转化为个性化交互体验</span><span class="en">Build on quality human-created content globally, transform it into personalized interactive experiences with AI</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">与创作者的关系</span><span class="en">Creator Relationship</span></td>
+              <td><span class="zh">对抗 — 与 YouTube 教育博主、Coursera 讲师、私人教师直接竞争</span><span class="en">Competitive — directly competes with YouTube educators, Coursera instructors, private tutors</span></td>
+              <td class="highlight featured"><span class="zh">共生 — 为创作者赋能，扩大其内容的触达与价值</span><span class="en">Symbiotic — empowers creators, expanding their content reach and value</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">可覆盖市场</span><span class="en">Addressable Market</span></td>
+              <td><span class="zh">仅覆盖"愿意相信 AI 生成内容优于人类教师"的细分用户</span><span class="en">Only covers users willing to believe AI content surpasses human teachers</span></td>
+              <td class="highlight featured"><span class="zh">覆盖所有存量和增量的人类创作内容 — 市场天花板根本性更高</span><span class="en">Covers all existing and future human-created content — fundamentally higher market ceiling</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">内容质量天花板</span><span class="en">Content Quality Ceiling</span></<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemma AI — 智能学习平台 | AI-Native Learning Platform</title>
+  <meta name="description" content="Lemma AI 是一个 AI Native 的智能学习平台，将全网优质学习资源自动编排为千人千面的体系化课程。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #FAFAFA;
+      color: #0A0A0A;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    table { border-collapse: collapse; width: 100%; }
+
+    /* ===== Language Toggle ===== */
+    body.lang-zh .en { display: none !important; }
+    body.lang-en .zh { display: none !important; }
+    body.lang-en { font-family: 'DM Sans', system-ui, sans-serif; }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 { font-family: 'Sora', sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ===== Layout ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 120px 0; position: relative; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #71717A;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: #0A0A0A;
+    }
+    .section-title { font-size: clamp(28px, 4vw, 44px); margin-bottom: 24px; }
+    .section-subtitle { font-size: 18px; color: #52525B; max-width: 640px; line-height: 1.7; }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 250, 250, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #E4E4E7;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: #0A0A0A;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Sora', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.3), transparent 60%);
+    }
+    .logo-mark span { position: relative; z-index: 1; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 14px;
+      color: #52525B;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #0A0A0A; }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      padding: 3px;
+      border: 1px solid #E4E4E7;
+    }
+    .lang-btn {
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      color: #71717A;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .lang-btn.active { background: #0A0A0A; color: #fff; }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168, 85, 247, 0.05), transparent);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #52525B;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, #6366F1, #A855F7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: clamp(16px, 2vw, 20px);
+      color: #52525B;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary {
+      background: #0A0A0A;
+      color: #fff;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-secondary {
+      background: #fff;
+      color: #0A0A0A;
+      border: 1px solid #E4E4E7;
+    }
+    .btn-secondary:hover { border-color: #0A0A0A; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid #E4E4E7;
+      flex-wrap: wrap;
+    }
+    .hero-stat .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .hero-stat .label { font-size: 13px; color: #71717A; margin-top: 4px; }
+
+    /* ===== Cards ===== */
+    .card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: #D4D4D8;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #F4F4F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #6366F1;
+    }
+    .card h3 { font-size: 20px; margin-bottom: 12px; }
+    .card p { color: #52525B; font-size: 15px; line-height: 1.7; }
+
+    /* ===== Grid ===== */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+    /* ===== Comparison ===== */
+    .comparison-wrapper { overflow-x: auto; border-radius: 16px; border: 1px solid #E4E4E7; }
+    .comparison-table { min-width: 800px; background: #fff; }
+    .comparison-table th {
+      padding: 20px 24px;
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #E4E4E7;
+      white-space: nowrap;
+    }
+    .comparison-table th.highlight { background: #FAFAFA; color: #6366F1; }
+    .comparison-table td {
+      padding: 16px 24px;
+      font-size: 14px;
+      border-bottom: 1px solid #F4F4F5;
+      color: #52525B;
+      vertical-align: top;
+    }
+    .comparison-table td.highlight { background: #FAFAFA; }
+    .comparison-table td:first-child { font-weight: 600; color: #0A0A0A; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table .featured { color: #6366F1; font-weight: 600; }
+
+    /* ===== Stats ===== */
+    .stat-block { text-align: left; }
+    .stat-block .big {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-block .desc { font-size: 14px; color: #71717A; line-height: 1.5; }
+
+    /* ===== Timeline ===== */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, #6366F1, #E4E4E7);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #6366F1;
+      z-index: 1;
+    }
+    .timeline-item.active .timeline-dot { background: #6366F1; }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #6366F1;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .timeline-title { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .timeline-desc { font-size: 14px; color: #52525B; line-height: 1.6; }
+
+    /* ===== Team ===== */
+    .team-card {
+      background: #fff;
+      border: 1px solid #E4E4E7;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .team-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .team-name { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .team-role { font-size: 14px; color: #6366F1; font-weight: 500; margin-bottom: 16px; }
+    .team-bio { font-size: 14px; color: #52525B; line-height: 1.7; text-align: left; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .team-tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      background: #F4F4F5;
+      border-radius: 100px;
+      color: #52525B;
+      font-weight: 500;
+    }
+
+    /* ===== Funding ===== */
+    .funding-highlight {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .funding-highlight .item { text-align: center; }
+    .funding-highlight .num {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .funding-highlight .label { font-size: 13px; color: #A1A1AA; }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: #0A0A0A;
+      color: #fff;
+      border-radius: 24px;
+      padding: 80px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99, 102, 241, 0.2), transparent);
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; }
+    .cta-section p { color: #A1A1AA; font-size: 16px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-section .btn-primary { background: #fff; color: #0A0A0A; }
+    .cta-section .btn-primary:hover { box-shadow: 0 8px 32px rgba(255,255,255,0.2); }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid #E4E4E7;
+      padding: 48px 0;
+      text-align: center;
+    }
+    footer .container { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    footer p { font-size: 13px; color: #71717A; }
+
+    /* ===== Animations ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: repeat(2, 1fr); padding: 32px; }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.lang-toggle-wrap) { display: none; }
+      .section { padding: 80px 0; }
+      .hero-stats { gap: 24px; }
+    }
+    @media (max-width: 600px) {
+      .grid-4 { grid-template-columns: 1fr; }
+      .funding-highlight { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+      .card { padding: 24px; }
+      .team-card { padding: 28px; }
+      .cta-section { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body class="lang-zh">
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <div class="logo-mark"><span>&lambda;</span></div>
+        Lemma AI
+      </a>
+      <div class="nav-links">
+        <a href="#summary"><span class="zh">摘要</span><span class="en">Summary</span></a>
+        <a href="#product"><span class="zh">产品</span><span class="en">Product</span></a>
+        <a href="#competition"><span class="zh">竞品</span><span class="en">Competition</span></a>
+        <a href="#team"><span class="zh">团队</span><span class="en">Team</span></a>
+        <a href="#funding"><span class="zh">融资</span><span class="en">Funding</span></a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span class="zh">天使轮融资中 · Angel Round Open</span>
+        <span class="en">Angel Round Open</span>
+      </div>
+      <h1>
+        <span class="zh">让每个人都拥有一位<br><span class="accent">永远在线的完美助教</span></span>
+        <span class="en">A perfect teaching assistant,<br><span class="accent">always online, for everyone</span></span>
+      </h1>
+      <p class="hero-desc">
+        <span class="zh">AI Native 智能学习平台 — 将全网分散的优质学习资源自动编排为千人千面的体系化课程，通过实时 AI Copilot 实现伴学、答疑与自适应练习。</span>
+        <span class="en">An AI-Native intelligent learning platform that transforms scattered quality educational resources into personalized systematic courses, with a real-time AI Copilot for learning companionship, Q&A, and adaptive practice.</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#summary" class="btn btn-primary">
+          <span class="zh">了解项目</span>
+          <span class="en">Learn More</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#funding" class="btn btn-secondary">
+          <span class="zh">融资详情</span>
+          <span class="en">Funding Details</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">¥840B+</div>
+          <div class="label"><span class="zh">AI 教育市场（2033）</span><span class="en">AI Education Market (2033)</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">37.2%</div>
+          <div class="label"><span class="zh">年复合增长率</span><span class="en">CAGR</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">¥3.5M</div>
+          <div class="label"><span class="zh">天使轮融资</span><span class="en">Angel Round</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="section" id="summary">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">01 / 项目摘要</span>
+        <span class="en">01 / Summary</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">我们不生成内容，我们赋能内容</span>
+        <span class="en">We don't generate content, we empower it</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">区别于竞品以 AI 完全替代人类教师的路径，Lemma AI 选择站在全球数百万优质创作者一侧，将静态、孤立的学习资源转化为动态、交互式的个性化学习体验。这一"赋能而非对抗"的战略，使我们的可覆盖市场（TAM）远大于任何 AIGC-only 的竞争者。</span>
+        <span class="en">Unlike competitors who aim to fully replace human teachers with AI, Lemma AI stands alongside millions of quality content creators worldwide, transforming static, isolated learning resources into dynamic, interactive personalized learning experiences. This "empower rather than compete" strategy gives us a TAM far greater than any AIGC-only competitor.</span>
+      </p>
+
+      <div class="grid-3" style="margin-bottom: 48px;">
+        <div class="card fade-in">
+          <div class="card-icon">01</div>
+          <h3><span class="zh">智能课程编排</span><span class="en">Smart Course Orchestration</span></h3>
+          <p><span class="zh">AI 检索全网优质学习资源（YouTube、B站、Coursera、PDF、论文等），基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span><span class="en">AI retrieves quality learning resources across the web (YouTube, Bilibili, Coursera, PDFs, papers), and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">02</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p><span class="zh">用户在观看视频课程时可随时暂停并提问。得益于视频级深度语义理解，用户无需补充上下文，可直接引用时间戳提问，获得基于该视频片段的精确解答。</span><span class="en">Users can pause and ask questions anytime while watching video courses. Thanks to video-level deep semantic understanding, users can reference timestamps directly without adding context, receiving precise answers based on the video segment.</span></p>
+        </div>
+        <div class="card fade-in">
+          <div class="card-icon">03</div>
+          <h3><span class="zh">AI Native 插件生态</span><span class="en">AI-Native Plugin Ecosystem</span></h3>
+          <p><span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。从英语词汇听写到交互式坐标系画板，通过插件化架构使平台能力无限扩展，覆盖全场景需求。</span><span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. From English vocabulary dictation to interactive coordinate plane canvases, the plugin architecture enables infinite platform capability expansion across all scenarios.</span></p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$331B</div>
+          <div class="desc"><span class="zh">K12 在线教育市场规模（2029年预测）<br>年复合增长率 21.1%</span><span class="en">K12 Online Education Market (2029 forecast)<br>CAGR 21.1%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">$840B</div>
+          <div class="desc"><span class="zh">AI 教育市场规模（2033年预测）<br>年复合增长率 37.2%</span><span class="en">AI Education Market (2033 forecast)<br>CAGR 37.2%</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="big" style="color: #6366F1;">3</div>
+          <div class="desc"><span class="zh">结构性驱动力的交汇点<br>大模型能力拐点 × 创作者经济爆发 × 终身学习刚需</span><span class="en">Convergence of structural drivers<br>LLM capability inflection × Creator economy boom × Lifelong learning demand</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product -->
+  <section class="section" id="product" style="background: #fff;">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">02 / 产品架构</span>
+        <span class="en">02 / Product Architecture</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">四大核心模块，构建完整学习闭环</span>
+        <span class="en">Four Core Modules, A Complete Learning Loop</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">从课程编排到实时伴学，从插件生态到 AI 内容生成，Lemma AI 覆盖学习的每一个环节。</span>
+        <span class="en">From course orchestration to real-time companionship, from plugin ecosystem to AI content generation, Lemma AI covers every aspect of the learning journey.</span>
+      </p>
+
+      <div class="grid-2">
+        <div class="card fade-in">
+          <div class="card-icon">M1</div>
+          <h3><span class="zh">千人千面的智能课程编排引擎</span><span class="en">Personalized Course Orchestration Engine</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">输入用户的学习目标、当前知识水平、可用时间、偏好语言等，AI 检索全网优质学习资源，基于知识图谱和教学法原则，自动编排为体系化、精确到每日任务的个性化课程计划。</span>
+            <span class="en">Input: learning goals, current knowledge level, available time, language preferences. AI retrieves quality resources across the web and orchestrates them into systematic, day-by-day personalized course plans based on knowledge graphs and pedagogical principles.</span>
+          </p>
+          <p>
+            <span class="zh">输出类 Coursera 体验的完整课程 — 每一课包含教学视频、讲义/幻灯片、课后小测、笔记模板、作业。若用户未在预定时间内完成某单元，系统自动动态重排后续课程日程。</span>
+            <span class="en">Output: Coursera-style complete courses — each lesson includes teaching videos, notes/slides, quizzes, note templates, and assignments. If a user falls behind schedule, the system automatically reschedules subsequent lessons.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M2</div>
+          <h3><span class="zh">实时 AI Copilot 伴学</span><span class="en">Real-time AI Copilot</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">用户在观看视频课程时，可随时暂停并在右侧 Copilot 交互区提问。关键技术差异：得益于底层对视频内容的深度语义理解，用户无需补充任何上下文，可直接引用时间戳提问。</span>
+            <span class="en">Users can pause anytime and ask questions in the Copilot panel. Key technical differentiation: thanks to deep semantic understanding of video content, users can reference timestamps directly without providing additional context.</span>
+          </p>
+          <p>
+            <span class="zh">延伸能力：AI 基于对整套课程及用户个人学习画像的理解，主动识别薄弱知识点（如用户多次就同一概念提问、反复倒退进度条），并针对性生成强化练习、笔记和小测。</span>
+            <span class="en">Extended capability: AI identifies weak knowledge points based on understanding of the entire course and user learning profile (e.g., repeated questions on the same concept, frequent rewinding), and generates targeted reinforcement exercises, notes, and quizzes.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M3</div>
+          <h3><span class="zh">AI Native 插件市场</span><span class="en">AI-Native Plugin Marketplace</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">Copilot 不只是一个 ChatBot — 它是一个可扩展的教学工具平台。英语词汇场景调用"单词听写"插件、数学场景调用"交互式坐标系画板"、文科场景调用古诗/课文默写插件、通用场景支持多题型自动生成。</span>
+            <span class="en">Copilot is not just a ChatBot — it's an extensible teaching tool platform. English vocabulary triggers dictation plugins, math scenarios trigger interactive coordinate canvases, humanities trigger poetry/text dictation, and universal scenarios support multi-format question generation.</span>
+          </p>
+          <p>
+            <span class="zh">开放生态（规划中）：后续开放 Plugin 开发规范，允许第三方开发者和教育创作者共建插件市场 — 形成"内容生态 + 工具生态"双飞轮。</span>
+            <span class="en">Open ecosystem (planned): Plugin development specs will be released, allowing third-party developers and educational creators to co-build the marketplace — forming a "content ecosystem + tool ecosystem" dual flywheel.</span>
+          </p>
+        </div>
+
+        <div class="card fade-in">
+          <div class="card-icon">M4</div>
+          <h3><span class="zh">完整的 AI Native 生态</span><span class="en">Complete AI-Native Ecosystem</span></h3>
+          <p style="margin-bottom: 16px;">
+            <span class="zh">得益于 AI 对整套课程及用户个人画像的理解，AI 不仅可以找到最适合用户的学习课程和路径，还可以针对用户的痛点、薄弱点、知识本身的重点、易忘点等核心信息进行针对性的内容生成。</span>
+            <span class="en">With AI's understanding of the entire course curriculum and the user's personal profile, it not only finds the most suitable learning paths but also generates targeted content addressing user pain points, weak areas, key knowledge points, and easily forgotten concepts.</span>
+          </p>
+          <p>
+            <span class="zh">例如用户对知识点 A 掌握薄弱，在观看课程时多次提问并倒退进度条反复观看，则 AI 可针对该知识点生成具有针对性小测、笔记和作业，辅助用户更牢固地掌握知识。</span>
+            <span class="en">For example, if a user struggles with concept A, asking multiple questions and rewinding repeatedly, AI generates targeted quizzes, notes, and assignments for that specific concept to help the user master it more solidly.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiation -->
+  <section class="section" id="differentiation">
+    <div class="container">
+      <div class="section-label">
+        <span class="zh">03 / 战略差异化</span>
+        <span class="en">03 / Strategic Differentiation</span>
+      </div>
+      <h2 class="section-title">
+        <span class="zh">AIGC-Only vs. AI-Augmented：行业范式之争</span>
+        <span class="en">AIGC-Only vs. AI-Augmented: The Paradigm Divide</span>
+      </h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">
+        <span class="zh">当前 AI 教育赛道存在两条截然不同的路径。路径 A 以 AI 完全替代人类教师；路径 B 以 AI 赋能人类内容。Lemma AI 坚定选择路径 B。</span>
+        <span class="en">Two fundamentally different paths exist in AI education. Path A replaces human teachers entirely with AI; Path B empowers human content with AI. Lemma AI firmly chooses Path B.</span>
+      </p>
+
+      <div class="comparison-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th><span class="zh">维度</span><span class="en">Dimension</span></th>
+              <th><span class="zh">路径 A：AIGC-Only</span><span class="en">Path A: AIGC-Only</span></th>
+              <th class="highlight"><span class="zh">路径 B：AI-Augmented（Lemma AI）</span><span class="en">Path B: AI-Augmented (Lemma AI)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="zh">核心逻辑</span><span class="en">Core Logic</span></td>
+              <td><span class="zh">用 AI 替代人类教师，完全生成教学内容</span><span class="en">Replace human teachers with AI, fully generate content</span></td>
+              <td class="highlight featured"><span class="zh">以全球优质人类创作内容为基底，用 AI 将其转化为个性化交互体验</span><span class="en">Build on quality human-created content globally, transform it into personalized interactive experiences with AI</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">与创作者的关系</span><span class="en">Creator Relationship</span></td>
+              <td><span class="zh">对抗 — 与 YouTube 教育博主、Coursera 讲师、私人教师直接竞争</span><span class="en">Competitive — directly competes with YouTube educators, Coursera instructors, private tutors</span></td>
+              <td class="highlight featured"><span class="zh">共生 — 为创作者赋能，扩大其内容的触达与价值</span><span class="en">Symbiotic — empowers creators, expanding their content reach and value</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">可覆盖市场</span><span class="en">Addressable Market</span></td>
+              <td><span class="zh">仅覆盖"愿意相信 AI 生成内容优于人类教师"的细分用户</span><span class="en">Only covers users willing to believe AI content surpasses human teachers</span></td>
+              <td class="highlight featured"><span class="zh">覆盖所有存量和增量的人类创作内容 — 市场天花板根本性更高</span><span class="en">Covers all existing and future human-created content — fundamentally higher market ceiling</span></td>
+            </tr>
+            <tr>
+              <td><span class="zh">内容质量天花板</span><span class="en">Content Quality Ceiling</span></td>
+              <td><span class="zh">受限于 AI 生成能力，短期内无法
