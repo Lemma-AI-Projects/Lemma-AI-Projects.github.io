@@ -356,6 +356,10 @@
     .team-bio{font-size:13px;color:#A1A1AA;line-height:1.6}
     .team-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
     .team-tag{font-size:11px;padding:3px 10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:100px;color:#A1A1AA;font-family:'Geist Mono',monospace}
+    .team-contact{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06)}
+    .team-contact a,.team-contact span{font-size:12px;color:#A1A1AA;font-family:'Geist Mono',monospace;transition:color .15s;display:inline-flex;align-items:center;gap:8px}
+    .team-contact a:hover{color:#FAFAFA}
+    .team-contact svg{flex-shrink:0;color:#52525B}
 
     /* ===== Funding ===== */
     .funding-grid{
@@ -449,6 +453,24 @@
       .path-card{padding:24px}
     }
   </style>
+  <style>
+    .logo-marquee{position:relative;overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+    .marquee-track{display:flex;gap:14px;width:max-content;animation:marquee 50s linear infinite;padding:6px 0}
+    .marquee-track.reverse{animation-direction:reverse;animation-duration:58s}
+    .logo-marquee:hover .marquee-track{animation-play-state:paused}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .marquee-tile{flex:0 0 auto;width:172px;height:104px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);transition:border-color .25s,transform .25s,background .25s,box-shadow .25s}
+    .marquee-tile:hover{border-color:var(--c);transform:translateY(-4px) scale(1.04);background:rgba(255,255,255,0.04);box-shadow:0 14px 34px -14px var(--c)}
+    .marquee-logo{height:54px;width:auto;max-width:136px;object-fit:contain;border-radius:8px;background:#fff;padding:8px 10px}
+    .org-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:56px;justify-content:center}
+    .org-card{display:flex;align-items:center;gap:16px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 22px;background:rgba(255,255,255,0.02);transition:border-color .2s,transform .2s,background .2s;max-width:360px}
+    .org-card:hover{border-color:rgba(255,255,255,0.28);transform:translateY(-2px);background:rgba(255,255,255,0.04)}
+    .org-logo{width:46px;height:46px;border-radius:10px;object-fit:cover;background:#fff}
+    .org-name{font-weight:600;font-size:15px;color:#FAFAFA}
+    .org-desc{font-size:12px;color:#71717A;font-family:'Geist Mono',monospace;margin-top:2px}
+    @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+    @media(max-width:640px){.marquee-tile{width:140px;height:88px}.marquee-logo{height:46px;max-width:112px}.marquee-track{animation-duration:32s}}
+  </style>
 </head>
 <body class="lang-zh">
 
@@ -464,6 +486,7 @@
         <a href="#product"><span class="zh">产品</span><span class="en">Product</span></a>
         <a href="#competition"><span class="zh">竞品</span><span class="en">Competition</span></a>
         <a href="#team"><span class="zh">团队</span><span class="en">Team</span></a>
+        <a href="#collaborators"><span class="zh">学生</span><span class="en">Students</span></a>
         <a href="#funding"><span class="zh">融资</span><span class="en">Funding</span></a>
         <div class="lang-toggle">
           <button class="lang-btn active" data-lang="zh">中</button>
@@ -1040,7 +1063,115 @@
             <span class="team-tag"><span class="zh">首席内容官</span><span class="en">CHIEF CONTENT</span></span>
             <span class="team-tag"><span class="zh">首席架构官</span><span class="en">CHIEF TECHNOLOGY</span></span>
           </div>
+          <div class="team-contact">
+            <a href="https://x.com/ceaserzhao2024" target="_blank" rel="noopener">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              X / Twitter · @ceaserzhao2024
+            </a>
+            <a href="mailto:2791351776@qq.com">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              2791351776@qq.com
+            </a>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span class="zh">微信 / WeChat</span><span class="en">WeChat</span> · Ceaser-123
+            </span>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collaborators -->
+  <section class="section" id="collaborators">
+    <div class="container">
+      <div class="eyebrow"><span class="zh">08 / 学生都在用</span><span class="en">08 / USED BY STUDENTS</span></div>
+      <h2 class="section-title">
+        <span class="zh">全球顶尖高校学生都在用</span>
+        <span class="en">Students at the world's leading universities use Lemma AI</span>
+      </h2>
+      <p class="section-desc" style="margin-bottom:56px">
+        <span class="zh">成为跨领域的连接者，实现真正的终生成长。</span>
+        <span class="en">Become a cross-disciplinary connector and achieve true lifelong growth.</span>
+      </p>
+
+      <div class="logo-marquee fade-up">
+        <div class="marquee-track">
+          <div class="marquee-tile" style="--c:#A31F34"><img class="marquee-logo" src="assets/logos/mit.svg" alt="MIT"/></div>
+          <div class="marquee-tile" style="--c:#003E74"><img class="marquee-logo" src="assets/logos/uni/ic.png" alt="Imperial College London"/></div>
+          <div class="marquee-tile" style="--c:#8C1515"><img class="marquee-logo" src="assets/logos/uni/stan.png" alt="Stanford University"/></div>
+          <div class="marquee-tile" style="--c:#002147"><img class="marquee-logo" src="assets/logos/uni/ox.png" alt="University of Oxford"/></div>
+          <div class="marquee-tile" style="--c:#A51C30"><img class="marquee-logo" src="assets/logos/uni/harv.png" alt="Harvard University"/></div>
+          <div class="marquee-tile" style="--c:#0A2A66"><img class="marquee-logo" src="assets/logos/uni/cam.png" alt="University of Cambridge"/></div>
+          <div class="marquee-tile" style="--c:#E3000F"><img class="marquee-logo" src="assets/logos/uni/eth.png" alt="ETH Zürich"/></div>
+          <div class="marquee-tile" style="--c:#003D7B"><img class="marquee-logo" src="assets/logos/uni/nus.png" alt="National University of Singapore"/></div>
+          <div class="marquee-tile" style="--c:#13294B"><img class="marquee-logo" src="assets/logos/uni/ucl.png" alt="University College London"/></div>
+          <div class="marquee-tile" style="--c:#FF6C0C"><img class="marquee-logo" src="assets/logos/uni/calt.png" alt="California Institute of Technology"/></div>
+          <div class="marquee-tile" style="--c:#011F5B"><img class="marquee-logo" src="assets/logos/uni/penn.png" alt="University of Pennsylvania"/></div>
+          <div class="marquee-tile" style="--c:#003262"><img class="marquee-logo" src="assets/logos/uni/berk.png" alt="UC Berkeley"/></div>
+          <div class="marquee-tile" style="--c:#0C2340"><img class="marquee-logo" src="assets/logos/uni/melb.png" alt="University of Melbourne"/></div>
+          <div class="marquee-tile" style="--c:#C10C0C"><img class="marquee-logo" src="assets/logos/uni/pku.png" alt="Peking University"/></div>
+          <div class="marquee-tile" style="--c:#EF7C00"><img class="marquee-logo" src="assets/logos/uni/ntu.png" alt="Nanyang Technological University"/></div>
+          <div class="marquee-tile" style="--c:#A31F34"><img class="marquee-logo" src="assets/logos/mit.svg" alt="MIT"/></div>
+          <div class="marquee-tile" style="--c:#003E74"><img class="marquee-logo" src="assets/logos/uni/ic.png" alt="Imperial College London"/></div>
+          <div class="marquee-tile" style="--c:#8C1515"><img class="marquee-logo" src="assets/logos/uni/stan.png" alt="Stanford University"/></div>
+          <div class="marquee-tile" style="--c:#002147"><img class="marquee-logo" src="assets/logos/uni/ox.png" alt="University of Oxford"/></div>
+          <div class="marquee-tile" style="--c:#A51C30"><img class="marquee-logo" src="assets/logos/uni/harv.png" alt="Harvard University"/></div>
+          <div class="marquee-tile" style="--c:#0A2A66"><img class="marquee-logo" src="assets/logos/uni/cam.png" alt="University of Cambridge"/></div>
+          <div class="marquee-tile" style="--c:#E3000F"><img class="marquee-logo" src="assets/logos/uni/eth.png" alt="ETH Zürich"/></div>
+          <div class="marquee-tile" style="--c:#003D7B"><img class="marquee-logo" src="assets/logos/uni/nus.png" alt="National University of Singapore"/></div>
+          <div class="marquee-tile" style="--c:#13294B"><img class="marquee-logo" src="assets/logos/uni/ucl.png" alt="University College London"/></div>
+          <div class="marquee-tile" style="--c:#FF6C0C"><img class="marquee-logo" src="assets/logos/uni/calt.png" alt="California Institute of Technology"/></div>
+          <div class="marquee-tile" style="--c:#011F5B"><img class="marquee-logo" src="assets/logos/uni/penn.png" alt="University of Pennsylvania"/></div>
+          <div class="marquee-tile" style="--c:#003262"><img class="marquee-logo" src="assets/logos/uni/berk.png" alt="UC Berkeley"/></div>
+          <div class="marquee-tile" style="--c:#0C2340"><img class="marquee-logo" src="assets/logos/uni/melb.png" alt="University of Melbourne"/></div>
+          <div class="marquee-tile" style="--c:#C10C0C"><img class="marquee-logo" src="assets/logos/uni/pku.png" alt="Peking University"/></div>
+          <div class="marquee-tile" style="--c:#EF7C00"><img class="marquee-logo" src="assets/logos/uni/ntu.png" alt="Nanyang Technological University"/></div>
+        </div>
+      </div>
+      <div class="logo-marquee fade-up" style="margin-top:16px">
+        <div class="marquee-track">
+          <div class="marquee-tile" style="--c:#B31B1B"><img class="marquee-logo" src="assets/logos/uni/corn.png" alt="Cornell University"/></div>
+          <div class="marquee-tile" style="--c:#80000B"><img class="marquee-logo" src="assets/logos/uni/uchi.png" alt="University of Chicago"/></div>
+          <div class="marquee-tile" style="--c:#003D7B"><img class="marquee-logo" src="assets/logos/uni/syd.png" alt="University of Sydney"/></div>
+          <div class="marquee-tile" style="--c:#E2000F"><img class="marquee-logo" src="assets/logos/uni/epfl.png" alt="EPFL"/></div>
+          <div class="marquee-tile" style="--c:#660874"><img class="marquee-logo" src="assets/logos/uni/thu.png" alt="Tsinghua University"/></div>
+          <div class="marquee-tile" style="--c:#002A5C"><img class="marquee-logo" src="assets/logos/uni/uoft.png" alt="University of Toronto"/></div>
+          <div class="marquee-tile" style="--c:#1A3A6E"><img class="marquee-logo" src="assets/logos/uni/hku.png" alt="The University of Hong Kong"/></div>
+          <div class="marquee-tile" style="--c:#1E4C8A"><img class="marquee-logo" src="assets/logos/uni/edin.png" alt="University of Edinburgh"/></div>
+          <div class="marquee-tile" style="--c:#002D72"><img class="marquee-logo" src="assets/logos/uni/jhu.png" alt="Johns Hopkins University"/></div>
+          <div class="marquee-tile" style="--c:#2E4C8A"><img class="marquee-logo" src="assets/logos/uni/utokyo.png" alt="University of Tokyo"/></div>
+          <div class="marquee-tile" style="--c:#C8102E"><img class="marquee-logo" src="assets/logos/uni/mcgill.png" alt="McGill University"/></div>
+          <div class="marquee-tile" style="--c:#660099"><img class="marquee-logo" src="assets/logos/uni/man.png" alt="University of Manchester"/></div>
+          <div class="marquee-tile" style="--c:#A60E3D"><img class="marquee-logo" src="assets/logos/uni/fudan.png" alt="Fudan University"/></div>
+          <div class="marquee-tile" style="--c:#004191"><img class="marquee-logo" src="assets/logos/uni/kaist.png" alt="KAIST"/></div>
+          <div class="marquee-tile" style="--c:#E4002B"><img class="marquee-logo" src="assets/logos/uni/unsw.png" alt="UNSW Sydney"/></div>
+          <div class="marquee-tile" style="--c:#B31B1B"><img class="marquee-logo" src="assets/logos/uni/corn.png" alt="Cornell University"/></div>
+          <div class="marquee-tile" style="--c:#80000B"><img class="marquee-logo" src="assets/logos/uni/uchi.png" alt="University of Chicago"/></div>
+          <div class="marquee-tile" style="--c:#003D7B"><img class="marquee-logo" src="assets/logos/uni/syd.png" alt="University of Sydney"/></div>
+          <div class="marquee-tile" style="--c:#E2000F"><img class="marquee-logo" src="assets/logos/uni/epfl.png" alt="EPFL"/></div>
+          <div class="marquee-tile" style="--c:#660874"><img class="marquee-logo" src="assets/logos/uni/thu.png" alt="Tsinghua University"/></div>
+          <div class="marquee-tile" style="--c:#002A5C"><img class="marquee-logo" src="assets/logos/uni/uoft.png" alt="University of Toronto"/></div>
+          <div class="marquee-tile" style="--c:#1A3A6E"><img class="marquee-logo" src="assets/logos/uni/hku.png" alt="The University of Hong Kong"/></div>
+          <div class="marquee-tile" style="--c:#1E4C8A"><img class="marquee-logo" src="assets/logos/uni/edin.png" alt="University of Edinburgh"/></div>
+          <div class="marquee-tile" style="--c:#002D72"><img class="marquee-logo" src="assets/logos/uni/jhu.png" alt="Johns Hopkins University"/></div>
+          <div class="marquee-tile" style="--c:#2E4C8A"><img class="marquee-logo" src="assets/logos/uni/utokyo.png" alt="University of Tokyo"/></div>
+          <div class="marquee-tile" style="--c:#C8102E"><img class="marquee-logo" src="assets/logos/uni/mcgill.png" alt="McGill University"/></div>
+          <div class="marquee-tile" style="--c:#660099"><img class="marquee-logo" src="assets/logos/uni/man.png" alt="University of Manchester"/></div>
+          <div class="marquee-tile" style="--c:#A60E3D"><img class="marquee-logo" src="assets/logos/uni/fudan.png" alt="Fudan University"/></div>
+          <div class="marquee-tile" style="--c:#004191"><img class="marquee-logo" src="assets/logos/uni/kaist.png" alt="KAIST"/></div>
+          <div class="marquee-tile" style="--c:#E4002B"><img class="marquee-logo" src="assets/logos/uni/unsw.png" alt="UNSW Sydney"/></div>
+        </div>
+      </div>
+
+      <div class="org-row fade-up">
+        <a class="org-card" href="https://github.com/Oasis-Company" target="_blank" rel="noopener">
+          <img class="org-logo" src="assets/logos/oasis-company.png" alt="Oasis Company" />
+          <div class="org-meta">
+            <div class="org-name">Oasis Company</div>
+            <div class="org-desc">github.com/Oasis-Company</div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -1048,7 +1179,7 @@
   <!-- Funding -->
   <section class="section" id="funding" style="background:#0A0A0A">
     <div class="container">
-      <div class="eyebrow"><span class="zh">08 / 融资需求</span><span class="en">08 / FUNDING</span></div>
+      <div class="eyebrow"><span class="zh">09 / 融资需求</span><span class="en">09 / FUNDING</span></div>
       <h2 class="section-title">
         <span class="zh">天使轮融资</span>
         <span class="en">Angel round</span>
@@ -1127,7 +1258,7 @@
   <!-- Roadmap -->
   <section class="section" id="roadmap">
     <div class="container">
-      <div class="eyebrow"><span class="zh">09 / 路线图</span><span class="en">09 / ROADMAP</span></div>
+      <div class="eyebrow"><span class="zh">10 / 路线图</span><span class="en">10 / ROADMAP</span></div>
       <h2 class="section-title">
         <span class="zh">从 MVP 到盈亏平衡</span>
         <span class="en">From MVP to break-even</span>
