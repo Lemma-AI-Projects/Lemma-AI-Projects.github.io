@@ -481,6 +481,26 @@
     .manifesto-outro{margin-top:44px;font-size:clamp(20px,2.6vw,28px);font-weight:500;line-height:1.45;letter-spacing:-0.02em;color:#FAFAFA}
     .manifesto-outro .kw-green{color:#10B981;font-weight:600}
   </style>
+  <style>
+    .genome-flywheel{position:relative;width:min(560px,100%);aspect-ratio:1/1;margin:0 auto;display:flex;align-items:center;justify-content:center}
+    .flywheel-ring{position:absolute;inset:8%;border:1px dashed rgba(16,185,129,0.35);border-radius:50%;animation:genome-spin 28s linear infinite}
+    .flywheel-ring::after{content:'';position:absolute;inset:15%;border:1px solid rgba(255,255,255,0.07);border-radius:50%}
+    @keyframes genome-spin{to{transform:rotate(360deg)}}
+    .flywheel-center{position:relative;z-index:2;text-align:center;padding:0 18px}
+    .flywheel-center-kw{font-weight:600;font-size:clamp(18px,2.6vw,26px);letter-spacing:-0.02em;color:#FAFAFA;line-height:1.25}
+    .flywheel-center-kw .en{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#10B981;margin-top:8px}
+    .flywheel-node{position:absolute;z-index:2;padding:12px 16px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.03);font-size:13px;color:#A1A1AA;text-align:center;max-width:142px;transition:border-color .25s,color .25s,box-shadow .25s}
+    .flywheel-node .en{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.05em;color:#71717A;margin-top:4px}
+    .flywheel-node.n1{top:0;left:50%;transform:translate(-50%,-12%)}
+    .flywheel-node.n2{top:50%;right:0;transform:translate(12%,-50%)}
+    .flywheel-node.n3{bottom:0;left:50%;transform:translate(-50%,12%)}
+    .flywheel-node.n4{top:50%;left:0;transform:translate(-12%,-50%)}
+    .flywheel-node:hover{border-color:#10B981;color:#FAFAFA;box-shadow:0 14px 34px -18px rgba(16,185,129,0.7)}
+    .genome-flywheel-cap{text-align:center;max-width:620px;margin:44px auto 0;font-size:14px;line-height:1.85;color:#71717A}
+    .genome-flywheel-cap .zh{color:#A1A1AA}
+    @media(prefers-reduced-motion:reduce){.flywheel-ring{animation:none}}
+    @media(max-width:640px){.genome-flywheel{width:min(360px,94%)}.flywheel-node{font-size:11px;padding:9px 11px;max-width:108px}.flywheel-node .en{font-size:9px}}
+  </style>
 </head>
 <body class="lang-zh">
 
@@ -494,6 +514,7 @@
       <div class="nav-links">
         <a href="#summary"><span class="zh">摘要</span><span class="en">Summary</span></a>
         <a href="#product"><span class="zh">产品</span><span class="en">Product</span></a>
+        <a href="#genome"><span class="zh">认知</span><span class="en">Genome</span></a>
         <a href="#competition"><span class="zh">竞品</span><span class="en">Competition</span></a>
         <a href="#team"><span class="zh">团队</span><span class="en">Team</span></a>
         <a href="#collaborators"><span class="zh">学生</span><span class="en">Students</span></a>
@@ -519,12 +540,12 @@
         <span class="en">Angel Round Open</span>
       </div>
       <h1>
-        <span class="zh">让每个人都拥有一位<br><span class="dim">永远在线的</span>完美助教</span>
-        <span class="en">A perfect teaching assistant,<br><span class="dim">always online,</span> for everyone</span>
+        <span class="zh">别的 AI 教你知识，<br>我们训练<span class="dim">怎么教你</span></span>
+        <span class="en">Others teach you knowledge.<br>We train <span class="dim">how to teach you</span></span>
       </h1>
       <p class="hero-desc">
-        <span class="zh">AI-Native 智能学习平台。将全网分散的优质学习资源自动编排为千人千面的体系化课程，通过实时 AI Copilot 实现伴学、答疑与自适应练习。</span>
-        <span class="en">An AI-Native learning platform that transforms scattered quality educational resources into personalized systematic courses with a real-time AI Copilot for learning companionship, Q&A, and adaptive practice.</span>
+        <span class="zh">一台为你的大脑打造的学习引擎。我们为每个学习者建立专属的认知模型——你的学习基因组——让每一次教学决策都在优化"怎么教你"。配合实时 AI Copilot 与千人千面课程，把分散的优质资源变成会进化的学习体验。</span>
+        <span class="en">A learning engine built for your brain. We model a personal cognitive profile for every learner — your learning genome — so every teaching decision optimizes how to teach you. Paired with a real-time AI Copilot and personalized courses, it turns scattered resources into an evolving experience.</span>
       </p>
       <div class="hero-actions">
         <a href="#summary" class="btn btn-primary">
@@ -727,10 +748,73 @@
     </div>
   </section>
 
+  <!-- Cognitive Modeling / Learning Genome -->
+  <section class="section" id="genome" style="background:#0A0A0A">
+    <div class="container">
+      <div class="eyebrow"><span class="zh">03 / 认知建模</span><span class="en">03 / COGNITIVE MODELING</span></div>
+      <h2 class="section-title">
+        <span class="zh">你的学习基因组<br>一台会进化的认知模型</span>
+        <span class="en">Your learning genome<br>a cognitive model that evolves</span>
+      </h2>
+      <p class="section-desc" style="margin-bottom:56px">
+        <span class="zh">普通 AI 用同一条流水线服务所有人；我们为每一个学习者建立一份会进化的认知模型——你的学习基因组。每一次学习都在更新它，每一次教学决策都在优化它。</span>
+        <span class="en">Generic AI serves everyone with one pipeline. We build an evolving cognitive model for every learner — your learning genome. Every study session updates it; every teaching decision optimizes it.</span>
+      </p>
+
+      <div class="grid-3" style="margin-bottom:72px">
+        <div class="card fade-up">
+          <div class="card-num mono">BKT · IRT</div>
+          <h3><span class="zh">知识状态 = 概率</span><span class="en">Knowledge as probability</span></h3>
+          <p><span class="zh">"会了"不是 yes/no，而是一个 0.93 的掌握概率。每一次作答都在更新你对每个知识点的真实把握。</span><span class="en">"Mastered" isn't yes/no — it's a 0.93 probability. Every answer updates your true grasp of each concept.</span></p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-num mono">FSRS</div>
+          <h3><span class="zh">遗忘动力学建模</span><span class="en">Forgetting dynamics</span></h3>
+          <p><span class="zh">现代间隔复习算法（Anki 官方同款），在你"该忘又没忘"的黄金点精准推送复习，记忆效率最大化。</span><span class="en">Modern spaced-repetition (same engine as Anki) pushes review at the golden point — just before you'd forget — for maximal retention.</span></p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-num mono">KST</div>
+          <h3><span class="zh">认知结构推断</span><span class="en">Knowledge space</span></h3>
+          <p><span class="zh">知识缺口是一张可推导的图：卡在 B，往往是因为缺了 A。系统据此补的是根因，不是表象。</span><span class="en">Gaps form a derivable graph: stuck at B usually means missing A. We fix the root cause, not the symptom.</span></p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-num mono">ACTIVE LEARNING</div>
+          <h3><span class="zh">期望学习速率最大化</span><span class="en">Optimal teaching</span></h3>
+          <p><span class="zh">不按固定顺序灌，而是选"最能让你进步的下一个知识点"——把你的时间花在边际收益最高的地方。</span><span class="en">Not a fixed syllabus, but the next concept that maximizes your progress — your time goes where marginal gain is highest.</span></p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-num mono">META-LEARNING</div>
+          <h3><span class="zh">教学策略自进化</span><span class="en">Teaching evolves</span></h3>
+          <p><span class="zh">教法本身被它自己的结果训练：你听例子学得快，以后就多给例子。教学规则靠证据确认或证伪。</span><span class="en">The method trains on its own results: learn fast from examples, get more examples. Rules are confirmed or refuted by evidence.</span></p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-num mono">DESIRABLE DIFFICULTIES</div>
+          <h3><span class="zh">刻意安排困难</span><span class="en">Desirable difficulties</span></h3>
+          <p><span class="zh">检索、间隔、交错组合拳——故意安排"该忘又没忘"的时刻，让记忆长得更牢，而非更轻松。</span><span class="en">Retrieval + spacing + interleaving — we engineer desirable difficulties so memory grows stronger, not easier.</span></p>
+        </div>
+      </div>
+
+      <div class="genome-flywheel fade-up">
+        <div class="flywheel-ring"></div>
+        <div class="flywheel-center">
+          <div class="flywheel-center-kw"><span class="zh">学习基因组</span><span class="en">GENOME</span></div>
+        </div>
+        <div class="flywheel-node n1"><span class="zh">你学得越多</span><span class="en">You learn more</span></div>
+        <div class="flywheel-node n2"><span class="zh">模型越懂你</span><span class="en">Model knows you</span></div>
+        <div class="flywheel-node n3"><span class="zh">教得越好</span><span class="en">It teaches better</span></div>
+        <div class="flywheel-node n4"><span class="zh">你学得更多</span><span class="en">You learn even more</span></div>
+      </div>
+      <p class="genome-flywheel-cap">
+        <span class="zh">数据飞轮 × 认知建模 = 通用 AI 抄不走的复合护城河。任何助手都给不了你这份复利。</span>
+        <span class="en">Data flywheel × cognitive modeling = a compound moat no generic AI can copy. No other assistant gives you this compounding return.</span>
+      </p>
+    </div>
+  </section>
+
   <!-- Strategic Differentiation -->
   <section class="section" id="differentiation">
     <div class="container">
-      <div class="eyebrow"><span class="zh">03 / 战略差异化</span><span class="en">03 / DIFFERENTIATION</span></div>
+      <div class="eyebrow"><span class="zh">04 / 战略差异化</span><span class="en">04 / DIFFERENTIATION</span></div>
       <h2 class="section-title">
         <span class="zh">AIGC-Only vs. AI-Augmented<br>行业范式之争</span>
         <span class="en">AIGC-Only vs. AI-Augmented<br>the paradigm divide</span>
@@ -777,7 +861,7 @@
   <!-- Competition -->
   <section class="section" id="competition" style="background:#0A0A0A">
     <div class="container">
-      <div class="eyebrow"><span class="zh">04 / 竞品分析</span><span class="en">04 / COMPETITION</span></div>
+      <div class="eyebrow"><span class="zh">05 / 竞品分析</span><span class="en">05 / COMPETITION</span></div>
       <h2 class="section-title">
         <span class="zh">跨维度竞争格局</span>
         <span class="en">Competitive landscape</span>
@@ -899,7 +983,7 @@
   <!-- Business Model -->
   <section class="section" id="business">
     <div class="container">
-      <div class="eyebrow"><span class="zh">05 / 商业模式</span><span class="en">05 / BUSINESS</span></div>
+      <div class="eyebrow"><span class="zh">06 / 商业模式</span><span class="en">06 / BUSINESS</span></div>
       <h2 class="section-title">
         <span class="zh">三层收入结构<br>渐进式飞轮</span>
         <span class="en">Three-tier revenue<br>progressive flywheel</span>
@@ -963,7 +1047,7 @@
   <!-- Moat -->
   <section class="section" id="moat" style="background:#0A0A0A">
     <div class="container">
-      <div class="eyebrow"><span class="zh">06 / 竞争壁垒</span><span class="en">06 / MOAT</span></div>
+      <div class="eyebrow"><span class="zh">07 / 竞争壁垒</span><span class="en">07 / MOAT</span></div>
       <h2 class="section-title">
         <span class="zh">护城河的<br>阶段性构建</span>
         <span class="en">Phased moat<br>construction</span>
@@ -1035,7 +1119,7 @@
   <!-- Team -->
   <section class="section" id="team">
     <div class="container">
-      <div class="eyebrow"><span class="zh">07 / 核心团队</span><span class="en">07 / TEAM</span></div>
+      <div class="eyebrow"><span class="zh">08 / 核心团队</span><span class="en">08 / TEAM</span></div>
       <h2 class="section-title">
         <span class="zh">深度用户洞察 ×<br>AI 技术实践 × 产品直觉</span>
         <span class="en">User insight ×<br>AI engineering × product intuition</span>
@@ -1095,7 +1179,7 @@
   <!-- Collaborators -->
   <section class="section" id="collaborators">
     <div class="container">
-      <div class="eyebrow"><span class="zh">08 / 学生都在用</span><span class="en">08 / USED BY STUDENTS</span></div>
+      <div class="eyebrow"><span class="zh">09 / 学生都在用</span><span class="en">09 / USED BY STUDENTS</span></div>
       <h2 class="section-title">
         <span class="zh">全球顶尖高校学生都在用</span>
         <span class="en">Students at the world's leading universities use Lemma AI</span>
@@ -1222,7 +1306,7 @@
   <!-- Funding -->
   <section class="section" id="funding" style="background:#0A0A0A">
     <div class="container">
-      <div class="eyebrow"><span class="zh">09 / 融资需求</span><span class="en">09 / FUNDING</span></div>
+      <div class="eyebrow"><span class="zh">10 / 融资需求</span><span class="en">10 / FUNDING</span></div>
       <h2 class="section-title">
         <span class="zh">天使轮融资</span>
         <span class="en">Angel round</span>
@@ -1301,7 +1385,7 @@
   <!-- Roadmap -->
   <section class="section" id="roadmap">
     <div class="container">
-      <div class="eyebrow"><span class="zh">10 / 路线图</span><span class="en">10 / ROADMAP</span></div>
+      <div class="eyebrow"><span class="zh">11 / 路线图</span><span class="en">11 / ROADMAP</span></div>
       <h2 class="section-title">
         <span class="zh">从 MVP 到盈亏平衡</span>
         <span class="en">From MVP to break-even</span>
