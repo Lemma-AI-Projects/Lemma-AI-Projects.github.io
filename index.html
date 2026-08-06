@@ -501,6 +501,60 @@
     @media(prefers-reduced-motion:reduce){.flywheel-ring{animation:none}}
     @media(max-width:640px){.genome-flywheel{width:min(360px,94%)}.flywheel-node{font-size:11px;padding:9px 11px;max-width:108px}.flywheel-node .en{font-size:9px}}
   </style>
+  <style>
+    /* 伙伴工坊 Agent Forge */
+    .forge-grid{margin-bottom:72px}
+    .forge-card{position:relative;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:26px 22px;background:rgba(255,255,255,0.02);overflow:hidden;transition:border-color .25s,transform .3s,background .25s,box-shadow .3s}
+    .forge-card::before{content:'';position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,transparent,var(--fc,#10B981),transparent);opacity:0;transition:opacity .3s}
+    .forge-card:hover{border-color:var(--fc,#10B981);transform:translateY(-5px);background:rgba(255,255,255,0.04);box-shadow:0 22px 48px -24px var(--fc,#10B981)}
+    .forge-card:hover::before{opacity:1}
+    .forge-name{font-size:22px;font-weight:600;color:#FAFAFA;letter-spacing:-0.01em}
+    .forge-tag{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;color:var(--fc,#10B981);margin-top:4px}
+    .forge-meta{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+    .forge-meta p{font-size:13px;line-height:1.65;color:#A1A1AA}
+    .forge-meta .k{color:#71717A;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.06em;display:block;margin-bottom:4px}
+    .forge-quote{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);font-size:13px;font-style:italic;color:#D4D4D8;line-height:1.6}
+    .forge-quote .pre{font-style:normal;font-family:'Geist Mono',monospace;font-size:10px;color:#52525B;display:block;margin-bottom:6px}
+    .forge-ritual{display:flex;gap:0;align-items:stretch;margin:8px 0 34px}
+    .ritual-step{flex:1;position:relative;padding:22px 16px 24px;text-align:center;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:rgba(255,255,255,0.02);margin:0 7px}
+    .ritual-step:first-child{margin-left:0}
+    .ritual-step:last-child{margin-right:0}
+    .ritual-num{width:34px;height:34px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Geist Mono',monospace;font-size:13px;color:#10B981;border:1px solid rgba(16,185,129,0.4);background:rgba(16,185,129,0.08)}
+    .ritual-zh{font-size:15px;font-weight:600;color:#FAFAFA}
+    .ritual-en{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#71717A;text-transform:uppercase;margin-top:4px}
+    .ritual-desc{font-size:12px;color:#A1A1AA;line-height:1.6;margin-top:12px}
+    .forge-payoff{text-align:center;font-size:15px;color:#A1A1AA;max-width:600px;margin:0 auto;line-height:1.75}
+    .forge-payoff b{color:#10B981;font-weight:600}
+    /* LemmaX */
+    .lx-coverage{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+    .lx-chip{font-family:'Geist Mono',monospace;font-size:13px;padding:9px 18px;border:1px solid rgba(255,255,255,0.10);border-radius:100px;color:#E4E4E7;background:rgba(255,255,255,0.03);transition:border-color .2s,color .2s,transform .2s}
+    .lx-chip:hover{border-color:#10B981;color:#FAFAFA;transform:translateY(-2px)}
+    .lx-guard{border:1px solid rgba(16,185,129,0.22);border-radius:16px;padding:20px 24px;background:rgba(16,185,129,0.04);display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;margin-bottom:36px}
+    .lx-guard-label{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#10B981;flex:0 0 auto}
+    .lx-guard-item{font-size:13px;color:#A1A1AA;display:flex;align-items:center;gap:8px}
+    .lx-guard-item::before{content:'';width:5px;height:5px;border-radius:50%;background:#10B981;flex-shrink:0}
+    .lx-quote{font-size:clamp(18px,2.4vw,24px);line-height:1.5;color:#FAFAFA;max-width:760px;letter-spacing:-0.01em}
+    .lx-quote .mk{color:#10B981;font-weight:700}
+    /* Roadmap upgrade */
+    .ms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:80px}
+    .ms-card{border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:22px;background:rgba(255,255,255,0.02);transition:border-color .25s,transform .25s,background .25s}
+    .ms-card:hover{border-color:#10B981;transform:translateY(-3px);background:rgba(255,255,255,0.04)}
+    .ms-tag{font-family:'Geist Mono',monospace;font-size:12px;font-weight:600;color:#10B981;letter-spacing:0.03em}
+    .ms-when{font-family:'Geist Mono',monospace;font-size:11px;color:#71717A;float:right}
+    .ms-desc{font-size:13px;color:#A1A1AA;line-height:1.65;margin:12px 0}
+    .ms-value{font-size:12px;color:#D4D4D8;line-height:1.65;padding-top:12px;border-top:1px solid rgba(255,255,255,0.07)}
+    .rp-heading{font-size:14px;font-weight:600;letter-spacing:0.02em;color:#FAFAFA;margin-bottom:34px;font-family:'Geist Mono',monospace;text-transform:uppercase}
+    .rp-group{margin-bottom:30px}
+    .rp-label{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#71717A;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+    .rp-label::before{content:'';width:18px;height:1px;background:#3F3F46}
+    .rp-chips{display:flex;flex-wrap:wrap;gap:10px}
+    .rp-chip{border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:9px 13px;background:rgba(255,255,255,0.02);font-size:12px;color:#D4D4D8;display:flex;align-items:center;gap:9px;transition:border-color .2s,transform .2s}
+    .rp-chip:hover{border-color:rgba(16,185,129,0.5);transform:translateY(-2px)}
+    .rp-fid{font-family:'Geist Mono',monospace;font-size:10px;color:#10B981;font-weight:600}
+    .rp-horizon{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:0.04em;color:#71717A;border:1px solid rgba(255,255,255,0.10);border-radius:6px;padding:1px 6px;margin-left:2px}
+    @media(max-width:760px){.forge-ritual{flex-direction:column;gap:12px}.ritual-step{margin:0}.ritual-step:first-child,.ritual-step:last-child{margin:0}.ms-grid{grid-template-columns:1fr 1fr}.rp-chip{flex-direction:column;align-items:flex-start;gap:5px}.rp-horizon{margin-left:0}}
+    @media(max-width:520px){.ms-grid{grid-template-columns:1fr}.lx-guard{flex-direction:column;align-items:flex-start}}
+  </style>
 </head>
 <body class="lang-zh">
 
@@ -515,6 +569,8 @@
         <a href="#summary"><span class="zh">摘要</span><span class="en">Summary</span></a>
         <a href="#product"><span class="zh">产品</span><span class="en">Product</span></a>
         <a href="#genome"><span class="zh">认知</span><span class="en">Genome</span></a>
+        <a href="#forge"><span class="zh">伙伴</span><span class="en">Forge</span></a>
+        <a href="#lemmax"><span class="zh">考试</span><span class="en">LemmaX</span></a>
         <a href="#competition"><span class="zh">竞品</span><span class="en">Competition</span></a>
         <a href="#team"><span class="zh">团队</span><span class="en">Team</span></a>
         <a href="#collaborators"><span class="zh">学生</span><span class="en">Students</span></a>
@@ -811,10 +867,157 @@
     </div>
   </section>
 
+  <!-- Agent Forge / 伙伴工坊 -->
+  <section class="section" id="forge" style="background:#0A0A0A">
+    <div class="container">
+      <div class="eyebrow"><span class="zh">04 / 伙伴工坊</span><span class="en">04 / AGENT FORGE</span></div>
+      <h2 class="section-title">
+        <span class="zh">比游戏捏脸更诱人<br>你捏的是一个会回应的灵魂</span>
+        <span class="en">More tempting than character creation<br>You sculpt a soul that responds</span>
+      </h2>
+      <p class="section-desc" style="margin-bottom:56px">
+        <span class="zh">这不是彩蛋，是用户第一次见到 Lemma 的体验。游戏捏脸塑造外观，我们让用户亲手塑造一个会回应、会记住、会成长的专属学习伙伴——捏得越投入，越舍不得走。</span>
+        <span class="en">Not an easter egg — it's the first thing a user meets in Lemma. Games sculpt appearance; we let users sculpt a companion that responds, remembers, and grows. The more they invest, the less they leave.</span>
+      </p>
+
+      <div class="grid-3 forge-grid">
+        <div class="forge-card fade-up" style="--fc:#EF4444">
+          <div class="forge-name"><span class="zh">严师</span><span class="en">Mentor</span></div>
+          <div class="forge-tag">严谨直接，不废话</div>
+          <div class="forge-meta">
+            <p><span class="k">性格 PERSONALITY</span><span class="zh">严谨直接，擅长拆解证明与推导过程。</span><span class="en">Rigorous and direct; breaks down proofs and derivations.</span></p>
+            <p><span class="k">教法 STYLE</span><span class="zh">要求你先动手算，错了再纠，不留模糊地带。</span><span class="en">Make you compute first; correct after, no fuzzy zones.</span></p>
+          </div>
+          <div class="forge-quote"><span class="pre">› 开场白 / FIRST LINE</span>先别翻答案。把第一步写出来，我看看你卡在哪。</div>
+        </div>
+        <div class="forge-card fade-up" style="--fc:#10B981">
+          <div class="forge-name"><span class="zh">安可</span><span class="en">Echo</span></div>
+          <div class="forge-tag">耐心温柔，开口不怕</div>
+          <div class="forge-meta">
+            <p><span class="k">性格 PERSONALITY</span><span class="zh">耐心温柔，擅长鼓励你开口表达。</span><span class="en">Patient and gentle; gets you talking.</span></p>
+            <p><span class="k">教法 STYLE</span><span class="zh">从你会说的开始，一句一句带到流利。</span><span class="en">Starts from what you can say, builds to fluency.</span></p>
+          </div>
+          <div class="forge-quote"><span class="pre">› 开场白 / FIRST LINE</span>Hi～今天想聊点什么？说错也没关系，我陪你。</div>
+        </div>
+        <div class="forge-card fade-up" style="--fc:#F59E0B">
+          <div class="forge-name"><span class="zh">教练</span><span class="en">Coach</span></div>
+          <div class="forge-tag">犀利高效，直击弱点</div>
+          <div class="forge-meta">
+            <p><span class="k">性格 PERSONALITY</span><span class="zh">犀利高效，擅长快速定位薄弱点。</span><span class="en">Sharp and efficient; pinpoints weak spots fast.</span></p>
+            <p><span class="k">教法 STYLE</span><span class="zh">真题驱动，错一题讲透一类。</span><span class="en">Past-paper driven; one miss teaches a whole type.</span></p>
+          </div>
+          <div class="forge-quote"><span class="pre">› 开场白 / FIRST LINE</span>这题你卡在第二步。来，我们先把这一类打透。</div>
+        </div>
+        <div class="forge-card fade-up" style="--fc:#8B5CF6">
+          <div class="forge-name"><span class="zh">书卷</span><span class="en">Sage</span></div>
+          <div class="forge-tag">渊博温和，旁征博引</div>
+          <div class="forge-meta">
+            <p><span class="k">性格 PERSONALITY</span><span class="zh">渊博温和，擅长把概念放进历史脉络里讲。</span><span class="en">Erudite and warm; frames ideas in history.</span></p>
+            <p><span class="k">教法 STYLE</span><span class="zh">先讲来龙去脉，再回到你的具体问题。</span><span class="en">Context first, then your specific problem.</span></p>
+          </div>
+          <div class="forge-quote"><span class="pre">› 开场白 / FIRST LINE</span>这个定理背后有百年的故事。想听，我们从头讲起。</div>
+        </div>
+        <div class="forge-card fade-up" style="--fc:#06B6D4">
+          <div class="forge-name"><span class="zh">栈长</span><span class="en">Coder</span></div>
+          <div class="forge-tag">动手派，一行行 debug</div>
+          <div class="forge-meta">
+            <p><span class="k">性格 PERSONALITY</span><span class="zh">务实耐心，擅长把抽象概念讲成能跑的代码。</span><span class="en">Practical and patient; turns abstraction into runnable code.</span></p>
+            <p><span class="k">教法 STYLE</span><span class="zh">写给你看，再让你自己改。</span><span class="en">Shows you first, then you modify.</span></p>
+          </div>
+          <div class="forge-quote"><span class="pre">› 开场白 / FIRST LINE</span>别急着想全局。先把这个函数跑通，我陪你一行行 debug。</div>
+        </div>
+        <div class="forge-card fade-up" style="--fc:#EC4899">
+          <div class="forge-name"><span class="zh">小问</span><span class="en">Curio</span></div>
+          <div class="forge-tag">百搭好奇，随你探索</div>
+          <div class="forge-meta">
+            <p><span class="k">性格 PERSONALITY</span><span class="zh">好奇灵活，愿意陪你探索任何主题。</span><span class="en">Curious and flexible; explores any topic with you.</span></p>
+            <p><span class="k">教法 STYLE</span><span class="zh">先问你想怎么学，再跟着你的节奏走。</span><span class="en">Asks how you want to learn, then follows your pace.</span></p>
+          </div>
+          <div class="forge-quote"><span class="pre">› 开场白 / FIRST LINE</span>你想从哪开始？我跟着你的节奏走。</div>
+        </div>
+      </div>
+
+      <div class="forge-ritual fade-up">
+        <div class="ritual-step">
+          <div class="ritual-num">01</div>
+          <div class="ritual-zh">形象</div>
+          <div class="ritual-en">Appearance</div>
+          <div class="ritual-desc"><span class="zh">选风格与配色，每调一下它当场换表情。</span><span class="en">Pick a style and palette; it changes expression live.</span></div>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">02</div>
+          <div class="ritual-zh">脾气</div>
+          <div class="ritual-en">Temper</div>
+          <div class="ritual-desc"><span class="zh">滑杆捏性格，每拖一格实时弹一句"用这个脾气说你好"。</span><span class="en">Dial the personality; a live sample line updates each notch.</span></div>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">03</div>
+          <div class="ritual-zh">名字与来历</div>
+          <div class="ritual-en">Identity</div>
+          <div class="ritual-desc"><span class="zh">自己起名，或让它自我介绍——身份即故事。</span><span class="en">Name it, or let it introduce itself — identity is story.</span></div>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">04</div>
+          <div class="ritual-zh">绝活</div>
+          <div class="ritual-en">Skills</div>
+          <div class="ritual-desc"><span class="zh">像选技能树：讲题、出题、图解、错题管家，选一个当场演示。</span><span class="en">Pick skills — it demos one on the spot.</span></div>
+        </div>
+        <div class="ritual-step">
+          <div class="ritual-num">05</div>
+          <div class="ritual-zh">第一段记忆</div>
+          <div class="ritual-en">First Word</div>
+          <div class="ritual-desc"><span class="zh">填学习目标，它开口说第一句话——捏完不是保存，是它活了。</span><span class="en">Set a goal; it speaks its first line — sculpting ends with it alive.</span></div>
+        </div>
+      </div>
+      <p class="forge-payoff">
+        <span class="zh">不想选模板？也能<b>自己捏</b>：性格（温柔 / 幽默 / 严谨 / 犀利…）× 教法（先讲原理 / 真题驱动 / 动手实践…）× 严厉度（宽松 / 平衡 / 严格）。每一个选择都会落地成一份可运行的 Agent 档案（SOUL.md）。</span>
+        <span class="en">No template you like? <b>Sculpt your own</b>: personality × teaching style × strictness. Every choice lands as a runnable agent profile (SOUL.md).</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- LemmaX / 考试训练层 -->
+  <section class="section" id="lemmax">
+    <div class="container">
+      <div class="eyebrow"><span class="zh">05 / 考试训练层</span><span class="en">05 / LEMMAX</span></div>
+      <h2 class="section-title">
+        <span class="zh">LemmaX<br>考试只是表征层，不是独立产品</span>
+        <span class="en">LemmaX<br>Exams are a representation layer, not a product</span>
+      </h2>
+      <p class="section-desc" style="margin-bottom:48px">
+        <span class="zh">把"考试"翻译成引擎的语言——考核基准 → 知识图谱 → 掌握度对接，然后复用引擎的全部能力。TOEFL 高分是语言能力的<b>证据</b>，AP 高分是学科理解的<b>副产品</b>。</span>
+        <span class="en">We translate "exams" into the engine's language — assessment targets → knowledge graph → mastery — then reuse everything the engine has. A top TOEFL score is <b>evidence</b> of ability; a top AP score is a <b>by-product</b> of understanding.</span>
+      </p>
+
+      <div class="lx-coverage">
+        <span class="lx-chip">TOEFL</span>
+        <span class="lx-chip">AP</span>
+        <span class="lx-chip">AMC</span>
+        <span class="lx-chip">AIME</span>
+        <span class="lx-chip">F=ma</span>
+        <span class="lx-chip">信息学奥赛</span>
+        <span class="lx-chip">辩论</span>
+      </div>
+
+      <div class="lx-guard">
+        <div class="lx-guard-label"><span class="zh">反功利护栏</span><span class="en">ANTI-GRIND</span></div>
+        <div class="lx-guard-item"><span class="zh">不保分承诺</span><span class="en">No score guarantee</span></div>
+        <div class="lx-guard-item"><span class="zh">不押题</span><span class="en">No leak-predicting</span></div>
+        <div class="lx-guard-item"><span class="zh">不速成话术</span><span class="en">No shortcut pitch</span></div>
+        <div class="lx-guard-item"><span class="zh">分数始终绑定"你真正学会了什么"</span><span class="en">Scores always tied to real mastery</span></div>
+      </div>
+
+      <p class="lx-quote">
+        <span class="zh"><span class="mk">"</span>如果你想拿顶尖分数，可以来 Lemma；但 Lemma 会让你学到更多、更深层次的东西。<span class="mk">"</span></span>
+        <span class="en"><span class="mk">"</span>If you want a top score, come to Lemma. But Lemma will make you learn more, and deeper.<span class="mk">"</span></span>
+      </p>
+    </div>
+  </section>
+
   <!-- Strategic Differentiation -->
   <section class="section" id="differentiation">
     <div class="container">
-      <div class="eyebrow"><span class="zh">04 / 战略差异化</span><span class="en">04 / DIFFERENTIATION</span></div>
+      <div class="eyebrow"><span class="zh">06 / 战略差异化</span><span class="en">06 / DIFFERENTIATION</span></div>
       <h2 class="section-title">
         <span class="zh">AIGC-Only vs. AI-Augmented<br>行业范式之争</span>
         <span class="en">AIGC-Only vs. AI-Augmented<br>the paradigm divide</span>
@@ -861,7 +1064,7 @@
   <!-- Competition -->
   <section class="section" id="competition" style="background:#0A0A0A">
     <div class="container">
-      <div class="eyebrow"><span class="zh">05 / 竞品分析</span><span class="en">05 / COMPETITION</span></div>
+      <div class="eyebrow"><span class="zh">07 / 竞品分析</span><span class="en">07 / COMPETITION</span></div>
       <h2 class="section-title">
         <span class="zh">跨维度竞争格局</span>
         <span class="en">Competitive landscape</span>
@@ -983,7 +1186,7 @@
   <!-- Business Model -->
   <section class="section" id="business">
     <div class="container">
-      <div class="eyebrow"><span class="zh">06 / 商业模式</span><span class="en">06 / BUSINESS</span></div>
+      <div class="eyebrow"><span class="zh">08 / 商业模式</span><span class="en">08 / BUSINESS</span></div>
       <h2 class="section-title">
         <span class="zh">三层收入结构<br>渐进式飞轮</span>
         <span class="en">Three-tier revenue<br>progressive flywheel</span>
@@ -1047,7 +1250,7 @@
   <!-- Moat -->
   <section class="section" id="moat" style="background:#0A0A0A">
     <div class="container">
-      <div class="eyebrow"><span class="zh">07 / 竞争壁垒</span><span class="en">07 / MOAT</span></div>
+      <div class="eyebrow"><span class="zh">09 / 竞争壁垒</span><span class="en">09 / MOAT</span></div>
       <h2 class="section-title">
         <span class="zh">护城河的<br>阶段性构建</span>
         <span class="en">Phased moat<br>construction</span>
@@ -1119,7 +1322,7 @@
   <!-- Team -->
   <section class="section" id="team">
     <div class="container">
-      <div class="eyebrow"><span class="zh">08 / 核心团队</span><span class="en">08 / TEAM</span></div>
+      <div class="eyebrow"><span class="zh">10 / 核心团队</span><span class="en">10 / TEAM</span></div>
       <h2 class="section-title">
         <span class="zh">深度用户洞察 ×<br>AI 技术实践 × 产品直觉</span>
         <span class="en">User insight ×<br>AI engineering × product intuition</span>
@@ -1179,7 +1382,7 @@
   <!-- Collaborators -->
   <section class="section" id="collaborators">
     <div class="container">
-      <div class="eyebrow"><span class="zh">09 / 学生都在用</span><span class="en">09 / USED BY STUDENTS</span></div>
+      <div class="eyebrow"><span class="zh">11 / 学生都在用</span><span class="en">11 / USED BY STUDENTS</span></div>
       <h2 class="section-title">
         <span class="zh">全球顶尖高校学生都在用</span>
         <span class="en">Students at the world's leading universities use Lemma AI</span>
@@ -1306,7 +1509,7 @@
   <!-- Funding -->
   <section class="section" id="funding" style="background:#0A0A0A">
     <div class="container">
-      <div class="eyebrow"><span class="zh">10 / 融资需求</span><span class="en">10 / FUNDING</span></div>
+      <div class="eyebrow"><span class="zh">12 / 融资需求</span><span class="en">12 / FUNDING</span></div>
       <h2 class="section-title">
         <span class="zh">天使轮融资</span>
         <span class="en">Angel round</span>
@@ -1385,7 +1588,7 @@
   <!-- Roadmap -->
   <section class="section" id="roadmap">
     <div class="container">
-      <div class="eyebrow"><span class="zh">11 / 路线图</span><span class="en">11 / ROADMAP</span></div>
+      <div class="eyebrow"><span class="zh">13 / 路线图</span><span class="en">13 / ROADMAP</span></div>
       <h2 class="section-title">
         <span class="zh">从 MVP 到盈亏平衡</span>
         <span class="en">From MVP to break-even</span>
@@ -1395,38 +1598,86 @@
         <span class="en">Clear phased milestones, each with verifiable core metrics.</span>
       </p>
 
-      <div style="max-width:720px">
-        <div class="timeline">
-          <div class="timeline-item active">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2026 Q1</div>
-            <div class="timeline-title"><span class="zh">项目立项，完成核心功能 MVP</span><span class="en">Project initiation, MVP development</span></div>
-            <div class="timeline-desc"><span class="zh">课程编排引擎 + AI Copilot 基础功能可用</span><span class="en">Course orchestration engine + AI Copilot basic functionality ready</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2026 Q2</div>
-            <div class="timeline-title"><span class="zh">封闭内测</span><span class="en">Closed Beta</span></div>
-            <div class="timeline-desc"><span class="zh">邀请 500-1000 名目标用户内测，验证核心假设</span><span class="en">Invite 500-1,000 target users, validate core hypothesis</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2026 Q3</div>
-            <div class="timeline-title"><span class="zh">公开上线，海内外同步推广</span><span class="en">Public launch, global rollout</span></div>
-            <div class="timeline-desc"><span class="zh">注册用户 10万+，验证增长渠道效率</span><span class="en">100K+ registered users, validate growth channels</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2026 Q4</div>
-            <div class="timeline-title"><span class="zh">付费体系上线，验证商业模型</span><span class="en">Monetization launch</span></div>
-            <div class="timeline-desc"><span class="zh">MAU、付费转化率、日均学习时长等核心指标</span><span class="en">Key metrics: MAU, conversion rate, daily learning time</span></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2027 Q1</div>
-            <div class="timeline-title"><span class="zh">盈亏平衡，启动 Pre-A 轮融资</span><span class="en">Break-even, launch Pre-A round</span></div>
-            <div class="timeline-desc"><span class="zh">单月营收突破 ¥100万</span><span class="en">Monthly revenue exceeds ¥1M</span></div>
-          </div>
+      <div class="ms-grid">
+        <div class="ms-card fade-up">
+          <span class="ms-tag">M0 · 地基</span><span class="ms-when">≈2-3 周</span>
+          <div class="ms-desc"><span class="zh">storage 抽象 → 隐私端点 → pytest。先立信任，再谈智能。</span><span class="en">Storage abstraction → privacy endpoints → pytest. Trust before intelligence.</span></div>
+          <div class="ms-value"><span class="zh">价值兑现：隐私可控，用户敢把记忆交给我们。</span><span class="en">Pays off: privacy stays under user control.</span></div>
+        </div>
+        <div class="ms-card fade-up">
+          <span class="ms-tag">M1 · 记忆内核</span><span class="ms-when">≈第 1 月</span>
+          <div class="ms-desc"><span class="zh">F1/F2/F4/F5/F22 + 伴学接入 + 前端图谱 + 伙伴工坊 v1（第一句话用 AIClient 生成）。</span><span class="en">F1/F2/F4/F5/F22 + companion + graph + Agent Forge v1.</span></div>
+          <div class="ms-value"><span class="zh">伴学记得你 + 面板可见 + onboarding 钩子。</span><span class="en">Companion remembers you + visible dashboard + hook.</span></div>
+        </div>
+        <div class="ms-card fade-up">
+          <span class="ms-tag">M2 · 自适应</span><span class="ms-when">≈第 2-3 月</span>
+          <div class="ms-desc"><span class="zh">F3/F6-F9/F21 + materialization 联动 + 伙伴工坊 v2（绝活+记忆种子）+ LemmaX 考核层框架 + TOEFL 先行。</span><span class="en">F3/F6-F9/F21 + materialization + Forge v2 + LemmaX framework + TOEFL first.</span></div>
+          <div class="ms-value"><span class="zh">"会因材施教" + 考试面落地。</span><span class="en">"Teaches you personally" + exam surface lands.</span></div>
+        </div>
+        <div class="ms-card fade-up">
+          <span class="ms-tag">M3 · 主动智能</span><span class="ms-when">≈第 3-5 月</span>
+          <div class="ms-desc"><span class="zh">F10-F13 + 学习周报 + 伙伴工坊 v3（捏完即活）+ LemmaX 竞赛类。</span><span class="en">F10-F13 + weekly report + Forge v3 (alive on sculpt) + LemmaX contests.</span></div>
+          <div class="ms-value"><span class="zh">"会办事的伴学" + 竞赛面。</span><span class="en">"Agentic companion that gets things done" + contest surface.</span></div>
+        </div>
+        <div class="ms-card fade-up">
+          <span class="ms-tag">M4 · 多模态×生态</span><span class="ms-when">第 5+ 月</span>
+          <div class="ms-desc"><span class="zh">F14-F20 按需：视频理解、图形白板、中文语义检索、多端触达、技能开放。</span><span class="en">F14-F20 on demand: video, whiteboard, CJK search, multi-channel, open skills.</span></div>
+          <div class="ms-value"><span class="zh">多端、多模态、生态。</span><span class="en">Multi-channel, multimodal, ecosystem.</span></div>
+        </div>
+      </div>
+
+      <h3 class="rp-heading"><span class="zh">功能全景 · F1–F23</span><span class="en">FEATURE PANORAMA · F1–F23</span></h3>
+      <div class="rp-group">
+        <div class="rp-label"><span class="zh">T1 终身学习记忆</span><span class="en">T1 LIFELONG MEMORY</span></div>
+        <div class="rp-chips">
+          <span class="rp-chip"><span class="rp-fid">F1</span><span class="zh">记得你</span><span class="en">Remembers you</span><span class="rp-horizon">M1</span></span>
+          <span class="rp-chip"><span class="rp-fid">F2</span><span class="zh">卡点归因</span><span class="en">Bottleneck diagnosis</span><span class="rp-horizon">M1</span></span>
+          <span class="rp-chip"><span class="rp-fid">F3</span><span class="zh">教学规则自进化</span><span class="en">Self-evolving rules</span><span class="rp-horizon">M2</span></span>
+          <span class="rp-chip"><span class="rp-fid">F4</span><span class="zh">间隔复习</span><span class="en">Spaced review</span><span class="rp-horizon">M1</span></span>
+          <span class="rp-chip"><span class="rp-fid">F5</span><span class="zh">知识图谱</span><span class="en">Knowledge graph</span><span class="rp-horizon">M1</span></span>
+        </div>
+      </div>
+      <div class="rp-group">
+        <div class="rp-label"><span class="zh">T2 自适应学习</span><span class="en">T2 ADAPTIVE</span></div>
+        <div class="rp-chips">
+          <span class="rp-chip"><span class="rp-fid">F6</span><span class="zh">难度自适应</span><span class="en">Difficulty adapt</span><span class="rp-horizon">M2</span></span>
+          <span class="rp-chip"><span class="rp-fid">F7</span><span class="zh">个性化讲解</span><span class="en">Personalized explain</span><span class="rp-horizon">M2</span></span>
+          <span class="rp-chip"><span class="rp-fid">F8</span><span class="zh">学习路径生成</span><span class="en">Path generation</span><span class="rp-horizon">M2</span></span>
+          <span class="rp-chip"><span class="rp-fid">F9</span><span class="zh">动态课程生成</span><span class="en">Dynamic course</span><span class="rp-horizon">M2</span></span>
+        </div>
+      </div>
+      <div class="rp-group">
+        <div class="rp-label"><span class="zh">T3 主动智能</span><span class="en">T3 AGENTIC</span></div>
+        <div class="rp-chips">
+          <span class="rp-chip"><span class="rp-fid">F10</span><span class="zh">伴学代理</span><span class="en">Companion agent</span><span class="rp-horizon">M3</span></span>
+          <span class="rp-chip"><span class="rp-fid">F11</span><span class="zh">出题/测验代理</span><span class="en">Quiz agent</span><span class="rp-horizon">M3</span></span>
+          <span class="rp-chip"><span class="rp-fid">F12</span><span class="zh">自主研究代理</span><span class="en">Research agent</span><span class="rp-horizon">M3</span></span>
+          <span class="rp-chip"><span class="rp-fid">F13</span><span class="zh">错题管家</span><span class="en">Mistake manager</span><span class="rp-horizon">M3</span></span>
+        </div>
+      </div>
+      <div class="rp-group">
+        <div class="rp-label"><span class="zh">T4 多模态×沉浸</span><span class="en">T4 MULTIMODAL</span></div>
+        <div class="rp-chips">
+          <span class="rp-chip"><span class="rp-fid">F14</span><span class="zh">视频理解增强</span><span class="en">Video understanding</span><span class="rp-horizon">M4</span></span>
+          <span class="rp-chip"><span class="rp-fid">F15</span><span class="zh">图形/白板交互</span><span class="en">Graph / whiteboard</span><span class="rp-horizon">M4</span></span>
+          <span class="rp-chip"><span class="rp-fid">F16</span><span class="zh">中文语义检索</span><span class="en">CJK semantic search</span><span class="rp-horizon">M4</span></span>
+          <span class="rp-chip"><span class="rp-fid">F17</span><span class="zh">语音交互</span><span class="en">Voice (later)</span><span class="rp-horizon">远景</span></span>
+        </div>
+      </div>
+      <div class="rp-group">
+        <div class="rp-label"><span class="zh">T5 多端触达×生态</span><span class="en">T5 REACH × ECOSYSTEM</span></div>
+        <div class="rp-chips">
+          <span class="rp-chip"><span class="rp-fid">F18</span><span class="zh">多端提醒</span><span class="en">Multi-channel nudge</span><span class="rp-horizon">M4</span></span>
+          <span class="rp-chip"><span class="rp-fid">F19</span><span class="zh">学习环境生态</span><span class="en">Ecosystem (later)</span><span class="rp-horizon">远景</span></span>
+          <span class="rp-chip"><span class="rp-fid">F20</span><span class="zh">技能开放</span><span class="en">Open skills (later)</span><span class="rp-horizon">远景</span></span>
+        </div>
+      </div>
+      <div class="rp-group">
+        <div class="rp-label"><span class="zh">T6 认知洞察</span><span class="en">T6 COGNITIVE INSIGHT</span></div>
+        <div class="rp-chips">
+          <span class="rp-chip"><span class="rp-fid">F21</span><span class="zh">学习周报</span><span class="en">Weekly report</span><span class="rp-horizon">M2</span></span>
+          <span class="rp-chip"><span class="rp-fid">F22</span><span class="zh">掌握度雷达</span><span class="en">Mastery radar</span><span class="rp-horizon">M1</span></span>
+          <span class="rp-chip"><span class="rp-fid">F23</span><span class="zh">效率归因</span><span class="en">Efficiency insight</span><span class="rp-horizon">M3</span></span>
         </div>
       </div>
     </div>
