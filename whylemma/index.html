@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Lemma — Lemma AI</title>
+  <meta name="description" content="A plain account of why we are building Lemma, and why almost everything else in the AI-learning market is not what it claims to be.">
+  <style>
+    /* ===== Reset ===== */
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+      background:#ffffff;color:#141414;line-height:1.7;
+    }
+    a{color:inherit}
+    ::selection{background:#10B981;color:#fff}
+
+    /* ===== Lang Toggle ===== */
+    body.lang-zh .en{display:none!important}
+    body.lang-en .zh{display:none!important}
+
+    /* ===== Header ===== */
+    .wl-head{position:sticky;top:0;background:#fff;border-bottom:1px solid #e6e6e6;z-index:20}
+    .wl-head-inner{max-width:920px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .wl-brand{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#141414;display:flex;align-items:center;gap:10px}
+    .wl-brand .mk{color:#10B981;font-weight:700;font-size:15px}
+    .wl-home{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;color:#999;text-transform:uppercase}
+    .wl-home:hover{color:#10B981}
+    .lang-toggle{display:inline-flex;border:1px solid #dcdcdc;flex:none}
+    .lang-btn{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.06em;padding:6px 11px;background:#fff;color:#777;border:0;cursor:pointer}
+    .lang-btn.active{background:#141414;color:#fff}
+    .lang-btn+.lang-btn{border-left:1px solid #dcdcdc}
+
+    /* ===== Layout ===== */
+    .wl-main{max-width:920px;margin:0 auto;padding:0 24px 110px}
+    .wl-title{padding:64px 0 40px;border-bottom:1px solid #e6e6e6}
+    .wl-title .sub{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.12em;color:#999;text-transform:uppercase;margin-bottom:18px}
+    .wl-title h1{font-size:clamp(28px,5vw,38px);font-weight:800;letter-spacing:-.02em;line-height:1.12}
+    .wl-title p{color:#555;font-size:15px;margin-top:18px;max-width:660px;line-height:1.65}
+
+    .wl-sec{display:grid;grid-template-columns:92px 1fr;gap:36px;padding:46px 0;border-bottom:1px solid #eee}
+    .wl-num{font-family:ui-monospace,monospace;font-size:13px;letter-spacing:.08em;color:#b3b3b3;padding-top:7px}
+    .wl-num b{color:#10B981;font-weight:700}
+    .wl-sec h2{font-size:23px;font-weight:700;letter-spacing:-.01em;margin-bottom:18px;line-height:1.28}
+    .wl-sec p{font-size:16.5px;color:#1a1a1a;margin-bottom:16px}
+    .wl-sec p:last-child{margin-bottom:0}
+    .wl-sec strong{font-weight:700}
+
+    a.wl-link{color:#0f9d6b;text-decoration:none;border-bottom:1px solid rgba(15,157,107,.35);white-space:nowrap}
+    a.wl-link:hover{border-bottom-color:#0f9d6b}
+
+    /* ===== Appendix ===== */
+    .wl-appx-head{padding:56px 0 4px}
+    .wl-appx-head .lbl{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#10B981}
+    .wl-appx-head h2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:10px}
+    .wl-appx-note{color:#666;font-size:14.5px;margin:18px 0 4px;max-width:700px;line-height:1.65}
+    .wl-sub{padding:34px 0;border-bottom:1px solid #eee}
+    .wl-sub .sn{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.08em;color:#b3b3b3}
+    .wl-sub h3{font-size:18px;font-weight:700;margin:8px 0 12px;letter-spacing:-.01em}
+    .wl-sub p{font-size:15.5px;color:#1a1a1a;line-height:1.7}
+    .wl-sub .empty{color:#bbb;font-style:italic}
+
+    /* ===== Footer ===== */
+    .wl-foot{border-top:1px solid #e6e6e6}
+    .wl-foot-inner{max-width:920px;margin:0 auto;padding:26px 24px;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;color:#aaa;text-transform:uppercase;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    @media(max-width:680px){
+      .wl-sec{grid-template-columns:1fr;gap:10px;padding:34px 0}
+      .wl-num{padding-top:0}
+      .wl-title h1{font-size:27px}
+      .wl-sec h2{font-size:20px}
+      .wl-head-inner{padding:11px 16px}
+      .wl-main{padding:0 16px 80px}
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+  <!-- Header -->
+  <header class="wl-head">
+    <div class="wl-head-inner">
+      <a href="../" class="wl-brand"><span class="mk">&lambda;</span><span class="zh">LEMMA — 为何</span><span class="en">LEMMA — WHY</span></a>
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="zh">中</button>
+        <button class="lang-btn active" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wl-main">
+
+    <!-- Title -->
+    <div class="wl-title">
+      <div class="sub"><span class="zh">宣言 / 论证</span><span class="en">MANIFESTO / ARGUMENT</span></div>
+      <h1>
+        <span class="zh">为什么是 Lemma</span>
+        <span class="en">Why Lemma</span>
+      </h1>
+      <p>
+        <span class="zh">一份关于我们为何构建 Lemma 的朴素陈述——以及为何这个市场里几乎所有其他东西，都不是它们宣称的样子。</span>
+        <span class="en">A plain account of why we are building Lemma — and why almost everything else in this market is not what it claims to be.</span>
+      </p>
+    </div>
+
+    <!-- 00 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>00</b></div>
+      <div>
+        <div class="zh">
+          <h2>市面上没有一款真正的 AI 学习工具</h2>
+          <p>市面上没有一款真正的 AI 学习工具，目前所有的工具都只是充满噱头的「AI 动物园狒狒观赏模拟器」，他们用 AI 生成一堆 slop，再大张旗鼓地吹嘘。</p>
+        </div>
+        <div class="en">
+          <h2>There is no real AI learning tool on the market</h2>
+          <p>There is not a single genuinely real AI learning tool on the market today. Every product that exists is just a gimmicky "AI zoo — a baboon-watching simulator." They use AI to churn out a pile of slop, then loudly brag about it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>01</b></div>
+      <div>
+        <div class="zh">
+          <h2>空壳子</h2>
+          <p>现在的所有产品都是将能力上限绑定到底层模型开发周期、且上限极低的空壳子。他们宣称「事实证明，AI 能比人类老师教得更好」，企图用这个暗示让用户进行先入为主的判断，然后利用 AI 的生成能力生成他们所谓的「课程」。</p>
+        </div>
+        <div class="en">
+          <h2>Hollow shells</h2>
+          <p>Every product today chains its capability ceiling to the development cycle of the underlying model — and that ceiling is absurdly low. They are hollow shells. They claim "it has been proven that AI can teach better than human teachers," trying to plant that suggestion so users make up their minds in advance — and then they use AI's generation ability to produce what they call "courses."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>02</b></div>
+      <div>
+        <div class="zh">
+          <h2>延续性创新，还是破坏性创新？</h2>
+          <p>我们需要先搞明白一件事：「AI + 学习」这个市场是如何出现的？它是一个延续性创新，还是一个类似从马车到福特汽车的开创式和破坏性的创新？事实上，当 2022 年末 ChatGPT 问世时，当时就有人觉得这个东西会改变整个教育行业。那为什么过了将近四年，依然没有一个海啸式的产品呢？</p>
+        </div>
+        <div class="en">
+          <h2>Sustaining, or disruptive?</h2>
+          <p>We need to settle one thing first. How did the "AI + learning" market even appear — is it a sustaining innovation, or a foundational, destructive innovation, like the leap from horse-drawn carriages to Ford's automobile? In fact, when ChatGPT launched at the end of 2022, plenty of people believed it would upend the entire education industry. So why, nearly four years later, is there still no tsunami-level product?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>03</b></div>
+      <div>
+        <div class="zh">
+          <h2>等待阈值</h2>
+          <p>我们再把视角拉回以前：一个产品的诞生需要基础设施的支撑，现在也是一样——我们需要等待基础模型的能力和算力的成本到达一定的阈值。</p>
+        </div>
+        <div class="en">
+          <h2>Waiting for the threshold</h2>
+          <p>Let's pull the lens back further. The birth of any product needs infrastructure to support it — and it is the same now. We had to wait until the capabilities of the foundational models and the cost of compute crossed a certain threshold.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>04</b></div>
+      <div>
+        <div class="zh">
+          <h2>AI 只是手段，不是目的</h2>
+          <p>而现在，相关的研究已经为我们找到了新方向：AI 只是手段，不是目的。别的 AI 学习工具只是套了一层皮，而我们是要真正在 AI-native 设计哲学的赋能下，让 Lemma 的学习效果做到世界一流。</p>
+        </div>
+        <div class="en">
+          <h2>AI is a means, not an end</h2>
+          <p>And now, the relevant research has already pointed us to a new direction: AI is a means, not an end. Other AI learning tools merely put a skin on top. We, empowered by a truly AI-native design philosophy, are making Lemma's learning effect world-class.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>05</b></div>
+      <div>
+        <div class="zh">
+          <h2>关于创始团队的两个人</h2>
+          <p>关于创始团队的两个人：我们（创始人 Moelink 和 CeaserZhao）在杭州的马拉松第一次线下见面。我们很快就熟了，因为我们有非常多的共同点——并非单纯的兴趣爱好，而是心智模型、个人经历以及价值观。我们在回廊上谈论我们的人生故事、我们最艰难的阶段，以及我们做过的选择。</p>
+          <p>我的合伙人总是觉得，我们在做这些事是因为我们没有退路；但我很清楚这是错误的。我们之所以做这些，是因为这本就是我们一直的渴望，即使我们现在都痛苦不已。</p>
+        </div>
+        <div class="en">
+          <h2>About the two of us on the founding team</h2>
+          <p>About the two of us on the founding team: we (founders Moelink and CeaserZhao) first met in person at a marathon in Hangzhou. We hit it off fast, because we share an extraordinary amount in common — not mere hobbies, but mental models, life experiences, and values. We talked on the corridor about our life stories, our hardest stretches, and the choices we had made.</p>
+          <p>My partner always feels we do these things because we have no way out; but I know clearly that this is wrong. We do them because it has always been our desire — even though, right now, we are both in pain.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>06</b></div>
+      <div>
+        <div class="zh">
+          <h2>我无法把希望寄托在命运和 Spotify 上</h2>
+          <p>我无法把希望寄托在命运和 Spotify 上。朦胧的 sweater weather 让人沉沦，Goo Goo Dolls 的扫弦每次都会穿过心里最深的防线。你会想起和朋友在山谷中畅想未来的美好往事，或是会想起一个人走在金秋的街上——但每当音乐停止，一切都会倒退回去。我们必须行动。</p>
+        </div>
+        <div class="en">
+          <h2>I can't trust fate, or Spotify</h2>
+          <p>I can't pin my hopes on fate and Spotify. The hazy "sweater weather" is seductive; Goo Goo Dolls' strumming pierces the deepest defenses of the heart every time. You recall the beautiful old days of dreaming of the future with friends in a valley, or walking alone down an autumn street in golden light — but the moment the music stops, everything recedes. We must act.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>07</b></div>
+      <div>
+        <div class="zh">
+          <h2>于是我加入了 Lemma</h2>
+          <p>于是我加入了 Lemma，仿佛是命运在召唤。这个项目我是如此喜欢——Lemma 就好像是日后庞大帝国的第一块砖。我们会义无反顾。</p>
+          <p>当写这篇文章时，我把音乐声开到了最大，还喝了一点酒，以此来麻痹我挑刺的神经回路。因为我曾经无数次体会到：当我的热情消散时，笔尖所有的激情都会烟消云散。</p>
+        </div>
+        <div class="en">
+          <h2>So I joined Lemma</h2>
+          <p>So I joined Lemma, as if fate were calling. I love this project so much — Lemma is like the first brick of the vast empire to come. We will go forward without hesitation.</p>
+          <p>As I write this, I've turned the music up to maximum and had a little alcohol, to numb the neural circuits that pick everything apart. Because I have felt it countless times: when my enthusiasm fades, all the passion at the tip of the pen dissipates into nothing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section class="wl-sec">
+      <div class="wl-num"><b>08</b></div>
+      <div>
+        <div class="zh">
+          <h2>弥赛亚主义，与马里亚纳海沟</h2>
+          <p>人们赋予 AI 至高无上的意义，把各种问题解决的希望都寄托于其上。整个社会弥漫着<strong>弥赛亚主义</strong>：人们渴望一个救世主，或是为当下的妥协寻找借口。人们都渴望那个时刻——仿佛一切社会矛盾在那一刻都会烟消云散，渴望 AGI 会解决无限的问题。</p>
+          <p>上一代人铸造了我们所处的时代，这是一个并不美好的世界；他们也没有继续做贡献，而是在上面撒尿，让我们来处理这个烂摊子。或许很多开发者就是被这么鼓动起来的——既是为了理想，也是为了现实压力。</p>
+          <p>科技不会被那些还在为空调政策争吵的政客所影响。它可以在一个相对封闭的环境中快速推进，有时甚至不受资源太少的限制；AI 的到来，让「资源的诅咒」在某些时候真的可以实现。</p>
+          <p>我们回到最开始的话题。总的来说，「AI 教育」是一片广袤的海洋：我们不在红海的海面上厮杀，而是制造潜水艇，潜入马里亚纳海沟。我们会改变未来的教育方式，接着我们会重新定义它——更别忘了，这只是开胃菜。纵横千里，世界就在脚下。这里是 Lemma。</p>
+        </div>
+        <div class="en">
+          <h2>Messianism, and the Mariana Trench</h2>
+          <p>People load AI with supreme meaning, pinning their hopes of solving every problem onto it. The whole society is steeped in <strong>Messianism</strong>: people crave a savior, or an excuse for the compromises they make today. They long for that moment — when, it seems, all social contradictions will dissolve at once — longing for AGI to solve infinite problems.</p>
+          <p>The previous generation forged the era we live in: a world that is not beautiful. They made no further contribution either; they just peed on it and left us to clean up the mess. Perhaps many developers were rallied exactly like this — for the ideal, and for the pressure of reality.</p>
+          <p>Technology is not swayed by politicians still arguing over air-conditioning policy. It can advance rapidly in a relatively closed environment, at times even free of resource scarcity; the arrival of AI makes the "resource curse" realizable in certain moments.</p>
+          <p>Back to where we started. In short, "AI education" is a vast ocean: we do not fight on the surface of the red ocean, but build submarines and dive into the Mariana Trench. We will change the way education works in the future, and then we will redefine it — and do not forget, this is only the appetizer. A thousand miles in every direction; the world lies at our feet. This is Lemma.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appendix -->
+    <div class="wl-appx">
+      <div class="wl-appx-head">
+        <div class="lbl"><span class="zh">附录</span><span class="en">APPENDIX</span></div>
+        <h2>
+          <span class="zh">附录与论证</span>
+          <span class="en">Appendix &amp; Arguments</span>
+        </h2>
+      </div>
+
+      <div class="wl-appx-note">
+        <span class="zh">注：本文的目的是让读者「爽」，所以为了保证阅读节奏，我把所有相关论证都放在了附录里，读者可自行检索。因篇幅不够，我（作者 CeaserZhao）已将所有的数据和资料整合成了 GitHub io 页面。</span>
+        <span class="en">Note: the purpose of this article is to let the reader enjoy it. So, to preserve the reading rhythm, I have moved all supporting arguments into this appendix — readers can look them up on their own. For lack of space, I (the author, CeaserZhao) have consolidated all the data and materials into a GitHub io page.</span>
+      </div>
+
+      <!-- A1 -->
+      <div class="wl-sub">
+        <div class="sn"><span class="zh">附录 1</span><span class="en">A1</span></div>
+        <div>
+          <div class="zh">
+            <h3>功能列表</h3>
+            <p>这个子栏目的名称有一定误导性，因为「功能」这个词似乎会在读者继续阅读之前，就错误地暗示读者在语义空间的维度上，把 Lemma 的底层框架压缩成表征层的功能体现。但为了方便，我们也就继续吧。</p>
+            <p>我们要介绍的首个框架，也是我们的王牌——WAM Framework。WAM 承载着一个远比 Lemma 的市场更为疯狂、也更有责任的使命：它致力于赋予 AI 一个「世界」。我在这里无法找出一个更富有文采的词汇，但我首先想区分它与以杨立坤（Yann LeCun）为首的世界模型之间的本质不同——世界模型是通过时间序列等方式让 AI「理解」这个世界，而 WAM 所做的，是将 AI 置于一个信息空间里。</p>
+            <p>WAM 的官方介绍页面：<a class="wl-link" href="https://zbbsdsb.github.io/WAM-Framework/" target="_blank" rel="noopener">zbbsdsb.github.io/WAM-Framework</a></p>
+          </div>
+          <div class="en">
+            <h3>Feature list</h3>
+            <p>The name of this subsection is somewhat misleading, because the word "features" seems to hint — before the reader even continues — at wrongly compressing Lemma's underlying framework, in the dimension of semantic space, into a representation-layer feature list. But for convenience, we'll go with it.</p>
+            <p>The first framework we want to introduce — and our ace in the hole — is the WAM Framework. WAM carries a mission far crazier and far more responsible than Lemma's own market: it endeavors to give AI a "world." I can't find a more literary word for it here, but I'll first distinguish it from the world models led by Yann LeCun — world models let AI "understand" the world through time series and similar means, whereas what WAM does is place AI inside an information space.</p>
+            <p>WAM's official intro page: <a class="wl-link" href="https://zbbsdsb.github.io/WAM-Framework/" target="_blank" rel="noopener">zbbsdsb.github.io/WAM-Framework</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A2 -->
+      <div class="wl-sub">
+        <div class="sn"><span class="zh">附录 2</span><span class="en">A2</span></div>
+        <div>
+          <div class="zh">
+            <h3>竞品分析</h3>
+            <p>还有一点需要澄清一个误解：许多人都误解了「极简至上」的观点。因为现在的行业门槛，在既得利益者等多重因素下，实实在在提高了——以前只要买一个 pet.com，就能让华尔街和圣何塞的投资人闻风而动；而现在 AI 的出现，反而降低了创造出产品的门槛，却提高了创业和公司的难度。</p>
+          </div>
+          <div class="en">
+            <h3>Competitor analysis</h3>
+            <p>Also, to clear up a misunderstanding: many people misread the "minimalism above all" view. Because the industry's barrier to entry has, under multiple factors including vested interests, genuinely risen — back in the day, buying a pet.com was enough to send Wall Street and San Jose investors scrambling; yet now the arrival of AI has actually lowered the threshold for creating a product while raising the difficulty of starting a company and running one.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A3 -->
+      <div class="wl-sub">
+        <div class="sn"><span class="zh">附录 3</span><span class="en">A3</span></div>
+        <div>
+          <div class="zh">
+            <h3>团队资料</h3>
+            <p>关于我们团队的更多资料，我会在下面提供相关的背景资料网页：</p>
+            <p>CeaserZhao：<a class="wl-link" href="https://oasiscompany.org/people/ceaserzhao" target="_blank" rel="noopener">oasiscompany.org/people/ceaserzhao</a></p>
+            <p>Ekai Sun（Moelink）：<a class="wl-link" href="https://moelinkcloud.com/" target="_blank" rel="noopener">moelinkcloud.com</a></p>
+          </div>
+          <div class="en">
+            <h3>Team background</h3>
+            <p>For more background on our team, I'll provide the relevant profile pages below:</p>
+            <p>CeaserZhao: <a class="wl-link" href="https://oasiscompany.org/people/ceaserzhao" target="_blank" rel="noopener">oasiscompany.org/people/ceaserzhao</a></p>
+            <p>Ekai Sun (Moelink): <a class="wl-link" href="https://moelinkcloud.com/" target="_blank" rel="noopener">moelinkcloud.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A4 -->
+      <div class="wl-sub">
+        <div class="sn"><span class="zh">附录 4</span><span class="en">A4</span></div>
+        <div>
+          <div class="zh">
+            <h3>市场调研</h3>
+            <p class="empty">（待补充 / To be added）</p>
+          </div>
+          <div class="en">
+            <h3>Market research</h3>
+            <p class="empty">（待补充 / To be added）</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- A5 -->
+      <div class="wl-sub">
+        <div class="sn"><span class="zh">附录 5</span><span class="en">A5</span></div>
+        <div>
+          <div class="zh">
+            <h3>竞争策略</h3>
+            <p>「竞争策略」这个词本身似乎就有固化团队思维的危害，所以在这里我只提出方向性的策略。事实上，在中国还没有 HyperKnow 类产品的直接竞品，且人口基数导致高净值用户群体也相当庞大；沿海等地的教育投资意愿极高——我们只需要找到一个微小的切入口。</p>
+          </div>
+          <div class="en">
+            <h3>Competition strategy</h3>
+            <p>The term "competition strategy" itself seems to carry the danger of ossifying the team's thinking, so here I'll only propose directional strategy. In fact, in China there is still no direct competitor to a HyperKnow-type product, and the population base means the high-net-worth user group is also large; education investment willingness in coastal regions and elsewhere is extremely high — we only need to find a tiny point of entry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="wl-foot">
+    <div class="wl-foot-inner">
+      <span><span class="zh">LEMMA AI · 为何</span><span class="en">LEMMA AI · WHY</span></span>
+      <a href="../" class="wl-home"><span class="zh">← 返回首页</span><span class="en">← BACK TO INDEX</span></a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        document.body.className = 'lang-' + lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh' : 'en';
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
