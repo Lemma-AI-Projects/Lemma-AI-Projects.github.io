@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Lemma — Promo (HTML video)</title>
+<meta name="description" content="Self-playing 16:9 HTML promo video for Lemma AI, based on the Why Lemma manifesto. Record with OBS to produce an MP4 for YouTube.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   WHY LEMMA — HTML VIDEO
+   Self-playing 16:9 (1920x1080) manifesto film.
+   Timeline engine + 11 scenes. Press "?" for help.
+   ============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Geist','Segoe UI',system-ui,-apple-system,sans-serif;
+  background:#000;color:#FAFAFA;overflow:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+.mono{font-family:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+::selection{background:#10B981;color:#fff}
+
+/* ---- letterbox wrapper / stage ---- */
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000}
+#stage{
+  position:relative;width:1920px;height:1080px;overflow:hidden;
+  transform-origin:0 0;background:#0A0A0A;
+}
+.vignette{position:absolute;inset:0;z-index:40;pointer-events:none;box-shadow:inset 0 0 260px rgba(0,0,0,.5)}
+
+/* ---- shared backgrounds ---- */
+.gb{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:72px 72px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 42%,#000 15%,transparent 78%);
+  mask-image:radial-gradient(ellipse 75% 65% at 50% 42%,#000 15%,transparent 78%);
+}
+.glow{position:absolute;pointer-events:none;width:1500px;height:950px;left:50%;top:44%;
+  transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(255,255,255,.05),transparent 62%)}
+
+/* ---- scenes ---- */
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;z-index:2;
+  display:flex;flex-direction:column;justify-content:center;
+  transition:opacity .9s ease,visibility 0s linear .9s;will-change:opacity}
+.scene.active{opacity:1;visibility:visible;transition:opacity .9s ease,visibility 0s}
+.s-inner{position:relative;z-index:2;width:100%;max-width:1560px;margin:0 auto;padding:70px 110px}
+.s-inner.center{text-align:center}
+
+/* ---- type ---- */
+.kicker{font-family:'Geist Mono',ui-monospace,monospace;font-size:21px;letter-spacing:.2em;
+  text-transform:uppercase;color:#10B981;display:flex;align-items:center;gap:18px;margin-bottom:36px}
+.kicker::before{content:'';width:36px;height:2px;background:#10B981}
+.kicker.c{justify-content:center}
+.kicker.c::before{display:none}
+.big{font-size:108px;font-weight:800;letter-spacing:-.035em;line-height:1.02;margin-bottom:36px;color:#FAFAFA}
+.big .dim{color:#4d4d55}
+.big.sm{font-size:84px}
+.ln{font-size:33px;line-height:1.5;color:#D4D4D8;font-weight:400;margin-bottom:14px}
+.ln .kw{color:#FAFAFA;font-weight:700}
+.ln .grn{color:#10B981;font-weight:700}
+.ln.dim{color:#9A9AA2}
+.ln.strong{font-size:46px;font-weight:800;color:#FAFAFA}
+.logo-mark{width:150px;height:150px;background:#FAFAFA;color:#000;border-radius:22px;
+  display:flex;align-items:center;justify-content:center;font-size:92px;font-weight:800;
+  margin:0 auto 46px;box-shadow:0 24px 70px -24px rgba(250,250,250,.35)}
+.logo-mark.lg{width:176px;height:176px;font-size:106px}
+
+/* ---- reveal (delays set from data-d) ---- */
+.ln,.big,.kicker,.logo-mark,.quote,.zoo-card,.duo,.duo-card,.shots,.shot,
+.timeline,.chart,.wave,.bricks,.trench,.credits,.chip,.thr-note,.tl-note,.trench-cap{opacity:0}
+.scene.active .ln,.scene.active .big,.scene.active .kicker,.scene.active .logo-mark,
+.scene.active .quote,.scene.active .zoo-card,.scene.active .duo,.scene.active .duo-card,
+.scene.active .shots,.scene.active .shot,.scene.active .timeline,.scene.active .chart,
+.scene.active .wave,.scene.active .bricks,.scene.active .trench,.scene.active .credits,
+.scene.active .chip,.scene.active .thr-note,.scene.active .tl-note,.scene.active .trench-cap{animation:rise .95s cubic-bezier(.16,1,.3,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---- S1: AI zoo / slop ---- */
+.zoo-card{position:relative;max-width:1180px;margin:8px 0 42px;border:1px solid rgba(255,255,255,.13);
+  border-radius:18px;background:rgba(255,255,255,.025);overflow:hidden}
+.zc-top{display:flex;align-items:center;gap:8px;padding:16px 22px;background:rgba(255,255,255,.03);
+  border-bottom:1px solid rgba(255,255,255,.08)}
+.zc-top i{width:12px;height:12px;border-radius:50%}
+.zc-top i:nth-child(1){background:#FF5F57}.zc-top i:nth-child(2){background:#FEBC2E}.zc-top i:nth-child(3){background:#28C840}
+.zc-title{font-family:'Geist Mono',monospace;font-size:15px;letter-spacing:.14em;color:#9A9AA2;margin-left:12px}
+.zc-body{padding:42px 46px;display:flex;flex-direction:column;gap:10px}
+.zc-line{font-size:42px;font-weight:700;color:#FAFAFA;letter-spacing:-.01em}
+.zc-note{font-family:'Geist Mono',monospace;font-size:18px;color:#71717A;letter-spacing:.04em}
+.stamp{position:absolute;right:36px;bottom:30px;transform:rotate(-10deg);border:3px solid #EF4444;color:#EF4444;
+  font-family:'Geist Mono',monospace;font-size:42px;font-weight:700;letter-spacing:.14em;
+  padding:8px 20px;border-radius:10px;opacity:.92;
+  animation:stamp .55s cubic-bezier(.2,1.6,.4,1) both;animation-delay:2.5s}
+@keyframes stamp{from{transform:rotate(-10deg) scale(2.4);opacity:0}to{transform:rotate(-10deg) scale(1);opacity:.92}}
+
+/* ---- S2: hollow shells ---- */
+.quote{position:relative;max-width:1200px;margin:28px 0 30px;padding:32px 46px 32px 122px;
+  border-left:4px solid #10B981;background:rgba(255,255,255,.02);border-radius:0 16px 16px 0}
+.quote .qm{position:absolute;left:36px;top:2px;font-size:104px;color:#10B981;font-family:Georgia,serif;line-height:1}
+.quote p{font-size:37px;font-weight:600;color:#FAFAFA;line-height:1.32;letter-spacing:-.01em}
+.quote .src{display:block;margin-top:18px;font-family:'Geist Mono',monospace;font-size:15px;letter-spacing:.12em;color:#71717A}
+
+/* ---- S3: sustaining / disruptive timeline ---- */
+.timeline{position:relative;margin:46px 0 42px;height:132px;max-width:1300px}
+.tl-line{position:absolute;left:0;right:0;top:26px;height:3px;background:linear-gradient(90deg,rgba(255,255,255,.06),rgba(255,255,255,.22))}
+.tl-year{position:absolute;top:0;font-family:'Geist Mono',monospace;font-size:20px;color:#9A9AA2;
+  display:flex;flex-direction:column;align-items:center;gap:16px}
+.tl-year b{width:14px;height:14px;border-radius:50%;background:#161616;border:2px solid #3F3F46;display:block}
+.tl-year.on b{background:#10B981;border-color:#10B981;box-shadow:0 0 20px rgba(16,185,129,.65)}
+.tl-year .tg{position:absolute;top:56px;white-space:nowrap;font-size:16px;color:#71717A}
+.tl-note{font-family:'Geist Mono',monospace;font-size:21px;letter-spacing:.1em;color:#EF4444}
+
+/* ---- S4: threshold chart ---- */
+.chart{position:relative;margin:38px 0 26px;max-width:1280px}
+.chart svg{width:100%;display:block}
+.ch-grid{stroke:rgba(255,255,255,.06);stroke-width:1.5}
+.ch-thresh{stroke:#10B981;stroke-width:3;stroke-dasharray:14 11;opacity:.9}
+.ch-path{fill:none;stroke:#FAFAFA;stroke-width:5;stroke-linecap:round;stroke-dasharray:1600;stroke-dashoffset:1600;
+  animation:draw 2.4s cubic-bezier(.45,0,.2,1) forwards;animation-delay:1.1s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ch-end{fill:#10B981;opacity:0;animation:pop .5s ease .9s forwards}
+@keyframes pop{to{opacity:1}}
+.ch-lbl{font-family:'Geist Mono',monospace;font-size:17px;letter-spacing:.1em;fill:#71717A}
+.ch-lbl.hi{fill:#10B981}
+.thr-note{margin-top:6px;font-family:'Geist Mono',monospace;font-size:18px;letter-spacing:.1em;color:#9A9AA2}
+
+/* ---- S5: product shots ---- */
+.shots{display:flex;gap:30px;align-items:stretch;margin:38px 0 42px}
+.shot{flex:1.55;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.02)}
+.shot.side{flex:.8}
+.fr{display:flex;align-items:center;gap:8px;padding:14px 18px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.08)}
+.fr span{width:11px;height:11px;border-radius:50%}
+.fr span:nth-child(1){background:#FF5F57}.fr span:nth-child(2){background:#FEBC2E}.fr span:nth-child(3){background:#28C840}
+.fr-t{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.12em;color:#9A9AA2;margin-left:12px}
+.shot img{width:100%;max-height:400px;object-fit:cover;object-position:top;display:block}
+.shot figcaption{padding:14px 18px;font-family:'Geist Mono',monospace;font-size:14px;letter-spacing:.1em;color:#71717A;
+  border-top:1px solid rgba(255,255,255,.06)}
+.shot.ph img{display:none}
+.shot.ph::after{content:'PRODUCT PREVIEW';display:flex;align-items:center;justify-content:center;
+  height:360px;font-family:'Geist Mono',monospace;font-size:18px;letter-spacing:.2em;color:#52525B}
+
+/* ---- S6: founders ---- */
+.duo{display:flex;align-items:center;gap:36px;margin:40px 0 44px}
+.duo-card{flex:0 0 auto;width:300px;border:1px solid rgba(255,255,255,.12);border-radius:18px;
+  background:rgba(255,255,255,.025);padding:30px 26px;text-align:center}
+.avatar{width:96px;height:96px;border-radius:20px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;
+  font-size:44px;font-weight:800;color:#000}
+.avatar.m{background:linear-gradient(135deg,#FAFAFA,#B4B4BA)}
+.avatar.c{background:linear-gradient(135deg,#10B981,#0a5c43);color:#fff}
+.d-name{font-size:26px;font-weight:700;color:#FAFAFA}
+.d-sub{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.16em;color:#71717A;margin-top:8px}
+.chip{flex:1;text-align:center;font-family:'Geist Mono',monospace;font-size:19px;letter-spacing:.14em;
+  color:#10B981;border:1px solid rgba(16,185,129,.35);border-radius:100px;padding:20px 30px;
+  background:rgba(16,185,129,.06);text-transform:uppercase}
+
+/* ---- S7: waveform ---- */
+.wave{display:flex;align-items:center;gap:6px;height:130px;margin:34px 0 38px;max-width:1120px}
+.wave i{flex:1;border-radius:3px;background:linear-gradient(180deg,#10B981,#0b6e4f);
+  transform-origin:center;animation:beat 1.1s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scaleY(.22)}50%{transform:scaleY(1)}}
+
+/* ---- S8: bricks ---- */
+.bricks{display:flex;align-items:flex-end;gap:16px;margin:44px 0 48px}
+.brick{width:96px;border-radius:10px;background:linear-gradient(180deg,#26262B,#17171B);
+  border:1px solid rgba(255,255,255,.15)}
+.brick.b1{height:70px;animation:rise .7s cubic-bezier(.16,1,.3,1) both .5s}
+.brick.b2{height:112px;animation:rise .7s cubic-bezier(.16,1,.3,1) both .95s}
+.brick.b3{height:154px;animation:rise .7s cubic-bezier(.16,1,.3,1) both 1.4s}
+.brick-λ{width:112px;height:112px;border-radius:16px;background:#FAFAFA;color:#000;display:flex;
+  align-items:center;justify-content:center;font-size:64px;font-weight:800;
+  animation:rise .8s cubic-bezier(.2,1.5,.3,1) both 2s}
+
+/* ---- S9: mariana trench ---- */
+.trench{position:relative;margin:36px 0 42px;max-width:1280px;height:330px;border-radius:18px;overflow:hidden;
+  background:linear-gradient(180deg,#0F1D29 0%,#081019 55%,#04070C 100%);border:1px solid rgba(255,255,255,.09)}
+.trench .surf{position:absolute;left:0;right:0;top:54px;border-top:2px dashed rgba(255,255,255,.28)}
+.trench .dep{position:absolute;right:28px;top:0;bottom:0;display:flex;flex-direction:column;
+  justify-content:space-between;font-family:'Geist Mono',monospace;font-size:16px;color:rgba(255,255,255,.45);
+  letter-spacing:.08em;text-align:right}
+.trench .dep b{color:#10B981}
+.sub{position:absolute;left:0;top:0;width:176px;opacity:0;
+  animation:dive 7s cubic-bezier(.5,0,.3,1) infinite;animation-delay:3.1s}
+@keyframes dive{
+  0%{opacity:0;transform:translate(90px,60px) rotate(0deg)}
+  8%{opacity:1}
+  45%{transform:translate(600px,280px) rotate(5deg)}
+  78%{transform:translate(820px,520px) rotate(-7deg)}
+  100%{opacity:1;transform:translate(930px,600px) rotate(-9deg)}
+}
+.trench-cap{display:flex;justify-content:space-between;align-items:center;margin-top:14px;
+  font-family:'Geist Mono',monospace;font-size:18px;letter-spacing:.12em;color:#9A9AA2}
+.trench-cap .grn{color:#10B981}
+
+/* ---- S10: end card ---- */
+.credits{font-family:'Geist Mono',monospace;font-size:19px;letter-spacing:.16em;color:#71717A;
+  margin-top:44px;text-transform:uppercase}
+
+/* ---- HUD (recorded) ---- */
+.hud{position:absolute;left:0;right:0;bottom:0;z-index:45;display:flex;align-items:center;gap:26px;
+  padding:0 44px 22px;font-family:'Geist Mono',monospace;font-size:15px;color:rgba(255,255,255,.45);letter-spacing:.1em}
+.hud .pbar{position:relative;flex:1;height:4px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+.hud .pbar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#10B981;border-radius:99px}
+.hud .tag{white-space:nowrap}
+.hud .tc{white-space:nowrap;font-variant-numeric:tabular-nums}
+.wm{position:absolute;left:44px;top:26px;z-index:45;font-family:'Geist Mono',monospace;font-size:15px;
+  letter-spacing:.18em;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:12px}
+.wm b{color:#10B981;font-weight:700;font-size:19px}
+body.clean .hud,body.clean .wm{display:none}
+
+/* ---- playback controls (NOT recorded: hover-only, hidden in clean mode) ---- */
+#ctl{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:99;display:flex;gap:8px;align-items:center;
+  background:rgba(18,18,18,.88);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:8px 12px;
+  opacity:0;transition:opacity .25s;backdrop-filter:blur(6px);pointer-events:none}
+#wrap:hover #ctl{opacity:1;pointer-events:auto}
+#ctl button{background:rgba(255,255,255,.08);border:0;color:#FAFAFA;font-family:'Geist',sans-serif;font-size:13px;
+  font-weight:500;padding:8px 15px;border-radius:8px;cursor:pointer;transition:background .15s}
+#ctl button:hover{background:rgba(16,185,129,.3)}
+#ctl .sep{width:1px;height:22px;background:rgba(255,255,255,.15)}
+body.clean #ctl{display:none}
+
+/* ---- overlays ---- */
+.panel{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.74)}
+.panel.open{display:flex}
+.panel .card{width:min(900px,92vw);max-height:84vh;overflow:auto;background:#111;border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;padding:42px 50px;font-size:15px;color:#D4D4D8;line-height:1.75}
+.panel h2{font-size:19px;color:#FAFAFA;margin-bottom:18px;letter-spacing:-.01em}
+.panel h2 .grn{color:#10B981}
+.panel kbd{font-family:'Geist Mono',monospace;font-size:12px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+  border-radius:6px;padding:2px 8px;color:#FAFAFA}
+.panel .row{display:flex;gap:14px;margin-bottom:10px;align-items:baseline}
+.panel .row b{min-width:120px;color:#9A9AA2;font-weight:500;font-size:13.5px}
+.panel .hr{border:0;border-top:1px solid rgba(255,255,255,.1);margin:20px 0}
+.ch-list{font-family:'Geist Mono',monospace;font-size:13.5px;line-height:2;color:#B8B8BF}
+.ch-list .t{color:#10B981}
+.panel .btns{display:flex;gap:10px;margin-top:18px}
+.panel button{background:rgba(16,185,129,.16);border:1px solid rgba(16,185,129,.4);color:#10B981;
+  font-family:'Geist',sans-serif;font-size:13px;font-weight:600;padding:9px 18px;border-radius:9px;cursor:pointer}
+.panel button:hover{background:rgba(16,185,129,.28)}
+.panel .x{position:absolute;top:22px;right:26px;background:none;border:0;color:#9A9AA2;font-size:26px;cursor:pointer}
+.panel .x:hover{color:#FAFAFA}
+#flash{position:fixed;left:50%;bottom:86px;transform:translateX(-50%) translateY(10px);z-index:150;
+  background:#10B981;color:#04150E;font-family:'Geist',sans-serif;font-size:13px;font-weight:700;
+  padding:9px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+#flash.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div id="wrap">
+  <div id="stage">
+
+    <div class="vignette"></div>
+
+    <!-- ============ S0 · TITLE ============ -->
+    <section class="scene" id="s0">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner center">
+        <div class="logo-mark" data-d="0.2">λ</div>
+        <div class="kicker c" data-d="0.9">A MANIFESTO</div>
+        <h1 class="big" data-d="1.4">WHY <span class="dim">LEMMA</span></h1>
+        <p class="ln dim" data-d="2.3">An argument about the state of AI learning —<br>and why we are building something else.</p>
+      </div>
+    </section>
+
+    <!-- ============ S1 · 00 NO REAL AI LEARNING TOOL ============ -->
+    <section class="scene" id="s1">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">00 / The state of the market</div>
+        <h1 class="big" data-d="0.9">There is no real<br>AI learning tool.</h1>
+        <div class="zoo-card" data-d="1.8">
+          <div class="zc-top"><i></i><i></i><i></i><span class="zc-title">EXHIBIT A — THE AI ZOO</span></div>
+          <div class="zc-body">
+            <span class="zc-line">“A baboon-watching simulator.”</span>
+            <span class="zc-note">EVERY PRODUCT TODAY IS A GIMMICK</span>
+          </div>
+          <div class="stamp">SLOP</div>
+        </div>
+        <p class="ln" data-d="3.3">They churn out a pile of slop — <span class="kw">then loudly brag about it.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ S2 · 01 HOLLOW SHELLS ============ -->
+    <section class="scene" id="s2">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">01 / Hollow shells</div>
+        <h1 class="big" data-d="0.9">Hollow shells.</h1>
+        <p class="ln" data-d="1.6">Every product chains its ceiling to the model's dev cycle —<br>and that ceiling is <span class="kw">absurdly low</span>.</p>
+        <div class="quote" data-d="2.7">
+          <span class="qm">“</span>
+          <p>It has been proven that AI<br>can teach better than human teachers.</p>
+          <span class="src">— EVERY AI LEARNING PRODUCT, PROBABLY</span>
+        </div>
+        <p class="ln dim" data-d="3.7">Then they generate what they call “courses.”</p>
+      </div>
+    </section>
+
+    <!-- ============ S3 · 02 SUSTAINING, OR DISRUPTIVE? ============ -->
+    <section class="scene" id="s3">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">02 / Sustaining, or disruptive?</div>
+        <h1 class="big sm" data-d="0.9">Sustaining,<br>or disruptive?</h1>
+        <p class="ln" data-d="1.6">End of 2022 — ChatGPT arrives.<br>Everyone said it would upend education.</p>
+        <div class="timeline" data-d="2.7">
+          <div class="tl-line"></div>
+          <div class="tl-year on" style="left:0%"><b></b>2022<span class="tg">CHATGPT</span></div>
+          <div class="tl-year" style="left:24%"><b></b>2023</div>
+          <div class="tl-year" style="left:47%"><b></b>2024</div>
+          <div class="tl-year" style="left:70%"><b></b>2025</div>
+          <div class="tl-year" style="left:93%"><b></b>2026</div>
+        </div>
+        <p class="ln" data-d="3.7">Nearly four years later: <span class="kw">still no tsunami-level product.</span></p>
+        <div class="tl-note" data-d="4.2">NO TSUNAMI — YET</div>
+      </div>
+    </section>
+
+    <!-- ============ S4 · 03 WAITING FOR THE THRESHOLD ============ -->
+    <section class="scene" id="s4">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">03 / Waiting for the threshold</div>
+        <h1 class="big sm" data-d="0.9">Waiting for<br>the threshold.</h1>
+        <p class="ln" data-d="1.6">Products need infrastructure. Model capability and compute cost<br>had to cross a certain line.</p>
+        <div class="chart" data-d="2.6">
+          <svg viewBox="0 0 1280 300" preserveAspectRatio="none" style="height:300px">
+            <line class="ch-grid" x1="0" y1="60" x2="1280" y2="60"/>
+            <line class="ch-grid" x1="0" y1="130" x2="1280" y2="130"/>
+            <line class="ch-grid" x1="0" y1="200" x2="1280" y2="200"/>
+            <line class="ch-thresh" x1="0" y1="92" x2="1280" y2="92"/>
+            <path class="ch-path" d="M 20 272 C 300 258, 430 236, 570 160 C 700 92, 900 60, 1260 34"/>
+            <circle class="ch-end" cx="1260" cy="34" r="9"/>
+            <text class="ch-lbl" x="20" y="286">2022</text>
+            <text class="ch-lbl" x="1190" y="286">NOW</text>
+            <text class="ch-lbl hi" x="1030" y="76">THRESHOLD</text>
+          </svg>
+        </div>
+        <p class="thr-note" data-d="3.4">MODEL CAPABILITY × COMPUTE COST</p>
+        <p class="ln" data-d="4.0">That time is <span class="grn">now</span>.</p>
+      </div>
+    </section>
+
+    <!-- ============ S5 · 04 AI IS A MEANS, NOT AN END ============ -->
+    <section class="scene" id="s5">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">04 / AI is a means, not an end</div>
+        <h1 class="big sm" data-d="0.9">AI is a means,<br><span class="dim">not an end.</span></h1>
+        <div class="shots" data-d="1.8">
+          <figure class="shot">
+            <div class="fr"><span></span><span></span><span></span><span class="fr-t">LEMMA — AI COPILOT</span></div>
+            <img src="../../assets/pdf-images/page05_img1.jpeg" alt="Lemma AI Copilot" onerror="this.closest('figure').classList.add('ph')">
+            <figcaption>VIDEO-LEVEL UNDERSTANDING — ASK WITH A TIMESTAMP</figcaption>
+          </figure>
+          <figure class="shot side">
+            <div class="fr"><span></span><span></span><span></span><span class="fr-t">LEMMA — DASHBOARD</span></div>
+            <img src="../../assets/pdf-images/page04_img1.jpeg" alt="Lemma dashboard" onerror="this.closest('figure').classList.add('ph')">
+            <figcaption>COURSE DASHBOARD &amp; PROGRESS</figcaption>
+          </figure>
+        </div>
+        <p class="ln" data-d="3.2">Other tools put a skin on top. We build with a truly AI-native philosophy —<br>so the learning effect is <span class="kw">world-class</span>.</p>
+      </div>
+    </section>
+
+    <!-- ============ S6 · 05 THE FOUNDERS ============ -->
+    <section class="scene" id="s6">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">05 / The founders</div>
+        <h1 class="big sm" data-d="0.9">Two founders,<br>one conviction.</h1>
+        <div class="duo" data-d="1.8">
+          <div class="duo-card">
+            <div class="avatar m">M</div>
+            <div class="d-name">Moelink</div>
+            <div class="d-sub">CO-FOUNDER</div>
+          </div>
+          <div class="chip">HANGZHOU MARATHON<br>FIRST MEETING</div>
+          <div class="duo-card">
+            <div class="avatar c">C</div>
+            <div class="d-name">CeaserZhao</div>
+            <div class="d-sub">CO-FOUNDER</div>
+          </div>
+        </div>
+        <p class="ln" data-d="3.1">What we shared wasn't hobbies —<br>it was <span class="kw">mental models, life experience, and values.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ S7 · 06 FATE, OR SPOTIFY? ============ -->
+    <section class="scene" id="s7">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">06 / Fate, or Spotify?</div>
+        <h1 class="big sm" data-d="0.9">I can't trust fate,<br><span class="dim">or Spotify.</span></h1>
+        <div class="wave" data-d="1.7"></div>
+        <p class="ln" data-d="2.3">“Sweater weather” seduces. Goo Goo Dolls pierce every defense.<br>But when the music stops, <span class="kw">everything recedes.</span></p>
+        <p class="ln strong" data-d="3.3">We must act.</p>
+      </div>
+    </section>
+
+    <!-- ============ S8 · 07 SO I JOINED LEMMA ============ -->
+    <section class="scene" id="s8">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">07 / The first brick</div>
+        <h1 class="big sm" data-d="0.9">So I joined Lemma.</h1>
+        <div class="bricks" data-d="1.7">
+          <span class="brick b1"></span>
+          <span class="brick b2"></span>
+          <span class="brick b3"></span>
+          <span class="brick-λ">λ</span>
+        </div>
+        <p class="ln" data-d="2.9">Lemma is the <span class="kw">first brick of the empire</span> to come.<br>We go forward without hesitation.</p>
+      </div>
+    </section>
+
+    <!-- ============ S9 · 08 MESSIANISM & THE MARIANA TRENCH ============ -->
+    <section class="scene" id="s9">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner">
+        <div class="kicker" data-d="0.3">08 / Messianism &amp; the Mariana Trench</div>
+        <h1 class="big sm" data-d="0.9">People long for<br>a savior.</h1>
+        <p class="ln dim" data-d="1.7">An excuse for today's compromises.</p>
+        <div class="trench" data-d="2.6">
+          <div class="surf"></div>
+          <svg class="sub" viewBox="0 0 176 84" aria-hidden="true">
+            <path d="M14 62 L4 74 H26 Z" fill="#1C2834" stroke="#10B981" stroke-width="3"/>
+            <path d="M20 50 H64" stroke="#10B981" stroke-width="4"/>
+            <ellipse cx="86" cy="50" rx="66" ry="25" fill="#1C2834" stroke="#10B981" stroke-width="3"/>
+            <circle cx="110" cy="50" r="11" fill="#0B3B2E" stroke="#10B981" stroke-width="3"/>
+            <path d="M86 25 V12" stroke="#10B981" stroke-width="4"/>
+            <rect x="74" y="2" width="30" height="12" rx="6" fill="#10B981"/>
+            <circle cx="40" cy="50" r="4" fill="#10B981"/>
+            <circle cx="58" cy="50" r="4" fill="#10B981"/>
+          </svg>
+          <div class="dep">
+            <span>0 m</span><span>−2,000 m</span><span>−6,000 m</span><span><b>−10,935 m</b><br>TRENCH FLOOR</span>
+          </div>
+        </div>
+        <div class="trench-cap" data-d="3.6">
+          <span>WE DON'T FIGHT ON THE RED OCEAN'S SURFACE</span>
+          <span class="grn">WE BUILD SUBMARINES</span>
+        </div>
+        <p class="ln" data-d="4.6">We will change education — <span class="kw">then we will redefine it.</span><br><span class="dim">This is only the appetizer.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ S10 · END CARD ============ -->
+    <section class="scene" id="s10">
+      <div class="gb"></div><div class="glow"></div>
+      <div class="s-inner center">
+        <div class="logo-mark lg" data-d="0.3">λ</div>
+        <h1 class="big" data-d="1.0">THIS IS <span class="dim">LEMMA</span></h1>
+        <p class="ln" data-d="2.0">A thousand miles in every direction —<br>the world lies at our feet.</p>
+        <div class="credits" data-d="3.0">LEMMA · AI-NATIVE LEARNING &nbsp;—&nbsp; MOELINK &amp; CEASERZHAO</div>
+      </div>
+    </section>
+
+    <!-- HUD (recorded) -->
+    <div class="wm"><b>λ</b>WHY LEMMA</div>
+    <div class="hud">
+      <div class="pbar"><i id="pbar"></i></div>
+      <div class="tag" id="tag">WHY LEMMA · 00/10</div>
+      <div class="tc" id="tc">0:00 / 2:33</div>
+    </div>
+  </div>
+
+  <!-- playback controls (not recorded) -->
+  <div id="ctl">
+    <button id="bPrev" title="Previous scene (←)">⏮ Prev</button>
+    <button id="bPlay" title="Play / Pause (Space)">❚❚</button>
+    <button id="bNext" title="Next scene (→)">Next ⏭</button>
+    <span class="sep"></span>
+    <button id="bChapters" title="Chapters (T)">Chapters</button>
+    <button id="bClean" title="Clean / record mode (C)">Record mode</button>
+    <button id="bHelp" title="Help (?)">?</button>
+  </div>
+
+  <!-- chapters overlay -->
+  <div class="panel" id="chapters">
+    <button class="x" data-close="chapters">×</button>
+    <div class="card">
+      <h2>YouTube <span class="grn">chapters</span> — paste into the video description</h2>
+      <div class="ch-list" id="chList"></div>
+      <div class="btns">
+        <button id="bCopy">Copy chapters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- help overlay -->
+  <div class="panel" id="help">
+    <button class="x" data-close="help">×</button>
+    <div class="card">
+      <h2>Why Lemma — <span class="grn">how to use this HTML video</span></h2>
+      <div class="row"><b>Space</b><span>Play / pause</span></div>
+      <div class="row"><b>← / →</b><span>Jump to previous / next scene</span></div>
+      <div class="row"><b>C</b><span>Clean / record mode — hides all UI, keeps the progress bar</span></div>
+      <div class="row"><b>T</b><span>Chapter list with timestamps (for the YouTube description)</span></div>
+      <div class="row"><b>L</b><span>Toggle end-of-video loop (default on)</span></div>
+      <div class="row"><b>?</b><span>This help</span></div>
+      <hr class="hr">
+      <div class="row"><b>Record</b><span>OBS → 1920×1080 @ 60 fps → window capture (this tab, full screen, cursor hidden). Press <kbd>C</kbd> first for a clean frame.</span></div>
+      <div class="row"><b>Loop</b><span>The film loops automatically, so you can stop the recording at any clean cut.</span></div>
+      <div class="row"><b>Audio</b><span>This file has no audio. Add music / VO in your editor (recommend: music bed at −18 dB, VO centered).</span></div>
+      <div class="row"><b>Shorts</b><span>Each scene is a self-contained beat — crop any scene to 9:16 for a Short.</span></div>
+      <hr class="hr">
+      <div class="row"><b>URLs</b><span><kbd>?clean=1</kbd> start in clean mode · <kbd>?loop=0</kbd> stop at the end · <kbd>?autoplay=0</kbd> start paused</span></div>
+    </div>
+  </div>
+
+  <div id="flash">Copied</div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ============ timeline definition ============ */
+  /* speed ×1.5 ⇒ every scene duration ÷ 1.5 (total 153s → 102s ≈ 1:42) */
+  var SCENES = [
+    { n:'Title card',                            d:6.67 },
+    { n:'00 · No real AI learning tool',         d:9.33 },
+    { n:'01 · Hollow shells',                    d:10 },
+    { n:'02 · Sustaining, or disruptive?',       d:10.67 },
+    { n:'03 · Waiting for the threshold',        d:8.67 },
+    { n:'04 · AI is a means, not an end',        d:10.67 },
+    { n:'05 · The founders',                     d:9.33 },
+    { n:'06 · I can\'t trust fate, or Spotify',  d:8.67 },
+    { n:'07 · So I joined Lemma',                d:8 },
+    { n:'08 · Messianism & the Mariana Trench',  d:12 },
+    { n:'This is Lemma',                         d:8 }
+  ];
+
+  var scenes   = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var stage    = document.getElementById('stage');
+  var wrap     = document.getElementById('wrap');
+  var pbar     = document.getElementById('pbar');
+  var tag      = document.getElementById('tag');
+  var tc       = document.getElementById('tc');
+  var playBtn  = document.getElementById('bPlay');
+  var chaptersPanel = document.getElementById('chapters');
+  var helpPanel = document.getElementById('help');
+  var flash    = document.getElementById('flash');
+
+  var idx = 0, t = 0, last = performance.now(), playing = true, loop = true, clean = false;
+
+  function total(){ var s = 0; for (var i = 0; i < SCENES.length; i++) s += SCENES[i].d; return s; }
+  function cum(i){ var s = 0; for (var k = 0; k < i; k++) s += SCENES[k].d; return s; }
+  function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+
+  function goto(i){
+    idx = (i + SCENES.length) % SCENES.length;
+    t = 0;
+    scenes.forEach(function(el, j){ el.classList.toggle('active', j === idx); });
+    /* restart CSS animations (reveals + loops) for the entering scene */
+    var cur = scenes[idx];
+    cur.classList.remove('active');
+    void cur.offsetWidth;
+    cur.classList.add('active');
+    hud();
+  }
+
+  function hud(){
+    var p = Math.min(1, t / SCENES[idx].d);
+    pbar.style.width = (p * 100) + '%';
+    tc.textContent = fmt(cum(idx) + t) + ' / ' + fmt(total());
+    tag.textContent = 'WHY LEMMA · ' + String(idx).padStart(2, '0') + '/' + (SCENES.length - 1) + ' · ' + SCENES[idx].n.toUpperCase();
+  }
+
+  function tick(now){
+    var dt = Math.min(0.1, (now - last) / 1000);
+    last = now;
+    if (playing){
+      t += dt;
+      if (t >= SCENES[idx].d){
+        var over = t - SCENES[idx].d;
+        if (idx === SCENES.length - 1 && !loop){
+          playing = false; playBtn.textContent = '▶'; t = SCENES[idx].d;
+        } else {
+          goto(idx + 1);               /* restarts t at 0 */
+          t = Math.min(over, SCENES[idx].d - 0.001);  /* carry overflow */
+        }
+      }
+    }
+    hud();
+    requestAnimationFrame(tick);
+  }
+
+  function togglePlay(){
+    playing = !playing;
+    last = performance.now();
+    playBtn.textContent = playing ? '❚❚' : '▶';
+  }
+
+  function toggleClean(){
+    clean = !clean;
+    document.body.classList.toggle('clean', clean);
+  }
+
+  function closePanels(){
+    chaptersPanel.classList.remove('open');
+    helpPanel.classList.remove('open');
+  }
+
+  /* ---------- chapters ---------- */
+  function chapters(){
+    var out = [], acc = 0;
+    for (var i = 0; i < SCENES.length; i++){ out.push({ t: acc, n: SCENES[i].n }); acc += SCENES[i].d; }
+    return out;
+  }
+  function renderChapters(){
+    document.getElementById('chList').innerHTML = chapters().map(function(c){
+      return '<span class="t">' + fmt(c.t) + '</span> &nbsp;' + c.n;
+    }).join('<br>');
+  }
+  function copyChapters(){
+    var txt = chapters().map(function(c){ return fmt(c.t) + ' ' + c.n; }).join('\n');
+    function ok(){ flash.classList.add('on'); setTimeout(function(){ flash.classList.remove('on'); }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok, function(){ fallback(); });
+    } else fallback();
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e){}
+      ta.remove(); ok();
+    }
+  }
+
+  /* ---------- fit stage to viewport (keeps 16:9 letterbox centered) ---------- */
+  function fit(){
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    var w = 1920 * s, h = 1080 * s;
+    /* layout box = scaled visual size (flex-centers it), content scaled back up */
+    stage.style.width = w + 'px';
+    stage.style.height = h + 'px';
+    stage.style.transform = 'scale(' + (1920 / w) + ')';
+    stage.style.transformOrigin = '0 0';
+  }
+
+  /* ---------- waveform bars (deterministic pattern) ---------- */
+  (function(){
+    var wave = document.querySelector('.wave');
+    if (!wave) return;
+    for (var i = 0; i < 64; i++){
+      var b = document.createElement('i');
+      var h = 20 + Math.abs(Math.sin(i * 0.55)) * 96;
+      b.style.height = h + 'px';
+      b.style.animationDelay = ((i % 11) * 0.11).toFixed(2) + 's';
+      b.style.animationDuration = (0.9 + (i % 5) * 0.12).toFixed(2) + 's';
+      wave.appendChild(b);
+    }
+  })();
+
+  /* ---------- per-line reveal delays ---------- */
+  document.querySelectorAll('[data-d]').forEach(function(el){
+    el.style.animationDelay = el.dataset.d + 's';
+  });
+
+  /* ---------- URL params ---------- */
+  var q = new URLSearchParams(location.search);
+  if (q.get('clean') === '1'){ clean = true; document.body.classList.add('clean'); }
+  if (q.get('loop') === '0') loop = false;
+  if (q.get('autoplay') === '0'){ playing = false; playBtn.textContent = '▶'; }
+
+  /* ---------- events ---------- */
+  document.getElementById('bPrev').addEventListener('click', function(){ goto(idx - 1); });
+  document.getElementById('bNext').addEventListener('click', function(){ goto(idx + 1); });
+  playBtn.addEventListener('click', togglePlay);
+  document.getElementById('bClean').addEventListener('click', toggleClean);
+  document.getElementById('bChapters').addEventListener('click', function(){
+    renderChapters(); chaptersPanel.classList.add('open');
+  });
+  document.getElementById('bCopy').addEventListener('click', copyChapters);
+  document.getElementById('bHelp').addEventListener('click', function(){ helpPanel.classList.add('open'); });
+  document.querySelectorAll('[data-close]').forEach(function(b){
+    b.addEventListener('click', function(){ document.getElementById(b.dataset.close).classList.remove('open'); });
+  });
+
+  stage.addEventListener('click', togglePlay);
+  window.addEventListener('resize', fit);
+
+  window.addEventListener('keydown', function(e){
+    if (chaptersPanel.classList.contains('open') || helpPanel.classList.contains('open')){
+      if (e.key === 'Escape' || e.key === '?'){ e.preventDefault(); closePanels(); }
+      return;
+    }
+    switch (e.key){
+      case ' ': e.preventDefault(); togglePlay(); break;
+      case 'ArrowRight': goto(idx + 1); break;
+      case 'ArrowLeft':  goto(idx - 1); break;
+      case 'c': case 'C': toggleClean(); break;
+      case 't': case 'T': renderChapters(); chaptersPanel.classList.add('open'); break;
+      case 'l': case 'L': loop = !loop; break;
+      case '?': helpPanel.classList.add('open'); break;
+    }
+  });
+
+  /* ---------- go ---------- */
+  fit();
+  goto(0);
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

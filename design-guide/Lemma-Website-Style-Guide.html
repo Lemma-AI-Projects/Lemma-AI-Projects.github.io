@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lemma 官网重构 · 黑白视觉与交互规范 v1.0</title>
+<meta name="description" content="Lemma AI 官网重构指导：参照 LearnVector 视觉语言，转为黑白配色的完整设计令牌、组件代码与迁移清单。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════════
+   LEMMA WEB SYSTEM v1.0 — MONOCHROME  (Starter Template)
+   交付物第 09 章即为此处第 1–10 段的可复制版本。
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. TOKENS ─────────────────────────────────────────────────────── */
+:root{
+  /* 墨阶 */
+  --ink:#0A0A0B;
+  --text:#2B2B30;
+  --mut:#6E6E77;
+  --mut-2:#9C9CA4;
+
+  /* 冷调层：UI 底板、分区底色（替代参照站的紫/粉区块） */
+  --bg:#FFFFFF;
+  --surface:#F4F4F6;
+  --surface-2:#E9E9EC;
+  --surface-3:#1A1A1C;   /* 反转重音层，全文只用一次 */
+
+  /* 暖调层：卡片「纸」（保留参考站那 1–2% 的渐变差） */
+  --paper-a:#FCFCFB;
+  --paper-b:#F4F3F1;
+
+  /* 描边：只用极轻 hairline，禁止 1px 实心分割线 */
+  --hair:rgba(10,10,11,.10);
+  --hair-2:rgba(10,10,11,.055);
+
+  /* 光晕：由「色相渐变」降级为「中性明度衰减」 */
+  --glow-core:rgba(10,10,11,.12);
+  --glow-mid:rgba(10,10,11,.05);
+  --glow-none:rgba(10,10,11,0);
+  --lift-core:rgba(255,255,255,.55);
+
+  --grain:.055;
+
+  /* 字体 */
+  --serif:"Newsreader",Georgia,"Songti SC","Source Han Serif SC",serif;
+  --sans:"Inter","PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  /* 容器 */
+  --max:680px;
+  --max-wide:980px;
+  --max-nav:1080px;
+
+  /* 章节呼吸：三档 */
+  --pad-act:clamp(64px,8vw,120px);
+  --pad-interlude:clamp(72px,9vw,140px);
+  --pad-compact:clamp(40px,6vw,72px);
+
+  /* 圆角 */
+  --r-sm:10px;
+  --r-md:18px;
+  --r-lg:22px;
+  --r-pill:999px;
+
+  /* 阴影：一律中性偏冷的黑，禁止紫/蓝投影 */
+  --sh-paper:0 1px 2px rgba(20,15,40,.04),0 14px 40px -22px rgba(20,15,40,.16);
+  --sh-sheet:0 32px 90px rgba(20,15,40,.10),0 4px 16px rgba(20,15,40,.05);
+  --sh-nav:inset 0 -1px 1px rgba(10,10,11,.05),0 2px 8px rgba(10,10,11,.04),0 14px 44px -18px rgba(10,10,11,.18);
+  --sh-mark:0 12px 44px rgba(10,10,11,.28),0 3px 14px rgba(10,10,11,.14);
+
+  /* 缓动 */
+  --ease:cubic-bezier(.23,1,.32,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+
+  /* 字阶 */
+  --fs-mark:clamp(44px,13vw,148px);
+  --fs-h-xl:clamp(38px,6.5vw,72px);
+  --fs-h-lg:clamp(28px,4.6vw,42px);
+  --fs-stat:clamp(26px,4.4vw,38px);
+  --fs-lede:clamp(20px,2.2vw,28px);
+  --fs-body:17.5px;
+  --fs-text:16.5px;
+  --fs-sm:15.5px;
+  --fs-k:13px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body,h1,h2,h3,h4,p,dl,dd,dt,figure,blockquote{margin:0;padding:0}
+html{scroll-behavior:smooth;color-scheme:light;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-weight:400;
+  font-size:var(--fs-body);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+::selection{background:rgba(10,10,11,.12);color:var(--ink)}
+a{color:inherit}
+
+/* 焦点环：黑白系统里这是极少数被允许的实描边 */
+:is(a,button):focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+
+h1,h2,h3,h4{color:var(--ink);margin:0 0 .5em}
+h1,h2,.statement{text-wrap:balance}
+p{text-wrap:pretty;margin:0 0 16px}
+img,svg,video{max-width:100%}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/*.k 章节小标签 —— 全站唯一的「大写 + 字距」控件 */
+.k{font-size:var(--fs-k);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 16px;font-weight:500}
+
+h2{font-family:var(--serif);font-weight:400;font-size:var(--fs-h-lg);line-height:1.18;letter-spacing:-.015em;margin-bottom:24px}
+
+section[id]{scroll-margin-top:76px}
+
+/* ── 2. 胶片颗粒 FE-02 ─────────────────────────────────────────────── */
+.grain{position:relative;isolation:isolate}
+.grain::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.055'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.grain>*{position:relative;z-index:1}
+
+/* ── 3. 液态玻璃导航 FE-01 ─────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:50;padding:0 16px}
+.nav__in{
+  max-width:var(--max-nav);margin:0 auto;padding:10px 12px 10px 22px;
+  display:flex;align-items:center;gap:28px;
+  border-radius:var(--r-pill);position:relative;
+  background:linear-gradient(120deg,rgba(255,255,255,.88),rgba(255,255,255,.68) 45%,rgba(255,255,255,.84));
+  -webkit-backdrop-filter:blur(22px) saturate(1.4);
+  backdrop-filter:blur(22px) saturate(1.4);
+  box-shadow:var(--sh-nav);
+}
+.nav__in::after{
+  content:"";position:absolute;inset:0;border-radius:var(--r-pill);pointer-events:none;
+  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 44%,transparent 58%);
+  opacity:.55;
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .nav__in{background:rgba(255,255,255,.94)}
+}
+.brand{font-family:var(--sans);font-weight:600;font-size:20px;text-decoration:none;letter-spacing:-.02em;color:var(--ink)}
+.nav__links{display:flex;gap:24px;margin-left:auto;align-items:center}
+.nav__links a{font-size:14.5px;color:var(--mut);text-decoration:none;transition:color 150ms ease}
+.nav__links a:not(.nav__cta){padding:14px 4px;margin:-14px -4px}
+.nav__links a:hover{color:var(--ink)}
+.nav__cta{
+  background:var(--ink);color:#fff !important;padding:8px 18px;border-radius:var(--r-pill);
+  font-weight:500;white-space:nowrap;
+  transition:transform 160ms var(--ease),opacity 150ms ease;
+}
+@media(hover:hover) and (pointer:fine){.nav__cta:hover{opacity:.85}}
+.nav__cta:active{transform:scale(.97)}
+@media(max-width:900px){.nav__links a:not(.nav__cta){display:none}}
+@media(max-width:480px){.nav__in{gap:14px;padding:8px 10px 8px 16px}.brand{font-size:18px}.nav__cta{font-size:13px;padding:11px 14px}}
+
+/* ── 4. 巨型字标 FE-03 ─────────────────────────────────────────────── */
+.wordmark{
+  position:relative;left:-.02em;
+  font-family:var(--serif);font-weight:300;
+  font-size:var(--fs-mark);line-height:1.02;letter-spacing:-.03em;
+  margin:0 0 40px;
+  -webkit-text-stroke:.75px currentColor;
+}
+
+/* ── 5. 陈述级排版 ─────────────────────────────────────────────────── */
+.statement{font-family:var(--serif);font-weight:400;font-size:var(--fs-stat);line-height:1.14;letter-spacing:-.015em;max-width:600px;margin:0 auto 14px}
+.statement em{font-style:italic}
+.oneliner{font-family:var(--sans);font-weight:500;font-size:var(--fs-lede);line-height:1.4;letter-spacing:-.025em;max-width:56ch;text-wrap:balance;margin:0 auto 42px}
+
+/* ── 6. 玻璃 CTA FE-04 ─────────────────────────────────────────────── */
+.glassbtn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  height:54px;padding:0 34px;overflow:hidden;border:0;border-radius:var(--r-pill);
+  color:rgba(255,255,255,.94);text-decoration:none;cursor:pointer;
+  font-family:var(--sans);font-size:16.5px;font-weight:500;letter-spacing:-.01em;
+  transition:transform 160ms var(--ease);
+}
+.glassbtn::before,.glassbtn::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.glassbtn::before{background:rgba(10,10,11,.89);box-shadow:inset 2px 4px 16px rgba(255,255,255,.06)}
+.glassbtn::after{z-index:2;border:1px solid rgba(255,255,255,.25);opacity:.25;pointer-events:none;
+  -webkit-mask-image:linear-gradient(170deg,#000,transparent 50%);
+  mask-image:linear-gradient(170deg,#000,transparent 50%)}
+.glassbtn__title{position:relative;z-index:4}
+.glassbtn__circle{position:absolute;z-index:3;top:calc(50% - 100px);left:calc(50% - 100px);width:200px;height:200px}
+.glassbtn__circle::before,.glassbtn__circle::after{content:"";position:absolute;inset:0;border-radius:50%}
+.glassbtn__circle::before{
+  background:conic-gradient(from 180deg,rgba(255,255,255,.012) 180deg,rgba(255,255,255,.06) 360deg);
+  filter:blur(15px);animation:glassbtn-circle 3.6s linear infinite;transition:opacity .5s}
+.glassbtn__circle::after{inset:30px;background:rgba(255,255,255,.14);opacity:0;filter:blur(5px);
+  transform:scale(.5);transition:opacity .5s,transform .7s;
+  -webkit-mask-image:radial-gradient(50% 50%,#000,rgba(23,23,23,0));
+  mask-image:radial-gradient(50% 50%,#000,rgba(23,23,23,0))}
+.glassbtn--lift{box-shadow:var(--sh-mark)}
+@media(hover:hover) and (pointer:fine){.glassbtn:hover{transform:translateY(-1px)}}
+.glassbtn:hover .glassbtn__circle::before{opacity:0}
+.glassbtn:hover .glassbtn__circle::after{opacity:1;transform:scale(1)}
+.glassbtn:active{transform:scale(.98)}
+@keyframes glassbtn-circle{
+  0%{transform:translate(0) rotate(0)}
+  25%{transform:translateX(-30px) rotate(90deg)}
+  50%{transform:translate(0) rotate(180deg)}
+  75%{transform:translateX(30px) rotate(270deg)}
+  100%{transform:translate(0) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.glassbtn__circle::before{animation:none}}
+
+.pill{
+  display:inline-block;padding:11px 22px;border-radius:var(--r-pill);
+  background:var(--ink);color:#fff !important;font-size:15px;font-weight:500;text-decoration:none;
+  transition:transform 160ms var(--ease),opacity 150ms ease;
+}
+.pill--ghost{background:transparent;color:var(--ink) !important;border:1px solid var(--hair)}
+@media(hover:hover) and (pointer:fine){.pill:hover{opacity:.86}}
+.pill:active{transform:scale(.97)}
+
+/* ── 7. 纸卡系统 FE-05 ─────────────────────────────────────────────── */
+.paper{
+  background:linear-gradient(180deg,var(--paper-a),var(--paper-b));
+  border-radius:var(--r-lg);padding:28px 26px 26px;
+  box-shadow:var(--sh-paper);
+}
+.tcard{min-height:340px;display:flex;flex-direction:column}
+.tcard svg{margin:auto 0}
+.tcard .tag{display:inline-block;width:max-content;margin:24px 0 12px;font-size:11.5px;letter-spacing:.12em;
+  padding:5px 11px;border-radius:var(--r-pill);background:rgba(10,10,11,.05);color:var(--mut);font-weight:500;text-transform:uppercase}
+.tflip{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin:26px 0 12px;
+  font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);line-height:1.25;letter-spacing:-.01em}
+.tflip .tarrow{font-family:var(--sans);font-size:14px;color:var(--mut)}
+.tcard p{font-size:var(--fs-text);line-height:1.65;color:var(--text);margin:0}
+
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:var(--max-wide);margin:0 auto}
+@media(max-width:820px){.trio{grid-template-columns:1fr}.tcard{min-height:0}.tcard svg{margin:6px auto 10px}.tflip{margin:20px 0 10px}}
+
+/* ── 8. 纸面区块 sheet ─────────────────────────────────────────────── */
+.sheet{position:relative;background:linear-gradient(180deg,var(--paper-a),var(--paper-b));
+  border-radius:var(--r-sm);padding:56px 52px 46px;box-shadow:var(--sh-sheet)}
+.sheet::before{content:"";position:absolute;inset:0;border-radius:var(--r-sm);pointer-events:none;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.055'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.sheet>*{position:relative}
+.sheet p{font-size:17px;line-height:1.7}
+@media(max-width:760px){.sheet{padding:32px 24px 28px}}
+
+/* ── 9. 光晕岛 FE-06 ───────────────────────────────────────────────── */
+.isle{position:relative;isolation:isolate;overflow:hidden;background:var(--bg);padding:var(--pad-act) 0}
+.isle::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(50% 46% at 50% 46%,var(--glow-core) 0%,var(--glow-mid) 42%,var(--glow-none) 78%);
+  -webkit-mask-image:radial-gradient(58% 52% at 50% 46%,#000 30%,transparent 78%);
+  mask-image:radial-gradient(58% 52% at 50% 46%,#000 30%,transparent 78%);
+  animation:breathe 12s ease-in-out infinite alternate;
+}
+@keyframes breathe{from{opacity:.72}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.isle::before{animation:none}}
+
+.slab{position:relative;overflow:hidden;background:var(--surface-3);color:rgba(255,255,255,.88);padding:var(--pad-act) 0}
+.slab h2{color:#fff}
+.slab .k{color:rgba(255,255,255,.55)}
+.slab::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(46% 50% at 50% 40%,var(--lift-core),transparent 72%);opacity:.7}
+
+/* ── 10. 入场揭示 FE-07 ────────────────────────────────────────────── */
+.rise{opacity:0;transform:translateY(10px);animation:rise .6s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.sr>.wrap>*,.story.sr>*{opacity:0;transform:translateY(12px);
+  transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.sr.in>.wrap>*,.story.sr.in>*{opacity:1;transform:none}
+.sr.in>.wrap>*:nth-child(2),.story.sr.in>*:nth-child(2){transition-delay:60ms}
+.sr.in>.wrap>*:nth-child(3),.story.sr.in>*:nth-child(3){transition-delay:120ms}
+.sr.in>.wrap>*:nth-child(4),.story.sr.in>*:nth-child(4){transition-delay:180ms}
+.sr.in>.wrap>*:nth-child(5),.story.sr.in>*:nth-child(5){transition-delay:240ms}
+.sr.in>.wrap>*:nth-child(6),.story.sr.in>*:nth-child(6){transition-delay:300ms}
+.sr.in>.wrap>*:nth-child(n+7),.story.sr.in>*:nth-child(n+7){transition-delay:360ms}
+@media(prefers-reduced-motion:reduce){
+  .rise{transform:none;animation:fadeonly .5s ease forwards}
+  .sr>.wrap>*,.story.sr>*{transform:none;transition:opacity .3s ease}
+}
+@keyframes fadeonly{from{opacity:0}to{opacity:1}}
+
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:12px;background:#fff;padding:8px 12px;z-index:99}
+
+/* ══ 以下为「指南文档自身」的排版，不属于交付组件 ══════════════════ */
+.shell{display:grid;grid-template-columns:264px minmax(0,1fr);gap:0;max-width:1400px;margin:0 auto}
+.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:96px 20px 40px 32px;border-right:1px solid var(--hair-2)}
+.toc ol{list-style:none;padding:0;margin:0}
+.toc li{margin:0 0 2px}
+.toc a{display:block;padding:6px 10px;border-radius:8px;font-size:13.5px;color:var(--mut);text-decoration:none;transition:color 150ms ease,background 150ms ease}
+.toc a:hover{color:var(--ink);background:var(--surface)}
+.toc a.on{color:var(--ink);background:var(--surface);font-weight:500}
+.toc__num{font-family:var(--mono);font-size:11px;color:var(--mut-2);margin-right:8px}
+.toc__lead{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut-2);margin:0 0 14px 10px;font-weight:500}
+.doc{padding:0 clamp(24px,5vw,72px) 120px;min-width:0}
+.doc>section{padding:0 0 var(--pad-compact)}
+@media(max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  .toc{position:static;height:auto;padding:20px 24px;border-right:0;border-bottom:1px solid var(--hair-2)}
+  .toc ol{display:flex;flex-wrap:wrap;gap:4px}
+  .doc{padding-top:40px}
+}
+
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-2);margin:0 0 10px}
+h3{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.25;letter-spacing:-.015em;margin:40px 0 12px}
+h4{font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:-.01em;margin:24px 0 10px}
+.doc p,.doc li,.doc dd,.doc td{font-size:var(--fs-text);line-height:1.7}
+.doc ul,.doc ol{padding-left:22px;margin:0 0 16px}
+.doc li{margin-bottom:8px}
+.doc strong{color:var(--ink);font-weight:600}
+.doc code{font-family:var(--mono);font-size:.86em;background:var(--surface);padding:2px 6px;border-radius:5px;color:var(--ink)}
+
+.lead{font-size:19px;line-height:1.65;color:var(--text);max-width:62ch;margin:0 0 28px}
+.rule{height:1px;background:var(--hair-2);border:0;margin:0 0 56px}
+.chapter{padding-top:var(--pad-compact) !important;border-top:1px solid var(--hair-2);margin-top:8px}
+
+.tbl{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14.5px}
+.tbl th{text-align:left;font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);
+  padding:0 14px 10px 0;border-bottom:1px solid var(--hair)}
+.tbl td{padding:12px 14px 12px 0;border-bottom:1px solid var(--hair-2);vertical-align:top;line-height:1.55}
+.tbl tr:hover td{background:rgba(10,10,11,.012)}
+
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px;margin:18px 0 26px}
+.sw{border:1px solid var(--hair-2);border-radius:12px;overflow:hidden;background:var(--bg)}
+.sw__chip{height:64px}
+.sw__meta{padding:9px 11px 11px;border-top:1px solid var(--hair-2)}
+.sw__name{font-size:12px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.sw__val{font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:2px;word-break:break-all}
+
+pre{margin:0 0 20px;background:#141416;color:rgba(255,255,255,.9);border-radius:14px;padding:20px 22px;
+  overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.75;box-shadow:var(--sh-paper)}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.c-kw{color:rgba(255,255,255,.5)}
+.c-cm{color:rgba(255,255,255,.34);font-style:italic}
+.c-str{color:rgba(255,255,255,.8)}
+.c-sel{color:#fff;font-weight:500}
+.c-num{color:rgba(255,255,255,.68)}
+.cap{font-size:12.5px;color:var(--mut);margin:-8px 0 24px;line-height:1.6}
+
+.note{border-radius:14px;padding:16px 18px;margin:18px 0 24px;background:var(--surface);font-size:15px;line-height:1.65}
+.note--do{background:rgba(10,10,11,.045)}
+.note--warn{background:rgba(10,10,11,.07)}
+.note b{color:var(--ink)}
+.note__t{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:700;margin:0 0 6px}
+
+.demo{border:1px solid var(--hair);border-radius:16px;padding:36px 28px;margin:18px 0 26px;position:relative;background:var(--bg)}
+.demo__label{position:absolute;top:10px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mut-2)}
+.demo--checker{background-image:linear-gradient(45deg,rgba(10,10,11,.03) 25%,transparent 25%,transparent 75%,rgba(10,10,11,.03) 75%),
+  linear-gradient(45deg,rgba(10,10,11,.03) 25%,transparent 25%,transparent 75%,rgba(10,10,11,.03) 75%);
+  background-size:16px 16px;background-position:0 0,8px 8px}
+.demo__row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;margin-top:18px}
+
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 28px}
+.mg__c{border:1px solid var(--hair-2);border-radius:14px;padding:18px 18px 16px}
+.mg__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut-2);margin:0 0 8px}
+.mg__v{font-size:15px;line-height:1.55;color:var(--ink);font-weight:500;margin:0}
+.mg__n{font-size:13px;line-height:1.55;color:var(--mut);margin:6px 0 0}
+
+.hero-doc{padding:clamp(56px,9vw,110px) 0 clamp(40px,6vw,64px);text-align:center}
+.hero-doc .wordmark{font-size:clamp(38px,9vw,92px);margin-bottom:24px}
+.tagrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 34px}
+.tagrow span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 12px;border-radius:var(--r-pill);border:1px solid var(--hair);color:var(--mut)}
+.ver{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;color:var(--mut);
+  border:1px solid var(--hair);border-radius:var(--r-pill);padding:5px 13px;margin:0 0 22px}
+.txtlink{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;transition:color 150ms ease}
+.txtlink:hover{color:var(--ink)}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--hair-2)}
+.ck__box{flex:0 0 15px;height:15px;border:1px solid var(--hair);border-radius:4px;margin-top:5px}
+footer.docfoot{border-top:1px solid var(--hair-2);padding:40px 0 0;color:var(--mut);font-size:14px}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#doc">跳到正文</a>
+
+<header class="nav">
+  <div class="nav__in">
+    <a class="brand" href="#top">Lemma<span style="color:var(--mut-2)">/</span>Web</a>
+    <nav class="nav__links" aria-label="章节">
+      <a href="#s3">色彩</a>
+      <a href="#s5">字体</a>
+      <a href="#s7">组件</a>
+      <a href="#s8">动效</a>
+      <a href="#s9">模板</a>
+      <a class="nav__cta" href="#s11">迁移清单</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="toc">
+    <p class="toc__lead">目录</p>
+    <ol>
+      <li><a href="#s0"><span class="toc__num">00</span>怎么用这份指南</a></li>
+      <li><a href="#s1"><span class="toc__num">01</span>参照站设计 DNA</a></li>
+      <li><a href="#s2"><span class="toc__num">02</span>黑白化的核心难题</a></li>
+      <li><a href="#s3"><span class="toc__num">03</span>色彩令牌</a></li>
+      <li><a href="#s4"><span class="toc__num">04</span>版面与容器</a></li>
+      <li><a href="#s5"><span class="toc__num">05</span>字体与字阶</a></li>
+      <li><a href="#s6"><span class="toc__num">06</span>章节明暗分工</a></li>
+      <li><a href="#s7"><span class="toc__num">07</span>组件库</a></li>
+      <li><a href="#s8"><span class="toc__num">08</span>动效与交互</a></li>
+      <li><a href="#s9"><span class="toc__num">09</span>Starter 模板</a></li>
+      <li><a href="#s10"><span class="toc__num">10</span>Do / Don't</a></li>
+      <li><a href="#s11"><span class="toc__num">11</span>迁移 Checklist</a></li>
+      <li><a href="#s12"><span class="toc__num">12</span>验收标准</a></li>
+    </ol>
+  </aside>
+
+  <main class="doc" id="doc">
+
+    <div class="hero-doc" id="top">
+      <span class="ver">v1.0 · 2026-09-09</span>
+      <div class="tagrow">
+        <span>单栏 680px</span>
+        <span>零分割线</span>
+        <span>纸卡 + 颗粒</span>
+        <span>液态玻璃导航</span>
+      </div>
+      <h1 class="wordmark rise">Lemma Web</h1>
+      <p class="oneliner rise" style="animation-delay:.08s">
+        官网重构的视觉与交互规范。语言取自 LearnVector，配色收敛为黑白，
+        所有层次改由<strong>明度、颗粒与留白</strong>承担。
+      </p>
+      <div class="demo__row rise" style="animation-delay:.18s">
+        <a class="glassbtn glassbtn--lift" href="#s9"><span class="glassbtn__title">直接去第 09 章拿代码</span><span class="glassbtn__circle" aria-hidden="true"></span></a>
+        <a class="pill pill--ghost" href="#s3">先看色板</a>
+      </div>
+    </div>
+    <hr class="rule">
+
+    <section class="chapter" id="s0">
+      <p class="eyebrow">00 · Read me first</p>
+      <h2>怎么用这份指南</h2>
+      <p class="lead">这份文档本身就是一个<strong>合规实现样例</strong>：你正在看到的字标、玻璃胶囊、导航、卡片、滚动揭示，全部由第 09 章的 Starter 模板渲染。团队可以直接右键「查看源代码」取用。</p>
+
+      <div class="mg">
+        <div class="mg__c">
+          <p class="mg__k">适用对象</p>
+          <p class="mg__v">Lemma 官网全站重构</p>
+          <p class="mg__n">首页 / 产品页 / Why Lemma 子页共用同一套令牌。</p>
+        </div>
+        <div class="mg__c">
+          <p class="mg__k">技术形态</p>
+          <p class="mg__v">静态 HTML + 原生 CSS + 少量 JS</p>
+          <p class="mg__n">无框架依赖，与参照站一致。后续若接 Laravel，令牌进 CSS 变量即可平移。</p>
+        </div>
+        <div class="mg__c">
+          <p class="mg__k">浏览器基线</p>
+          <p class="mg__v">Chrome / Safari / Edge 近两年版本</p>
+          <p class="mg__n">用到 <code>text-wrap</code>、<code>mask-image</code>、<code>backdrop-filter</code>，均已提供降级。</p>
+        </div>
+        <div class="mg__c">
+          <p class="mg__k">验证方式</p>
+          <p class="mg__v">每一节都有「怎么验证」</p>
+          <p class="mg__n">不需要设计稿比对，按步骤在浏览器里自查即可。</p>
+        </div>
+      </div>
+
+      <div class="note note--warn">
+        <p class="note__t">唯一硬规则</p>
+        <p>任何一次改动，提交前必须能回答两句话：<b>① 用户在页面上会看到/感觉到什么变化；② 我如何从用户侧验证。</b>答不上来的改动不进主干。</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s1">
+      <p class="eyebrow">01 · Reference teardown</p>
+      <h2>参照站设计 DNA</h2>
+      <p class="lead">以下全部来自对参照站实际源码的解构（<code>styles-v2.css</code>，其注释首行自称 <em>“white, no lines, Gramercy Display Book + Diatype text”</em>）。不是观感猜测，是可核对的事实。</p>
+
+      <h3>1.1 九个决定性机制</h3>
+      <table class="tbl">
+        <thead><tr><th>机制</th><th>源码证据</th><th>黑白化后的处理</th></tr></thead>
+        <tbody>
+          <tr><td>窄阅读栏</td><td><code>--max:680px</code>，全站正文不超此宽</td><td>原样保留。680px 是「编辑感」的根源，别为了填满屏幕加宽</td></tr>
+          <tr><td>零分割线</td><td>注释明写 <em>white, no lines</em>；章节之间只用 padding 分隔</td><td>继承并加强：连 1px 分割线都不许用，卡片边界只靠投影 + 极轻描边</td></tr>
+          <tr><td>三档章节呼吸</td><td><code>--pad-act</code> / <code>--pad-interlude</code> / <code>--pad-compact</code>，clamp 响应式</td><td>原样继承，作为唯一的节奏控制器</td></tr>
+          <tr><td>衬线展示 + 无衬线正文</td><td><code>--serif</code> 用于 h1/h2/statement；<code>--sans</code> 用于正文</td><td>继承。Newsreader 替 Gramercy Display，Inter 替 Diatype（见第 05 章）</td></tr>
+          <tr><td>巨型字标 + 描边</td><td><code>font-size:clamp(44px,13vw,148px)</code> + <code>-webkit-text-stroke:.75px</code></td><td>原样继承。黑白场景下那 0.75px 描边是字重感的来源，不可删</td></tr>
+          <tr><td>液态玻璃胶囊导航</td><td><code>backdrop-filter:blur(22px) saturate(1.4)</code> + inset 高光 + <code>::after</code> 斜向扫光</td><td>继承。<code>saturate</code> 在黑白场景无副作用，保留原值</td></tr>
+          <tr><td>胶片颗粒</td><td>base64 <code>feTurbulence fractalNoise</code> SVG 铺在 <code>::before</code>，<code>opacity:.55</code></td><td><strong>升格为核心手段</strong>。去掉颜色后，它是唯一能制造「材质」的东西</td></tr>
+          <tr><td>纸卡系统</td><td><code>linear-gradient(180deg,#fffefb,#fcf8f1)</code> + 大扩散低透明投影</td><td>转为 <code>#FCFCFB → #F4F3F1</code>。保留那 1–2% 的渐变差，这是「贵」的来源</td></tr>
+          <tr><td>极光页脚</td><td>9 条 rect 叠加 <code>feGaussianBlur stdDeviation=28</code>，<code>scaleY(0→1)</code> 入场</td><td>渐变 stops 全部换灰阶。全站唯一允许出现柔光的地方</td></tr>
+        </tbody>
+      </table>
+
+      <h3>1.2 交互层：只有四件事</h3>
+      <table class="tbl">
+        <thead><tr><th>交互</th><th>实现</th><th>用户视角效果</th></tr></thead>
+        <tbody>
+          <tr><td>章节级联揭示</td><td><code>IntersectionObserver</code> → 加 <code>.in</code> → CSS 用 <code>nth-child</code> 给子元素 60ms 递增 <code>transition-delay</code></td><td>滚到某一章时内容像字幕依次浮现，不是整块弹出</td></tr>
+          <tr><td>Hero 视差退场</td><td>滚动时 <code>translateY + scale + opacity</code>，<code>rAF</code> 节流</td><td>往下滚，首屏缓慢下沉淡出，下一章从下方「盖」上来</td></tr>
+          <tr><td>背景视频环</td><td>由<strong>视频播放头</strong>驱动淡入淡出（不是定时器），<code>preload="none"</code> + IO 懒启动</td><td>循环衔接处不闪跳；滚到临近才下载，首屏不被拖慢</td></tr>
+          <tr><td>微交互</td><td>统一 <code>transform 160ms cubic-bezier(.23,1,.32,1)</code>；<code>:active{scale(.97)}</code>；hover 包在 <code>@media(hover:hover)</code> 里</td><td>按钮按下有实体回弹；触屏设备不会「粘住」hover 态</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note note--warn">
+        <p class="note__t">一个必须抄的态度</p>
+        <p>参照站为 <code>prefers-reduced-motion</code> 写了<strong>十八条</strong>降级声明。<b>这不是可选加分项，是交付门槛。</b>第 09 章模板已含全部降级。</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s2">
+      <p class="eyebrow">02 · The hard part</p>
+      <h2>黑白化的核心难题</h2>
+      <p class="lead">参照站用<strong>色相切换</strong>做章节分层：白 → 紫粉渐变 → 白 → 渐变。颜色拿掉之后，几个区块会塌成一整片。这是本次重构唯一真正的难点，其余都是翻译工作。</p>
+
+      <h3>三条替代路径</h3>
+      <table class="tbl">
+        <thead><tr><th>原手段</th><th>黑白替代</th><th>为什么有效</th></tr></thead>
+        <tbody>
+          <tr><td>色相分区</td><td><strong>明度台阶</strong>：#FFF / #F4F4F6 / #E9E9EC / #1A1A1C</td><td>眼睛对灰阶差的分辨力远高于直觉，四级足够撑起六个章节</td></tr>
+          <tr><td>紫粉渐变</td><td><strong>中心对称的明度衰减</strong>：<code>radial-gradient</code> 用 <code>rgba(10,10,11,α)</code>，配 <code>mask-image</code> 收边</td><td>去掉色相后剩下的就是「聚光」，这正是原效果的物理本质</td></tr>
+          <tr><td>二者的「高级感」</td><td><strong>胶片颗粒 + 极轻色温分层</strong></td><td>纯 <code>#000 → #FFF</code> 会显得廉价、像没设计完</td></tr>
+        </tbody>
+      </table>
+
+      <h3>色温分层：本次的关键决策</h3>
+      <p>严格意义上的纯灰（<code>#000000 → #FFFFFF</code>）在这里是<strong>反模式</strong>。参照站之所以耐看，是因为它的紫里有一点蓝、粉里有一点暖。黑白版的等价做法，是给两个层赋予不同色温：</p>
+      <div class="mg">
+        <div class="mg__c">
+          <p class="mg__k">冷调层 · UI</p>
+          <p class="mg__v"><code>#F4F4F6</code> / <code>#E9E9EC</code></p>
+          <p class="mg__n">带极轻蓝。用于区块底面、嵌板、代码块。语义是「屏幕 / 系统」。</p>
+        </div>
+        <div class="mg__c">
+          <p class="mg__k">暖调层 · 纸</p>
+          <p class="mg__v"><code>#FCFCFB</code> / <code>#F4F3F1</code></p>
+          <p class="mg__n">带极轻黄。用于卡片、sheet。语义是「印刷品 / 内容」。</p>
+        </div>
+        <div class="mg__c">
+          <p class="mg__k">偏移量上限</p>
+          <p class="mg__v">≤ 3 / 255</p>
+          <p class="mg__n">屏幕上肉眼<em>不该</em>读出它的颜色，只读出「这两块材质不同」。</p>
+        </div>
+      </div>
+
+      <div class="demo" style="background:var(--surface)">
+        <span class="demo__label">Live demo · 两种灰并置</span>
+        <div class="demo__row" style="margin-top:24px">
+          <div class="paper" style="min-width:210px;text-align:center">
+            <p style="margin:0;font-weight:600;color:var(--ink)">暖调纸卡</p>
+            <p style="margin:4px 0 0;font-size:12px;color:var(--mut)">#FCFCFB → #F4F3F1</p>
+          </div>
+          <div style="min-width:210px;text-align:center;padding:28px 26px;border-radius:22px;background:var(--surface-2)">
+            <p style="margin:0;font-weight:600;color:var(--ink)">冷调面板</p>
+            <p style="margin:4px 0 0;font-size:12px;color:var(--mut)">#E9E9EC</p>
+          </div>
+        </div>
+        <div class="note" style="margin:22px 0 0">
+          <p class="note__t">怎么验证</p>
+          <p>把显示器亮度拉到 40%，眯眼看这两块。如果它们<strong>读起来是同一个灰</strong>，说明渐变差被吃掉了，把 <code>--paper-b</code> 再压深 2 个点；如果一眼看出「一个像纸、一个像屏幕」，就对了。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="s3">
+      <p class="eyebrow">03 · Tokens</p>
+      <h2>色彩令牌</h2>
+      <p class="lead">全部 21 个。<strong>页面里不允许出现第 22 个颜色值</strong>——需要新颜色时，先问能不能用现有令牌加透明度解决。</p>
+
+      <h3>3.1 墨阶 · 文字</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw__chip" style="background:#0A0A0B"></div><div class="sw__meta"><p class="sw__name">--ink</p><p class="sw__val">#0A0A0B · 标题</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:#2B2B30"></div><div class="sw__meta"><p class="sw__name">--text</p><p class="sw__val">#2B2B30 · 正文</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:#6E6E77"></div><div class="sw__meta"><p class="sw__name">--mut</p><p class="sw__val">#6E6E77 · 元信息</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:#9C9CA4"></div><div class="sw__meta"><p class="sw__name">--mut-2</p><p class="sw__val">#9C9CA4 · 仅装饰</p></div></div>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>令牌</th><th>用户视角效果</th><th>怎么验证</th></tr></thead>
+        <tbody>
+          <tr><td>--mut</td><td>比参照站原值 <code>#55555c</code> 提亮一档。原值在纯白底上偏脏，改后元信息「退后但仍然可读」</td><td>用它渲染 13px uppercase 小标签，应该一眼扫得清，但不抢正文注意力</td></tr>
+          <tr><td>--mut-2</td><td>三级弱化。<strong>只允许用于不承载信息的装饰元素</strong></td><td>DevTools → Lighthouse 跑对比度，所有承载文字处必须过 AA</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.2 冷调层 · UI 底板</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw__chip" style="background:#FFFFFF"></div><div class="sw__meta"><p class="sw__name">--bg</p><p class="sw__val">#FFFFFF · 主章节</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:#F4F4F6"></div><div class="sw__meta"><p class="sw__name">--surface</p><p class="sw__val">#F4F4F6 · 次级章节</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:#E9E9EC"></div><div class="sw__meta"><p class="sw__name">--surface-2</p><p class="sw__val">#E9E9EC · 嵌板</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:#1A1A1C"></div><div class="sw__meta"><p class="sw__name">--surface-3</p><p class="sw__val">#1A1A1C · 反转重音</p></div></div>
+      </div>
+
+      <h3>3.3 暖调层 · 纸</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw__chip" style="background:#FCFCFB"></div><div class="sw__meta"><p class="sw__name">--paper-a</p><p class="sw__val">#FCFCFB · 卡片顶端</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:#F4F3F1"></div><div class="sw__meta"><p class="sw__name">--paper-b</p><p class="sw__val">#F4F3F1 · 卡片底端</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:rgba(10,10,11,.10)"></div><div class="sw__meta"><p class="sw__name">--hair</p><p class="sw__val">rgba(10,10,11,.10)</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:rgba(10,10,11,.055)"></div><div class="sw__meta"><p class="sw__name">--hair-2</p><p class="sw__val">rgba(10,10,11,.055)</p></div></div>
+      </div>
+
+      <h3>3.4 光晕 · 由色相降级为明度</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw__chip" style="background:rgba(10,10,11,.12)"></div><div class="sw__meta"><p class="sw__name">--glow-core</p><p class="sw__val">rgba(10,10,11,.12)</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:rgba(10,10,11,.05)"></div><div class="sw__meta"><p class="sw__name">--glow-mid</p><p class="sw__val">rgba(10,10,11,.05)</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:rgba(255,255,255,.55)"></div><div class="sw__meta"><p class="sw__name">--lift-core</p><p class="sw__val">深色层反光</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:radial-gradient(circle,rgba(10,10,11,.12),rgba(10,10,11,0) 70%)"></div><div class="sw__meta"><p class="sw__name">合成效果</p><p class="sw__val">radial 衰减</p></div></div>
+      </div>
+
+      <div class="note note--do">
+        <p class="note__t">换算规则</p>
+        <p>把参照站任何一处紫/粉换算时：<b>不要看它的色相，看它在白底上「压暗了多少」。</b>那个 Lavender <code>#ded2fa</code> 大约是把白往下压 12%，所以换算成 <code>rgba(10,10,11,.12)</code>。用这个办法能保证光影结构一比一还原。</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s4">
+      <p class="eyebrow">04 · Layout</p>
+      <h2>版面与容器</h2>
+      <table class="tbl">
+        <thead><tr><th>令牌</th><th>值</th><th>用户视角效果 / 怎么验证</th></tr></thead>
+        <tbody>
+          <tr><td>--max</td><td><code>680px</code></td><td>阅读栏。一行约 60–70 字符——读一段正文时，如果眼睛需要横向扫动才找得到下一行，就是宽了</td></tr>
+          <tr><td>--max-wide</td><td><code>980px</code></td><td>仅供三栏卡片组 / 对阵式标题行。<strong>正文永不占用</strong></td></tr>
+          <tr><td>--max-nav</td><td><code>1080px</code></td><td>导航胶囊内容宽。比正文宽得多，形成「顶檐压着正文」的构图</td></tr>
+          <tr><td>--pad-act</td><td><code>clamp(64px,8vw,120px)</code></td><td>重章节（Hero / Mission / 创始人信）。移动端自动收到 64px，无需另写 media query</td></tr>
+          <tr><td>--pad-interlude</td><td><code>clamp(72px,9vw,140px)</code></td><td>过渡章节。全站最宽的一次呼吸</td></tr>
+          <tr><td>--pad-compact</td><td><code>clamp(40px,6vw,72px)</code></td><td>资讯型章节（Facts / 招聘）</td></tr>
+        </tbody>
+      </table>
+
+      <h3>4.1 断点：只有四个</h3>
+      <table class="tbl">
+        <thead><tr><th>断点</th><th>处理</th><th>用户视角效果</th></tr></thead>
+        <tbody>
+          <tr><td><code>max-width:1080px</code></td><td>双栏 → 单栏</td><td>侧栏目录移到顶部横排</td></tr>
+          <tr><td><code>max-width:820px</code></td><td>三栏 → 单栏</td><td>卡片竖排，<code>min-height:340px</code> 解除——避免手机上出现巨型空卡</td></tr>
+          <tr><td><code>max-width:640px</code></td><td>章节内边距降到 <code>96px 20px</code></td><td>小屏不再出现「两侧白得离谱」</td></tr>
+          <tr><td><code>max-height:840px</code></td><td> Mission 章内的图收窄</td><td>横屏笔记本 / 平板横放时，重章节仍能一屏看完</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note note--warn">
+        <p class="note__t">别加第五个断点</p>
+        <p>间距一律用 <code>clamp()</code>，断点只管<strong>结构塌陷</strong>（多栏→单栏）。如果某个元素在某个宽度不好看，先怀疑是不是 clamp 的上下界给错了。</p>
+      </div>
+
+      <h3>4.2 圆角与阴影</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw__chip" style="background:var(--paper-a);border-radius:10px;margin:8px"></div><div class="sw__meta"><p class="sw__name">--r-sm 10px</p><p class="sw__val">sheet 纸张</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:var(--paper-a);border-radius:18px;margin:8px"></div><div class="sw__meta"><p class="sw__name">--r-md 18px</p><p class="sw__val">小卡片</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:var(--paper-a);border-radius:22px;margin:8px"></div><div class="sw__meta"><p class="sw__name">--r-lg 22px</p><p class="sw__val">纸卡 / demo</p></div></div>
+        <div class="sw"><div class="sw__chip" style="background:var(--ink);border-radius:999px;margin:8px"></div><div class="sw__meta"><p class="sw__name">--r-pill 999px</p><p class="sw__val">按钮 / 导航 / 标签</p></div></div>
+      </div>
+      <p><strong>阴影全部换成中性偏冷的黑。</strong>参照站用的是 <code>rgba(90,60,160,.18)</code> 这类紫色投影，搬到黑白页面会变成「脏灰」。统一改为 <code>rgba(20,15,40,α)</code>。</p>
+    </section>
+
+    <section class="chapter" id="s5">
+      <p class="eyebrow">05 · Type</p>
+      <h2>字体与字阶</h2>
+
+      <h3>5.1 字体替换方案</h3>
+      <table class="tbl">
+        <thead><tr><th>角色</th><th>参照站</th><th>Lemma 用</th><th>理由</th></tr></thead>
+        <tbody>
+          <tr><td>展示衬线</td><td>ABC Gramercy Display</td><td><strong>Newsreader</strong>（免费）</td><td>同为高对比编辑体，带 optical sizing。若有预算可直购 Gramercy 替换 <code>--serif</code> 首选项，其余代码零改动</td></tr>
+          <tr><td>正文无衬线</td><td>ABC Diatype</td><td><strong>Inter</strong>（现有 Geist 可沿用）</td><td>中性 grotesque，中英混排稳。Geist 与 Inter 视觉差极小</td></tr>
+          <tr><td>中文衬线</td><td>—</td><td><strong>Source Han Serif SC</strong></td><td>展示标题的中文必须走衬线，否则黑白页面的编辑感全丢</td></tr>
+          <tr><td>等宽</td><td>—</td><td><strong>JetBrains Mono</strong></td><td>仅用于代码、版本号、机器感标签</td></tr>
+        </tbody>
+      </table>
+
+      <h3>5.2 字阶</h3>
+      <div class="demo">
+        <span class="demo__label">Live demo · 完整字阶</span>
+        <p class="wordmark" style="font-size:clamp(32px,7vw,64px);margin:28px 0 6px">Lemma</p>
+        <p class="sw__val" style="margin:0 0 26px">--fs-mark · clamp(44px,13vw,148px) · serif 300 + text-stroke .75px</p>
+        <p class="statement" style="max-width:none;margin:0 0 4px">一句话定义这家公司</p>
+        <p class="sw__val" style="margin:0 0 22px">--fs-h-xl · clamp(38px,6.5vw,72px) · line-height 1.08 · -.025em</p>
+        <h3 style="margin:0 0 4px">章节标题</h3>
+        <p class="sw__val" style="margin:0 0 22px">--fs-h-lg · clamp(28px,4.6vw,42px) · line-height 1.18</p>
+        <p style="font-size:var(--fs-lede);font-weight:500;letter-spacing:-.025em;margin:0 0 4px;color:var(--ink)">主标语主标语主标语</p>
+        <p class="sw__val" style="margin:0 0 22px">--fs-lede · clamp(20px,2.2vw,28px) · sans 500 · -.025em</p>
+        <p style="font-size:var(--fs-text);margin:0 0 4px">正文 16.5px / 1.65。这是一段用来观察行高是否舒适的中文正文占位文本，足够长才能看出行与行之间的关系。</p>
+        <p class="sw__val" style="margin:0 0 22px">--fs-text 16.5px / 1.65</p>
+        <p class="k" style="margin:0 0 4px">Section label</p>
+        <p class="sw__val" style="margin:0">--fs-k 13px · uppercase · letter-spacing .14em</p>
+      </div>
+
+      <div class="note note--do">
+        <p class="note__t">三条字排规则（照抄自参照站）</p>
+        <p><b>①</b> <code>h1,h2,.statement{text-wrap:balance}</code> —— 标题自动均衡折行，不再出现孤字。<br>
+        <b>②</b> <code>p{text-wrap:pretty}</code> —— 正文避免末行只剩一个词。<br>
+        <b>③</b> 负字距随字号增大而增大：展示字 -.03em，大标题 -.025em，正文不设。<br>这三行代码贡献了整个「贵」的感觉，别省。</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s6">
+      <p class="eyebrow">06 · Rhythm</p>
+      <h2>章节明暗分工</h2>
+      <p class="lead">六个章节、四级明度。规则只有一条：<strong>相邻章节不许同层</strong>，否则视觉上会糊成一段。</p>
+
+      <table class="tbl">
+        <thead><tr><th>#</th><th>章节</th><th>层</th><th>处理</th><th>用户会看到 / 怎么验证</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Hero</td><td>A 纯白</td><td>巨型字标 + 中心光晕</td><td>加载后标题缓缓浮起；往下滑则下沉淡出</td></tr>
+          <tr><td>02</td><td>Mission</td><td>B 冷灰 + 颗粒</td><td>满屏 <code>100svh</code>，单句陈述</td><td>整块底色顶上来，与上一章边界处有明确的明度断层</td></tr>
+          <tr><td>03</td><td>Story / 挑战</td><td>A 纯白</td><td>窄栏正文 + 背景视频 wash</td><td>从灰回到白，形成「呼吸」。视频循环在衔接处不闪</td></tr>
+          <tr><td>04</td><td>Result 三卡</td><td>C <code>--surface-2</code> + 颗粒</td><td>三栏纸卡</td><td>纸卡浮在最深的一层上，对比最强，是全页视觉高点</td></tr>
+          <tr><td>05</td><td>Letter / 信</td><td>A 纯白</td><td>sheet 纸张 + 负外边距</td><td>左右 <code>margin:-40px</code> 让它突破阅读栏，像一张摊开的信纸</td></tr>
+          <tr><td>06</td><td>Closing CTA</td><td>D 近黑</td><td>反白 + 极光页脚</td><td><strong>全站唯一一次深色。</strong>落地时出现一束柔光，是收尾重音</td></tr>
+        </tbody>
+      </table>
+
+      <div class="demo grain" style="background:linear-gradient(180deg,var(--surface),var(--surface-2))">
+        <span class="demo__label">Live demo · 层级过渡 A → B → C → D</span>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px">
+          <div style="background:#fff;border-radius:12px;padding:22px 12px;text-align:center;box-shadow:var(--sh-paper)"><p style="margin:0;font-size:12px;color:var(--mut)">A · #FFF</p></div>
+          <div style="background:var(--surface);border-radius:12px;padding:22px 12px;text-align:center;box-shadow:var(--sh-paper)"><p style="margin:0;font-size:12px;color:var(--mut)">B · #F4F4F6</p></div>
+          <div style="background:var(--surface-2);border-radius:12px;padding:22px 12px;text-align:center;box-shadow:var(--sh-paper)"><p style="margin:0;font-size:12px;color:var(--mut)">C · #E9E9EC</p></div>
+          <div style="background:var(--surface-3);border-radius:12px;padding:22px 12px;text-align:center;box-shadow:var(--sh-paper)"><p style="margin:0;font-size:12px;color:rgba(255,255,255,.6)">D · #1A1A1C</p></div>
+        </div>
+        <div class="note" style="margin:20px 0 0">
+          <p class="note__t">怎么验证</p>
+          <p>滚到只露出两个章节边界的位置，然后<strong>把浏览器缩放到 50%</strong>（Ctrl + 减号几次）。在这个尺度下如果还能清楚看出「这里是两章」，说明明度差够；如果糊成一片，加大 <code>--surface</code> 与 <code>--bg</code> 的差值。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="s7">
+      <p class="eyebrow">07 · Components</p>
+      <h2>组件库</h2>
+      <p class="lead">七个组件，构成全站 95% 的界面。每个都带可运行代码和用户侧验证步骤。</p>
+
+      <h3>FE-01 液态玻璃胶囊导航</h3>
+      <div class="demo demo--checker">
+        <span class="demo__label">Live demo · 页面顶部就是真的，往下滚它一直悬浮</span>
+        <div style="margin-top:28px;border-radius:999px;padding:10px 12px 10px 22px;display:flex;align-items:center;gap:28px;box-shadow:var(--sh-nav);background:linear-gradient(120deg,rgba(255,255,255,.88),rgba(255,255,255,.68) 45%,rgba(255,255,255,.84));-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4)">
+          <span style="font-weight:600;font-size:20px;letter-spacing:-.02em;color:var(--ink)">Lemma</span>
+          <span style="display:flex;gap:24px;margin-left:auto;align-items:center;font-size:14.5px;color:var(--mut)">
+            <span>产品</span><span>方法</span><span>关于</span>
+            <span style="background:var(--ink);color:#fff;padding:8px 18px;border-radius:999px;font-weight:500">开始使用</span>
+          </span>
+        </div>
+        <div class="note" style="margin:20px 0 0">
+          <p class="note__t">怎么验证</p>
+          <p>① 停在任意内容上方，导航下面应有东西「隔着毛玻璃」在动；② 键盘 Tab 一圈，焦点环必须清晰可见；③ 窗口拖到 900px 以下，中间三个文字链接应消失、只留 CTA。</p>
+        </div>
+      </div>
+<pre><code><span class="c-sel">.nav</span>{<span class="c-kw">position</span>:sticky;<span class="c-kw">top</span>:<span class="c-num">0</span>;<span class="c-kw">z-index</span>:<span class="c-num">50</span>;<span class="c-kw">padding</span>:<span class="c-num">0 16px</span>}
+<span class="c-sel">.nav__in</span>{<span class="c-kw">max-width</span>:var(--max-nav);<span class="c-kw">margin</span>:<span class="c-num">0 auto</span>;<span class="c-kw">padding</span>:<span class="c-num">10px 12px 10px 22px</span>;
+  <span class="c-kw">display</span>:flex;<span class="c-kw">align-items</span>:center;<span class="c-kw">gap</span>:<span class="c-num">28px</span>;
+  <span class="c-kw">border-radius</span>:var(--r-pill);<span class="c-kw">position</span>:relative;
+  <span class="c-cm">/* 整条胶囊 = 一块透镜。内部不许再叠第二层玻璃，会糊 */</span>
+  <span class="c-kw">background</span>:<span class="c-str">linear-gradient(120deg,rgba(255,255,255,.88),rgba(255,255,255,.68) 45%,rgba(255,255,255,.84))</span>;
+  <span class="c-kw">backdrop-filter</span>:<span class="c-str">blur(22px) saturate(1.4)</span>;
+  <span class="c-kw">box-shadow</span>:var(--sh-nav)}
+<span class="c-cm">/* ::after 的斜向扫光让玻璃「有厚度」，opacity 别超过 .6 */</span>
+<span class="c-sel">.nav__in::after</span>{
+  <span class="c-kw">content</span>:<span class="c-str">""</span>;<span class="c-kw">position</span>:absolute;<span class="c-kw">inset</span>:<span class="c-num">0</span>;<span class="c-kw">border-radius</span>:inherit;<span class="c-kw">pointer-events</span>:none;
+  <span class="c-kw">background</span>:<span class="c-str">linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 44%,transparent 58%)</span>;
+  <span class="c-kw">opacity</span>:.<span class="c-num">55</span>}
+<span class="c-cm">/* 不支持 backdrop-filter 时退化成实心，绝不能让它变透明 */</span>
+<span class="c-sel">@supports not (backdrop-filter:blur(1px))</span>{<span class="c-sel">.nav__in</span>{<span class="c-kw">background</span>:<span class="c-str">rgba(255,255,255,.94)</span>}}</code></pre>
+
+      <h3>FE-02 胶片颗粒</h3>
+      <p>黑白页面的救命稻草。铺一层 <code>feTurbulence</code> 之后，大片纯色区域立刻拥有「印刷品」而不是「网页默认底色」的观感。</p>
+      <div class="demo grain" style="background:var(--surface)">
+        <span class="demo__label">Live demo · 仔细看，底色是有「砂粒」的</span>
+        <p style="margin:26px 0 0;font-size:14px;color:var(--mut)">纯 SVG 滤镜，无位图请求，160×160 平铺。加深或减弱请调 <code>slope</code> 值。</p>
+      </div>
+<pre><code><span class="c-sel">.grain::before</span>{
+  <span class="c-kw">content</span>:<span class="c-str">""</span>;<span class="c-kw">position</span>:absolute;<span class="c-kw">inset</span>:<span class="c-num">0</span>;<span class="c-kw">pointer-events</span>:none;<span class="c-kw">z-index</span>:<span class="c-num">0</span>;
+  <span class="c-kw">background-image</span>:<span class="c-str">url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
+   width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise'
+   baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate'
+   values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.055'/%3E
+   %3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")</span>}
+<span class="c-cm">/* 内容必须浮到颗粒之上，否则文字会跟着变脏 */</span>
+<span class="c-sel">.grain&gt;*</span>{<span class="c-kw">position</span>:relative;<span class="c-kw">z-index</span>:<span class="c-num">1</span>}</code></pre>
+      <p class="cap">注意：上面为了阅读做了换行，实际使用时必须是<strong>一整行无空格</strong>的字符串，直接复制第 09 章模板里的版本。</p>
+      <div class="note note--warn">
+        <p class="note__t">调参规则</p>
+        <p>参照站在<strong>彩色</strong>底上用 <code>slope='0.07'</code>、<code>opacity:.55</code>。<b>灰底上颗粒更显眼，必须压到 <code>0.055</code></b>；纯白区块甚至可以低到 <code>0.04</code>。<br>怎么验证：截图后在看图软件放大到 200%，颗粒应当「看得见但不抢戏」——如果第一眼看到的是噪点而不是文字，就太重了。</p>
+      </div>
+
+      <h3>FE-03 巨型字标</h3>
+<pre><code><span class="c-sel">.wordmark</span>{
+  <span class="c-kw">position</span>:relative;<span class="c-kw">left</span>:-.<span class="c-num">02em</span>;
+  <span class="c-kw">font-family</span>:var(--serif);<span class="c-kw">font-weight</span>:<span class="c-num">300</span>;
+  <span class="c-kw">font-size</span>:clamp(<span class="c-num">44px,13vw,148px</span>);
+  <span class="c-kw">line-height</span>:<span class="c-num">1.02</span>;<span class="c-kw">letter-spacing</span>:-.<span class="c-num">03em</span>;
+  <span class="c-cm">/* 黑白场景下，这 0.75px 描边就是「重量」。删掉会显得又薄又飘 */</span>
+  <span class="c-kw">-webkit-text-stroke</span>:.<span class="c-num">75px</span> currentColor}</code></pre>
+      <p class="cap">用户视角：极细笔画的巨型衬线 + 微量描边 = 远处看是醒目的黑块，近处看是纤细的高对比字面。怎么验证：窗口拖窄到 375px，字标不应溢出屏幕。</p>
+
+      <h3>FE-04 玻璃 CTA</h3>
+      <div class="demo">
+        <span class="demo__label">Live demo · 鼠标移上去看回转光束，按下去有回弹</span>
+        <div class="demo__row" style="margin-top:28px">
+          <a class="glassbtn glassbtn--lift" href="#s7"><span class="glassbtn__title">申请早期访问</span><span class="glassbtn__circle" aria-hidden="true"></span></a>
+          <a class="pill" href="#s7">次级按钮</a>
+          <a class="pill pill--ghost" href="#s7">幽灵按钮</a>
+        </div>
+      </div>
+      <p>参照站的主 CTA <strong>本来就是近黑的</strong>（<code>rgba(0,0,0,.89)</code>），所以黑白化几乎零改动。唯一要动的是 hire 变体——它的紫色氖光 <code>rgba(205,184,255,.6)</code> 必须换成中性投影 <code>--sh-mark</code>。</p>
+      <div class="note note--warn">
+        <p class="note__t">易错点</p>
+        <p><code>.glassbtn__circle</code> 里那个 <code>conic-gradient</code> 转出来的是<strong>白色</strong>光晕，只有在深色底上才成立。<b>千万别把这个组件的文字改成深色。</b></p>
+      </div>
+
+      <h3>FE-05 纸卡</h3>
+      <div class="demo" style="background:var(--surface)">
+        <span class="demo__label">Live demo · 三栏纸卡（820px 以下自动转单栏）</span>
+        <div class="trio" style="margin-top:28px">
+          <div class="paper tcard">
+            <svg width="150" height="120" viewBox="0 0 150 120" aria-hidden="true" fill="none" stroke="#0A0A0B" stroke-width="1.3">
+              <circle cx="36" cy="50" r="15"/><path d="M10 110 C 10 86, 24 72, 36 72 C 48 72, 62 86, 62 110"/>
+              <circle cx="114" cy="50" r="15"/><path d="M88 110 C 88 86, 102 72, 114 72 C 126 72, 140 86, 140 110"/>
+              <path d="M47 39 C 60 26, 90 26, 103 39" stroke-dasharray="2 5"/><circle cx="75" cy="29.5" r="3.5" fill="#0A0A0B"/>
+            </svg>
+            <span class="tag">Shift 01</span>
+            <div class="tflip"><span>一对多</span><span class="tarrow">→</span><span>一对一</span></div>
+            <p>为每个人配备专属学习路径，而不是让两百人共享同一堂课。</p>
+          </div>
+          <div class="paper tcard">
+            <svg width="150" height="120" viewBox="0 0 150 120" aria-hidden="true" fill="none" stroke="#0A0A0B" stroke-width="1.3">
+              <path d="M75 108 C 40 92, 22 66, 22 44 C 22 26, 36 14, 52 14 C 64 14, 72 20, 75 28 C 78 20, 86 14, 98 14 C 114 14, 128 26, 128 44 C 128 66, 110 92, 75 108 Z"/>
+              <path d="M75 108 C 40 92, 22 66, 22 44" stroke-dasharray="2 5" transform="translate(6,-6)"/>
+            </svg>
+            <span class="tag">Shift 02</span>
+            <div class="tflip"><span>负担</span><span class="tarrow">→</span><span>热爱</span></div>
+            <p>让人想学而不是要学。参与度不是靠监督堆出来的。</p>
+          </div>
+          <div class="paper tcard">
+            <svg width="150" height="120" viewBox="0 0 150 120" aria-hidden="true" fill="none" stroke="#0A0A0B" stroke-width="1.3">
+              <rect x="23" y="8" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".18" stroke="none"/>
+              <rect x="45" y="8" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".08" stroke="none"/>
+              <rect x="67" y="8" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".35" stroke="none"/>
+              <rect x="89" y="8" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".08" stroke="none"/>
+              <rect x="111" y="8" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".55" stroke="none"/>
+              <rect x="23" y="30" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".08" stroke="none"/>
+              <rect x="45" y="30" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".35" stroke="none"/>
+              <rect x="67" y="30" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".18" stroke="none"/>
+              <rect x="89" y="30" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".55" stroke="none"/>
+              <rect x="111" y="30" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".35" stroke="none"/>
+              <rect x="23" y="52" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".35" stroke="none"/>
+              <rect x="45" y="52" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".18" stroke="none"/>
+              <rect x="67" y="52" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".55" stroke="none"/>
+              <rect x="89" y="52" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".35" stroke="none"/>
+              <rect x="111" y="52" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".82" stroke="none"/>
+              <rect x="23" y="74" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".18" stroke="none"/>
+              <rect x="45" y="74" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".55" stroke="none"/>
+              <rect x="67" y="74" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".35" stroke="none"/>
+              <rect x="89" y="74" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".82" stroke="none"/>
+              <rect x="111" y="74" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".55" stroke="none"/>
+              <rect x="23" y="96" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".08" stroke="none"/>
+              <rect x="45" y="96" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".35" stroke="none"/>
+              <rect x="67" y="96" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".82" stroke="none"/>
+              <rect x="89" y="96" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".55" stroke="none"/>
+              <rect x="111" y="96" width="16" height="16" rx="3.5" fill="#0A0A0B" fill-opacity=".82" stroke="none"/>
+            </svg>
+            <span class="tag">Shift 03</span>
+            <div class="tflip"><span>偶尔</span><span class="tarrow">→</span><span>每天</span></div>
+            <p>学习变成一种本能，而不是被安排的任务。</p>
+          </div>
+        </div>
+      </div>
+      <p><strong>图标：全部内联 SVG 线稿</strong>，<code>stroke="#0A0A0B"</code>、<code>stroke-width="1.3"</code>、viewBox 统一 <code>0 0 150 120</code>。参照站原样使用 <code>#111</code>，这部分的黑白化最省事——直接沿用即可。</p>
+      <div class="note note--do">
+        <p class="note__t">纸卡的「贵」在哪</p>
+        <p>顶端到底端只差约 <b>2%</b> 明度（<code>#FCFCFB → #F4F3F1</code>），再加一层「透明度极低但扩散极大」的投影。<b>千万别用纯白配重阴影</b>——那样会像 2015 年的 Material 卡片。</p>
+      </div>
+
+      <h3>FE-06 光晕岛 + 极光页脚</h3>
+<pre><code><span class="c-cm">/* 光晕岛：颗粒 + 同心圆明度衰减 + mask 收边 */</span>
+<span class="c-sel">.isle::before</span>{
+  <span class="c-kw">content</span>:<span class="c-str">""</span>;<span class="c-kw">position</span>:absolute;<span class="c-kw">inset</span>:<span class="c-num">0</span>;<span class="c-kw">z-index</span>:-<span class="c-num">1</span>;<span class="c-kw">pointer-events</span>:none;
+  <span class="c-kw">background-image</span>:<span class="c-str">url(GRAIN)</span>,
+    <span class="c-str">radial-gradient(50% 46% at 50% 46%, var(--glow-core) 0%, var(--glow-mid) 42%, var(--glow-none) 78%)</span>;
+  <span class="c-cm">/* mask 让边缘自然消失，否则会看见一圈生硬的圆 */</span>
+  <span class="c-kw">mask-image</span>:<span class="c-str">radial-gradient(58% 52% at 50% 46%, #000 30%, transparent 78%)</span>;
+  <span class="c-kw">animation</span>:breathe <span class="c-num">12s</span> ease-in-out infinite alternate}</code></pre>
+      <p>页脚极光的结构：N 条 rect 按不同高度排列，套一个 <code>feGaussianBlur stdDeviation="28"</code>，整体 <code>scaleY(0→1)</code> 自底部升起。黑白化只改渐变 stops：</p>
+<pre><code><span class="c-cm">/* 原：#c9b6ff → #bcc4ff → #efe7ff → #ffe1ee → #f3c9f8 → transparent */</span>
+<span class="c-cm">/* 改：中性灰阶，末档透明以融合背景 */</span>
+<span class="c-sel">&lt;linearGradient</span> <span class="c-kw">id</span>=<span class="c-str">"lvag"</span> <span class="c-kw">x1</span>=<span class="c-str">"0"</span> <span class="c-kw">y1</span>=<span class="c-str">"1"</span> <span class="c-kw">x2</span>=<span class="c-str">"0"</span> <span class="c-kw">y2</span>=<span class="c-str">"0"</span><span class="c-sel">&gt;</span>
+  <span class="c-sel">&lt;stop</span> <span class="c-kw">offset</span>=<span class="c-str">"0"</span>   <span class="c-kw">stop-color</span>=<span class="c-str">"#0A0A0B"</span> <span class="c-kw">stop-opacity</span>=<span class="c-str">".38"</span><span class="c-sel">/&gt;</span>
+  <span class="c-sel">&lt;stop</span> <span class="c-kw">offset</span>=<span class="c-str">".35"</span> <span class="c-kw">stop-color</span>=<span class="c-str">"#0A0A0B"</span> <span class="c-kw">stop-opacity</span>=<span class="c-str">".20"</span><span class="c-sel">/&gt;</span>
+  <span class="c-sel">&lt;stop</span> <span class="c-kw">offset</span>=<span class="c-str">".65"</span> <span class="c-kw">stop-color</span>=<span class="c-str">"#0A0A0B"</span> <span class="c-kw">stop-opacity</span>=<span class="c-str">".08"</span><span class="c-sel">/&gt;</span>
+  <span class="c-sel">&lt;stop</span> <span class="c-kw">offset</span>=<span class="c-str">"1"</span>   <span class="c-kw">stop-color</span>=<span class="c-str">"#FFFFFF"</span> <span class="c-kw">stop-opacity</span>=<span class="c-str">"0"</span><span class="c-sel">/&gt;</span>
+<span class="c-sel">&lt;/linearGradient&gt;</span></code></pre>
+      <p class="cap">用户视角：滚到页面最底部时，一束柔光从地平线缓缓升起，把页脚文字托起来。怎么验证：连续上下滚动几次，极光不应重复播放（IO 触发后必须 <code>unobserve</code>）。</p>
+
+      <h3>FE-07 Facts 行列表</h3>
+      <div class="demo">
+        <span class="demo__label">Live demo · 210px + 1fr 的两列信息表</span>
+        <dl style="display:grid;gap:22px;margin:28px 0 0">
+          <div style="display:grid;grid-template-columns:210px 1fr;gap:18px">
+            <dt class="k" style="margin:0;padding-top:3px">What Lemma is</dt>
+            <dd style="margin:0;font-size:16.5px;line-height:1.65">把散落的优质教育资源，重组为个人化的系统课程。</dd>
+          </div>
+          <div style="display:grid;grid-template-columns:210px 1fr;gap:18px">
+            <dt class="k" style="margin:0;padding-top:3px">Founder &amp; CEO</dt>
+            <dd style="margin:0;font-size:16.5px;line-height:1.65">Ceaser Zhao</dd>
+          </div>
+          <div style="display:grid;grid-template-columns:210px 1fr;gap:18px">
+            <dt class="k" style="margin:0;padding-top:3px">Contact</dt>
+            <dd style="margin:0;font-size:16.5px;line-height:1.65"><a class="txtlink" href="#s7">hello@lemma.ai</a></dd>
+          </div>
+        </dl>
+      </div>
+      <p class="cap"><code>@media(max-width:560px)</code> 时转为单列、行距压到 4px。全站唯一高信息密度组件，靠 <code>dt</code> 的 uppercase 小标签撑住秩序。</p>
+    </section>
+
+    <section class="chapter" id="s8">
+      <p class="eyebrow">08 · Motion</p>
+      <h2>动效与交互</h2>
+      <p class="lead">只有四类动效。全站共用两条缓动曲线，<strong>不要引入第三条</strong>。</p>
+
+      <table class="tbl">
+        <thead><tr><th>曲线</th><th>值</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td><code>--ease</code></td><td><code>cubic-bezier(.23,1,.32,1)</code></td><td>一切 UI 微交互：hover、进入、揭示。出场快，落位缓</td></tr>
+          <tr><td><code>--ease-out</code></td><td><code>cubic-bezier(.16,1,.3,1)</code></td><td>大位移 / 大缩放：极光升起、Sheet 展开</td></tr>
+        </tbody>
+      </table>
+
+      <h3>8.1 章节级联揭示</h3>
+      <p>结构很简单：<strong>JS 只负责加一个 class，错峰由 CSS <code>nth-child</code> 完成。</strong>避免 JS 逐元素设 style 带来的性能损耗和闪烁。</p>
+<pre><code><span class="c-cm">/* CSS：子元素按序错峰 60ms */</span>
+<span class="c-sel">.sr&gt;.wrap&gt;*</span>{<span class="c-kw">opacity</span>:<span class="c-num">0</span>;<span class="c-kw">transform</span>:<span class="c-str">translateY(12px)</span>;
+  <span class="c-kw">transition</span>:opacity .<span class="c-num">55s</span> var(--ease),transform .<span class="c-num">55s</span> var(--ease)}
+<span class="c-sel">.sr.in&gt;.wrap&gt;*</span>{<span class="c-kw">opacity</span>:<span class="c-num">1</span>;<span class="c-kw">transform</span>:none}
+<span class="c-sel">.sr.in&gt;.wrap&gt;*:nth-child(2)</span>{<span class="c-kw">transition-delay</span>:<span class="c-num">60ms</span>}
+<span class="c-sel">.sr.in&gt;.wrap&gt;*:nth-child(3)</span>{<span class="c-kw">transition-delay</span>:<span class="c-num">120ms</span>}
+<span class="c-cm">/* …递增至 nth-child(6)，第 7 个及以后统一 360ms */</span>
+
+<span class="c-cm">/* JS：只加 class，随即 unobserve（一次性，不重复播放）*/</span>
+<span class="c-sel">var io = new IntersectionObserver(function(entries){</span>
+  entries.forEach(function(e){
+    <span class="c-kw">if</span>(e.isIntersecting){ e.target.classList.add(<span class="c-str">'in'</span>); io.unobserve(e.target); }
+  });
+},{ <span class="c-kw">threshold</span>:<span class="c-num">0.12</span>, <span class="c-kw">rootMargin</span>:<span class="c-str">'0px 0px -40px 0px'</span> });
+document.querySelectorAll(<span class="c-str">'.sr'</span>).forEach(function(s){ io.observe(s); });</code></pre>
+      <p class="cap">用户视角：滚到某一章，标题先到、副标题晚 60ms、正文再晚 120ms——像字幕推进，而不是整块 pop 出来。怎么验证：慢慢滚过第 07 章，注意标题行是否在正文之前落位。</p>
+
+      <h3>8.2 Hero 视差退场</h3>
+<pre><code><span class="c-sel">var ticking = false;</span>
+<span class="c-sel">function update(){</span>
+  <span class="c-kw">var</span> p = Math.min(<span class="c-num">1</span>, window.scrollY / (window.innerHeight * <span class="c-num">0.9</span>));
+  wrap.style.transform = <span class="c-str">'translateY('</span> + (p*<span class="c-num">46</span>).toFixed(<span class="c-num">1</span>) + <span class="c-str">'px) scale('</span>
+                       + (<span class="c-num">1</span> - p*<span class="c-num">0.045</span>).toFixed(<span class="c-num">4</span>) + <span class="c-str">')'</span>;
+  wrap.style.opacity   = (<span class="c-num">1</span> - p*<span class="c-num">0.75</span>).toFixed(<span class="c-num">3</span>);
+  ticking = false;
+}
+<span class="c-cm">/* rAF 节流 —— 千万别在 scroll 回调里直接写 DOM */</span>
+window.addEventListener(<span class="c-str">'scroll'</span>, function(){
+  <span class="c-kw">if</span>(!ticking){ ticking = true; requestAnimationFrame(update); }
+}, { <span class="c-kw">passive</span>: true });</code></pre>
+
+      <h3>8.3 背景视频的正确打开方式</h3>
+      <div class="note note--do">
+        <p class="note__t">参照站踩过且修好了的三个坑，直接抄</p>
+        <p><b>① 循环衔接闪跳。</b>不要用定时器控制淡入淡出，要<b>读视频播放头</b>（<code>currentTime</code>）算透明度——原生 loop 自己会重启，永远不会卡住。<br>
+        <b>② 首屏被视频拖慢。</b>第二屏之后的视频一律 <code>preload="none"</code>，用 IO 配 <code>rootMargin:'600px 0px'</code> 在临近时才加载。<br>
+        <b>③ iOS 的巨型播放三角。</b>暂停的内联 video 在 iOS 上会显示一个巨大的播放按钮。解法是：<b>视频播不起来时，用 poster 生成一个 img 把它整个替换掉。</b></p>
+      </div>
+
+      <h3>8.4 无障碍降级（硬性）</h3>
+      <p>所有动效必须有 <code>@media(prefers-reduced-motion:reduce)</code> 分支，且降级<strong>不是简单地关掉动画</strong>，而是换成纯透明度过渡——位移会让前庭功能敏感者不适，透明度不会。</p>
+<pre><code><span class="c-sel">@media(prefers-reduced-motion:reduce){</span>
+  <span class="c-sel">.rise</span>{<span class="c-kw">transform</span>:none;<span class="c-kw">animation</span>:fadeonly .<span class="c-num">5s</span> ease forwards}
+  <span class="c-sel">.sr&gt;.wrap&gt;*</span>{<span class="c-kw">transform</span>:none;<span class="c-kw">transition</span>:opacity .<span class="c-num">3s</span> ease}
+  <span class="c-sel">.glassbtn__circle::before</span>{<span class="c-kw">animation</span>:none}
+  <span class="c-sel">.isle::before</span>{<span class="c-kw">animation</span>:none}
+  <span class="c-sel">html</span>{<span class="c-kw">scroll-behavior</span>:auto}
+}
+<span class="c-sel">@keyframes fadeonly</span>{<span class="c-sel">from</span>{<span class="c-kw">opacity</span>:<span class="c-num">0</span>}<span class="c-sel">to</span>{<span class="c-kw">opacity</span>:<span class="c-num">1</span>}}</code></pre>
+      <p class="cap">怎么验证：Windows「设置 → 辅助功能 → 视觉效果 → 动画效果」关掉；macOS「辅助功能 → 显示 → 减弱动态效果」打开。重新加载页面，内容应当<strong>全部可见</strong>（只是不再滑入），视频换成静态 poster。</p>
+    </section>
+
+    <section class="chapter" id="s9">
+      <p class="eyebrow">09 · Starter</p>
+      <h2>Starter 模板</h2>
+      <p class="lead">本页 <code>&lt;head&gt;</code> 里 <strong>第 1–10 段 CSS 就是完整的可运行模板</strong>。查看本页源代码，复制从 <code>LEMMA WEB SYSTEM</code> 到 <code>FE-07 入场揭示</code> 之间的部分，存为 <code>lemma-web.css</code> 即可投产。</p>
+
+      <h3>9.1 页面骨架</h3>
+<pre><code><span class="c-sel">&lt;a</span> <span class="c-kw">class</span>=<span class="c-str">"skip"</span> <span class="c-kw">href</span>=<span class="c-str">"#main"</span><span class="c-sel">&gt;</span>跳到正文<span class="c-sel">&lt;/a&gt;</span>
+<span class="c-sel">&lt;header</span> <span class="c-kw">class</span>=<span class="c-str">"nav"</span><span class="c-sel">&gt;&lt;div</span> <span class="c-kw">class</span>=<span class="c-str">"nav__in"</span><span class="c-sel">&gt;</span>
+  <span class="c-sel">&lt;a</span> <span class="c-kw">class</span>=<span class="c-str">"brand"</span> <span class="c-kw">href</span>=<span class="c-str">"/"</span><span class="c-sel">&gt;</span>Lemma<span class="c-sel">&lt;/a&gt;</span>
+  <span class="c-sel">&lt;nav</span> <span class="c-kw">class</span>=<span class="c-str">"nav__links"</span><span class="c-sel">&gt;</span>… <span class="c-sel">&lt;a</span> <span class="c-kw">class</span>=<span class="c-str">"nav__cta"</span><span class="c-sel">&gt;</span>开始使用<span class="c-sel">&lt;/a&gt;&lt;/nav&gt;</span>
+<span class="c-sel">&lt;/div&gt;&lt;/header&gt;</span>
+
+<span class="c-sel">&lt;main</span> <span class="c-kw">id</span>=<span class="c-str">"main"</span><span class="c-sel">&gt;</span>
+  <span class="c-cm">&lt;!-- 01 HERO · 层 A 纯白 --&gt;</span>
+  <span class="c-sel">&lt;section</span> <span class="c-kw">class</span>=<span class="c-str">"hero"</span><span class="c-sel">&gt;&lt;div</span> <span class="c-kw">class</span>=<span class="c-str">"wrap"</span><span class="c-sel">&gt;</span>
+    <span class="c-sel">&lt;h1</span> <span class="c-kw">class</span>=<span class="c-str">"wordmark rise"</span><span class="c-sel">&gt;</span>Lemma<span class="c-sel">&lt;/h1&gt;</span>
+    <span class="c-sel">&lt;p</span> <span class="c-kw">class</span>=<span class="c-str">"oneliner rise"</span> <span class="c-kw">style</span>=<span class="c-str">"animation-delay:.08s"</span><span class="c-sel">&gt;</span>…<span class="c-sel">&lt;/p&gt;</span>
+    <span class="c-sel">&lt;a</span> <span class="c-kw">class</span>=<span class="c-str">"glassbtn glassbtn--lift"</span><span class="c-sel">&gt;&lt;span</span> <span class="c-kw">class</span>=<span class="c-str">"glassbtn__title"</span><span class="c-sel">&gt;</span>CTA<span class="c-sel">&lt;/span&gt;</span>
+       <span class="c-sel">&lt;span</span> <span class="c-kw">class</span>=<span class="c-str">"glassbtn__circle"</span> <span class="c-kw">aria-hidden</span>=<span class="c-str">"true"</span><span class="c-sel">&gt;&lt;/span&gt;&lt;/a&gt;</span>
+  <span class="c-sel">&lt;/div&gt;&lt;/section&gt;</span>
+
+  <span class="c-cm">&lt;!-- 02 MISSION · 层 B 冷灰+颗粒 --&gt;</span>
+  <span class="c-sel">&lt;section</span> <span class="c-kw">class</span>=<span class="c-str">"sr isle grain"</span><span class="c-sel">&gt;&lt;div</span> <span class="c-kw">class</span>=<span class="c-str">"wrap"</span><span class="c-sel">&gt;</span>
+    <span class="c-sel">&lt;p</span> <span class="c-kw">class</span>=<span class="c-str">"k"</span><span class="c-sel">&gt;</span>章节标签<span class="c-sel">&lt;/p&gt;</span>
+    <span class="c-sel">&lt;h2&gt;</span>…<span class="c-sel">&lt;/h2&gt;</span>
+  <span class="c-sel">&lt;/div&gt;&lt;/section&gt;</span>
+
+  <span class="c-cm">&lt;!-- 04 RESULT · 层 C 三栏纸卡 --&gt;</span>
+  <span class="c-sel">&lt;section</span> <span class="c-kw">class</span>=<span class="c-str">"sr"</span> <span class="c-kw">style</span>=<span class="c-str">"background:var(--surface-2)"</span><span class="c-sel">&gt;</span>
+    <span class="c-sel">&lt;div</span> <span class="c-kw">class</span>=<span class="c-str">"trio"</span><span class="c-sel">&gt;&lt;div</span> <span class="c-kw">class</span>=<span class="c-str">"paper tcard"</span><span class="c-sel">&gt;</span>…<span class="c-sel">&lt;/div&gt;</span>…<span class="c-sel">&lt;/div&gt;</span>
+  <span class="c-sel">&lt;/section&gt;</span>
+
+  <span class="c-cm">&lt;!-- 06 CLOSING · 层 D 近黑（全站仅此一次）--&gt;</span>
+  <span class="c-sel">&lt;section</span> <span class="c-kw">class</span>=<span class="c-str">"sr slab"</span><span class="c-sel">&gt;</span>…<span class="c-sel">&lt;/section&gt;</span>
+<span class="c-sel">&lt;/main&gt;</span></code></pre>
+
+      <h3>9.2 建议的文件结构</h3>
+<pre><code>assets/
+  css/lemma-web.css        <span class="c-cm"># 令牌 + 组件（第 1–10 段，全站共用）</span>
+  js/site.js               <span class="c-cm"># IntersectionObserver 揭示 + hero 视差，约 60 行</span>
+  fonts/                   <span class="c-cm"># 若自托管 Newsreader / Inter</span>
+index.html
+whylemma/index.html
+careers.html</code></pre>
+      <div class="note">
+        <p class="note__t">性能预算</p>
+        <p><b>首次内容绘制 &lt; 1.5s。</b>为达成它：字体只保留 3 个字重（300/400/500 + 1 个 italic）、第二屏之后的视频 <code>preload="none"</code>、图片 <code>loading="lazy" decoding="async"</code> 并显式写上 <code>width</code>/<code>height</code> 防跳动。</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s10">
+      <p class="eyebrow">10 · Rules</p>
+      <h2>Do / Don't</h2>
+
+      <div class="mg">
+        <div class="mg__c" style="border-color:var(--hair)">
+          <p class="mg__k">✔ Do</p>
+          <p class="mg__v" style="line-height:1.9">
+            用 <code>clamp()</code> 写所有间距<br>
+            卡片顶端与底端保持 2% 明度差<br>
+            图标用内联 SVG 线稿，<code>stroke-width:1.3</code><br>
+            相邻章节使用不同明度层<br>
+            hover 效果包在 <code>@media(hover:hover)</code> 内<br>
+            每个动画都写 reduced-motion 降级
+          </p>
+        </div>
+        <div class="mg__c" style="border-color:var(--hair)">
+          <p class="mg__k">✘ Don't</p>
+          <p class="mg__v" style="line-height:1.9">
+            使用纯 <code>#000000</code> 文字<br>
+            画 1px 实心分割线<br>
+            用纯白卡片配重投影<br>
+            出现第 22 个颜色值<br>
+            给灰度网格加对比明显的色相块<br>
+            在 <code>scroll</code> 回调里直接写 DOM
+          </p>
+        </div>
+      </div>
+
+      <div class="note note--warn">
+        <p class="note__t">最容易翻车的一条</p>
+        <p><b>不要用「纯黑白」+ 「高饱和强调色」的组合。</b>一旦整站是黑白，任何一点彩色都会变成视觉核弹，把所有注意力吸走。如果确实需要强调（比如「新」标签），用<b>反相</b>（黑底白字）或<b>加粗</b>，而不是加颜色。</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="s11">
+      <p class="eyebrow">11 · Migration</p>
+      <h2>迁移 Checklist</h2>
+      <p class="lead">针对现有 <code>index.html</code>：16 个 section、Geist 字族、主色为一组中性灰，但混入了 <code>#10B981</code>（绿，约 19 处）和 <code>#003D7B</code>（蓝，约 4 处）。这两处颜色是本次重构的主要清除对象。</p>
+
+      <h4>阶段一 · 令牌落地</h4>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">把第 09 章第 1 段 <code>:root</code> 放到所有样式之前，替换现有的硬编码色值</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">全局搜索替换：<code>#FAFAFA</code> → <code>var(--surface)</code>、<code>#52525B</code>/<code>#3F3F46</code> → <code>var(--text)</code>、<code>#71717A</code>/<code>#A1A1AA</code> → <code>var(--mut)</code>、<code>#D4D4D8</code>/<code>#E4E4E7</code> → <code>var(--hair)</code></p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">删除 <code>#10B981</code> 全部用例：原作「强调/成功」的位置改用 <code>--ink</code> 反底胶囊或加粗</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">删除 <code>#003D7B</code>：链接态改由 <code>text-underline-offset</code> + <code>color:hover</code> 表达</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">字体切换：标题挂 <code>--serif</code>，正文保留 Geist 或换 Inter</p></div>
+
+      <h4>阶段二 · 结构重组</h4>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">正文容器统一收窄到 <code>680px</code>；现有宽出血区块改为 <code>--max-wide</code> 或直接下沉为独立层</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">按第 06 章给 16 个章节分配 A/B/C/D 层，保证相邻不同层</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">给所有需要揭示的 section 加 <code>.sr</code>，并确保其直接子元素是被 <code>.wrap</code> 包裹的（CSS 用的是 <code>.sr&gt;.wrap&gt;*</code>）</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">把现有 hero 换成 wordmark 结构，接入 JS 视差</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">现有的各类卡片统一改为 <code>.paper</code>；移除所有 <code>border:1px solid #e5e7eb</code> 类边框</p></div>
+
+      <h4>阶段三 · 收尾</h4>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">全站 <code>prefers-reduced-motion</code> 降级核查</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">Lighthouse 跑分：Accessibility ≥ 95，对比度全部过 AA</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">375 / 768 / 1280 / 1920 四档宽度目视+n 录像检查</p></div>
+      <div class="ck"><span class="ck__box"></span><p style="margin:0">灰度校验：用系统级滤镜把整个页面转为灰度，应与正常渲染<strong>视觉一致</strong>（若有明显差异，说明还有彩色残留）</p></div>
+    </section>
+
+    <section class="chapter" id="s12">
+      <p class="eyebrow">12 · Acceptance</p>
+      <h2>验收标准</h2>
+      <p class="lead">六条，全部通过才算完成。每条都可在浏览器里独立验证，不需要设计稿比对。</p>
+
+      <table class="tbl">
+        <thead><tr><th>#</th><th>标准</th><th>验证方法</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>灰度一致性</strong></td><td>Windows 颜色滤镜「灰度」开启后刷新，页面外观<strong>不应发生任何变化</strong>。有变化 = 仍有彩色</td></tr>
+          <tr><td>2</td><td><strong>章节可辨性</strong></td><td>缩放到 50%，滚动全页。任意相邻两章必须能看出边界</td></tr>
+          <tr><td>3</td><td><strong>焦点可达性</strong></td><td>纯键盘从页面顶部 Tab 到底部，焦点环全程可见、顺序符合阅读流</td></tr>
+          <tr><td>4</td><td><strong>降级完整性</strong></td><td>开启「减弱动态效果」后刷新，所有内容仍可见可读，视频退化为静态图</td></tr>
+          <tr><td>5</td><td><strong>性能</strong></td><td>Lighthouse Performance ≥ 90，FCP &lt; 1.5s（Fast 3G 下 &lt; 2.5s）</td></tr>
+          <tr><td>6</td><td><strong>响应式</strong></td><td>375px 下无横向滚动；820px 下三栏已转单栏；无一处文字溢出容器</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note note--do">
+        <p class="note__t">设计意图的一句话总结</p>
+        <p>参照站让人觉得高级，不是因为它的紫和粉，而是因为<b>它敢于留大面积的白、敢于让字大到失控、敢于不用一根分割线</b>。黑白化之后，这三点只会被放大。<b>如果改完之后觉得「太平了」，正确的做法是加大字阶差距或加大留白——不是加颜色。</b></p>
+      </div>
+    </section>
+
+    <footer class="docfoot">
+      <p>Lemma Web Design System v1.0 · 2026-09-09 · 参照站设计语言解构后做黑白化改造。<br>
+      本文件的 <code>&lt;style&gt;</code> 第 1–10 段即为可投产的 Starter 模板。</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.sr').forEach(function(s){s.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.sr').forEach(function(s){io.observe(s)});
+
+  // TOC 高亮
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.remove('on')});
+        var hit=links.filter(function(a){return a.getAttribute('href')==='#'+e.target.id})[0];
+        if(hit)hit.classList.add('on');
+      }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  secs.forEach(function(s){spy.observe(s)});
+})();
+</script>
+</body>
+</html>
