@@ -45,6 +45,59 @@
   };
   if (reduced) document.querySelectorAll('video').forEach(swapToPoster);
 
+  /* ── 关键短语 marker 下划线扫过（IO 触发）──────────────────────── */
+  var marks = document.querySelectorAll('.mark');
+  if (marks.length && 'IntersectionObserver' in window) {
+    var markIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); markIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    marks.forEach(function (m) { markIO.observe(m); });
+  } else { marks.forEach(function (m) { m.classList.add('in'); }); }
+
+  /* ── Hero 大水印鼠标视差 ──────────────────────────────────────────── */
+  var heroMark = document.querySelector('.hero__mark');
+  if (heroMark && !reduced && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    var raf = false;
+    var tx = 0, ty = 0;
+    var apply = function () {
+      heroMark.style.transform = 'translate(calc(-50% + ' + tx.toFixed(1) + 'px), calc(-58% + ' + ty.toFixed(1) + 'px))';
+      raf = false;
+    };
+    window.addEventListener('mousemove', function (e) {
+      var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      tx = Math.max(-18, Math.min(18, (e.clientX - cx) / cx * 16));
+      ty = Math.max(-12, Math.min(12, (e.clientY - cy) / cy * 10));
+      if (!raf) { raf = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+  }
+
+  /* ── Magnetic hover on CTA ──────────────────────────────────────── */
+  if (!reduced && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('.magnetic').forEach(function (el) {
+      var inner = el.querySelector('.glassbtn, .pill');
+      if (!inner) return;
+      var rAF = false;
+      var move = function (e) {
+        var b = el.getBoundingClientRect();
+        var dx = e.clientX - (b.left + b.width / 2);
+        var dy = e.clientY - (b.top + b.height / 2);
+        var tx = Math.max(-10, Math.min(10, dx * 0.22));
+        var ty = Math.max(-10, Math.min(10, dy * 0.32));
+        if (!rAF) { rAF = true; requestAnimationFrame(function () {
+          inner.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px)';
+          rAF = false;
+        }); }
+      };
+      var leave = function () {
+        inner.style.transform = '';
+      };
+      el.addEventListener('mousemove', move);
+      el.addEventListener('mouseleave', leave);
+    });
+  }
+
   /* ── 平滑滚动时自动高亮当前 nav 锚点 ───────────────────────────── */
   var navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
   if (navLinks.length && 'IntersectionObserver' in window) {

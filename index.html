@@ -22,7 +22,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/lemma-web.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Lemma AI","url":"https://lemma-ai-projects.github.io/","logo":"https://lemma-ai-projects.github.io/assets/logos/lemma-mark.png","description":"A learning platform for lifelong learners","foundingDate":"2026","founders":[{"@type":"Person","name":"Ceaser Zhao"},{"@type":"Person","name":"Yikai Sun"}],"address":{"@type":"PostalAddress","addressLocality":"Hangzhou","addressCountry":"CN"},"sameAs":["https://discord.gg/dCyxYCPng","https://github.com/Oasis-AI-Lab"]}
+{"@context":"https://schema.org","@type":"Organization","name":"Lemma AI","url":"https://lemma-ai-projects.github.io/","logo":"https://lemma-ai-projects.github.io/assets/logos/lemma-mark.png","description":"A learning platform for lifelong learners","foundingDate":"2026","founders":[{"@type":"Person","name":"Ceaser Zhao"},{"@type":"Person","name":"Yikai Sun"}],"address":{"@type":"PostalAddress","addressLocality":"Hangzhou","addressCountry":"CN"},"sameAs":["https://discord.gg/dCyxYCPng","https://github.com/Lemma-AI-Projects/lemma-ai","https://github.com/Oasis-AI-Lab"]}
 </script>
 </head>
 <body>
@@ -32,7 +32,10 @@
 <header class="nav">
   <div class="nav__in">
     <a class="brand" href="#top">
-      <img class="brand__mark" src="assets/logos/lemma-mark.png" alt="Lemma" width="18" height="18">
+      <svg class="brand__mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="butt" aria-hidden="true">
+        <path d="M 18 82 L 60 14"/>
+        <path d="M 60 82 L 82 82"/>
+      </svg>
       Lemma
     </a>
     <nav class="nav__links" aria-label="Main">
@@ -52,13 +55,16 @@
   <div class="stage">
 
     <section class="hero" id="top">
+      <svg class="hero__mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="butt" aria-hidden="true">
+        <path d="M 16 84 L 62 14"/>
+        <path d="M 60 84 L 84 84"/>
+      </svg>
       <div class="wrap">
-        <img class="hero-mark rise" src="assets/logos/lemma-mark.png" alt="" aria-hidden="true" width="64" height="64">
         <h1 class="wordmark rise" style="animation-delay:.06s">Lemma</h1>
         <p class="oneliner rise" style="animation-delay:.14s">
-          Ride far — the world at your feet. This is Lemma.
+          Ride far — the <span class="mark">world at your feet</span>. This is Lemma.
         </p>
-        <div class="rise" style="animation-delay:.28s">
+        <div class="rise magnetic" style="animation-delay:.28s">
           <a class="glassbtn glassbtn--lift" href="#waitlist">
             <span class="glassbtn__title">Request early access</span>
             <span class="glassbtn__circle" aria-hidden="true"></span>
@@ -74,7 +80,7 @@
         <h2>Our mission is to build the learning infrastructure for a new era of humanity</h2>
         <p class="mission-quote">
           We are building a learning platform for lifelong learners.
-          We treat AI as a means, never an end — so every learner
+          We treat <span class="mark">AI as a means, never an end</span> — so every learner
           can produce a complete chain of their own thinking.
         </p>
         <p style="max-width:640px;margin:26px auto 0;font-size:var(--fs-text);line-height:1.7;color:var(--text)">
@@ -89,30 +95,46 @@
 
   </div>
 
-  <section class="sr" id="founders" style="padding:var(--pad-act) 0">
-    <div class="wrap" style="max-width:880px">
-      <p class="k" style="text-align:center">Founders</p>
-      <h2 style="text-align:center">Two founders</h2>
-      <div class="founders">
-        <figure class="founder-photo">
-          <img src="assets/founders/founder-studio.jpg" alt="Ceaser Zhao" loading="lazy" decoding="async" width="720" height="960">
-          <figcaption>
-            <b>Ceaser Zhao</b>
-            Co-founder of Lemma AI. Founder of Oasis Company and OITS (Oasis Institute of Technology &amp; Science).
-          </figcaption>
+  <section class="sr founders" id="founders">
+    <div class="founders__head">
+      <p class="k">Founders</p>
+      <h2>The two of us</h2>
+    </div>
+    <div class="founders__list">
+
+      <div class="fpair">
+        <figure class="fpair__photo">
+          <img src="assets/founders/founder-studio.jpg" alt="Ceaser Zhao, co-founder of Lemma AI" loading="lazy" decoding="async" width="720" height="960">
         </figure>
-        <figure class="founder-photo">
-          <img src="assets/founders/founder-street.jpg" alt="Yikai Sun" loading="lazy" decoding="async" width="720" height="960">
-          <figcaption>
-            <b>Yikai Sun</b>
-            Founder of Lemma AI.
-          </figcaption>
+        <div class="fpair__bio">
+          <p class="name">Ceaser Zhao</p>
+          <p class="role">Co-founder · Lemma AI</p>
+          <p class="text">Founder of Oasis Company and OITS — Oasis Institute of Technology &amp; Science — open organizations where much of the early thinking behind Lemma took shape. He believes we do this not because there is no way back, but because it is what we have always wanted.</p>
+          <div class="links">
+            <a href="https://github.com/Oasis-Company" target="_blank" rel="noopener">Oasis Company</a>
+            <a href="https://github.com/Oasis-Institute-of-Technology-Science" target="_blank" rel="noopener">OITS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fpair fpair--flip">
+        <div class="fpair__bio">
+          <p class="name">Yikai Sun</p>
+          <p class="role">Founder · Lemma AI</p>
+          <p class="text">Founder of Lemma AI. Ceaser's partner — they met in person at the Hangzhou marathon in 2026, and Lemma grew out of the conversation that followed.</p>
+          <div class="links">
+            <a href="https://github.com/Oasis-AI-Lab" target="_blank" rel="noopener">Oasis AI Lab</a>
+          </div>
+        </div>
+        <figure class="fpair__photo">
+          <img src="assets/founders/founder-street.jpg" alt="Yikai Sun, founder of Lemma AI" loading="lazy" decoding="async" width="720" height="960">
         </figure>
       </div>
+
     </div>
   </section>
 
-  <section class="sr building isle" id="building">
+  <section class="sr building" id="building" style="background:var(--surface-2)">
     <div class="wrap">
       <p class="k" style="text-align:center">The Platform</p>
       <h2 style="text-align:center">A learning platform for lifelong learners</h2>
@@ -185,7 +207,7 @@
       </div>
 
       <p style="text-align:center;margin:48px auto 0;font-size:13.5px;color:var(--mut);letter-spacing:.05em">
-        Open source — our code is public on <a href="https://github.com/Oasis-AI-Lab" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">GitHub</a>
+        Open source — our code is public on <a href="https://github.com/Lemma-AI-Projects/lemma-ai/tree/main" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">GitHub</a>
       </p>
     </div>
   </section>
@@ -245,7 +267,7 @@
         </div>
         <div class="row">
           <dt>Open Source</dt>
-          <dd>Core code is public on GitHub. Contributors and researchers are welcome.</dd>
+          <dd>Core code is public on <a href="https://github.com/Lemma-AI-Projects/lemma-ai/tree/main" target="_blank" rel="noopener">GitHub</a>. Contributors and researchers are welcome.</dd>
         </div>
         <div class="row">
           <dt>Community</dt>
@@ -253,7 +275,7 @@
         </div>
         <div class="row">
           <dt>Contact</dt>
-          <dd><a href="mailto:hello@lemma.ai">hello@lemma.ai</a></dd>
+          <dd><a href="mailto:zhaoceaser@gmail.com">zhaoceaser@gmail.com</a></dd>
         </div>
       </dl>
     </div>
@@ -264,10 +286,10 @@
       <p class="k">Get Early Access</p>
       <h2>Request early access</h2>
       <p>We are assembling the first cohort of our closed beta.<br>Write to us — we will save you a seat the moment it opens.</p>
-      <a class="glassbtn glassbtn--lift" href="mailto:hello@lemma.ai?subject=Lemma%20Early%20Access">
+      <span class="magnetic"><a class="glassbtn glassbtn--lift" href="mailto:zhaoceaser@gmail.com?subject=Lemma%20Early%20Access">
         <span class="glassbtn__title">Request early access</span>
         <span class="glassbtn__circle" aria-hidden="true"></span>
-      </a>
+      </a></span>
     </div>
   </section>
 
@@ -276,7 +298,7 @@
       <p class="k">Join Us</p>
       <h2>We are hiring</h2>
       <p>There is no such thing as fate —<br>because you can join right now.</p>
-      <a class="pill" href="mailto:hello@lemma.ai?subject=Lemma%20Hiring">Get in touch</a>
+      <a class="pill" href="mailto:zhaoceaser@gmail.com?subject=Lemma%20Hiring">Get in touch</a>
     </div>
   </section>
 

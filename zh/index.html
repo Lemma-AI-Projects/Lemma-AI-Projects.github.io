@@ -16,10 +16,10 @@
 <link rel="icon" type="image/png" href="../assets/logos/lemma-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/lemma-web.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Lemma AI","url":"https://lemma-ai-projects.github.io/","logo":"https://lemma-ai-projects.github.io/assets/logos/lemma-mark.png","description":"面向终生学习者的学习平台","foundingDate":"2026","founders":[{"@type":"Person","name":"Ceaser Zhao"},{"@type":"Person","name":"Yikai Sun"}],"address":{"@type":"PostalAddress","addressLocality":"杭州","addressCountry":"CN"},"sameAs":["https://discord.gg/dCyxYCPng","https://github.com/Oasis-AI-Lab"]}
+{"@context":"https://schema.org","@type":"Organization","name":"Lemma AI","url":"https://lemma-ai-projects.github.io/","logo":"https://lemma-ai-projects.github.io/assets/logos/lemma-mark.png","description":"面向终生学习者的学习平台","foundingDate":"2026","founders":[{"@type":"Person","name":"Ceaser Zhao"},{"@type":"Person","name":"Yikai Sun"}],"address":{"@type":"PostalAddress","addressLocality":"杭州","addressCountry":"CN"},"sameAs":["https://discord.gg/dCyxYCPng","https://github.com/Lemma-AI-Projects/lemma-ai","https://github.com/Oasis-AI-Lab"]}
 </script>
 </head>
 <body>
@@ -49,13 +49,16 @@
   <div class="stage">
 
     <section class="hero" id="top">
+      <svg class="hero__mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="butt" aria-hidden="true">
+        <path d="M 16 84 L 62 14"/>
+        <path d="M 60 84 L 84 84"/>
+      </svg>
       <div class="wrap">
-        <img class="hero-mark rise" src="../assets/logos/lemma-mark.png" alt="" aria-hidden="true" width="64" height="64">
         <h1 class="wordmark rise" style="animation-delay:.06s">Lemma</h1>
         <p class="oneliner rise" style="animation-delay:.14s">
-          驰骋千里，世界尽在脚下，这里是 Lemma。
+          驰骋千里，<span class="mark">世界尽在脚下</span>，这里是 Lemma。
         </p>
-        <div class="rise" style="animation-delay:.28s">
+        <div class="rise magnetic" style="animation-delay:.28s">
           <a class="glassbtn glassbtn--lift" href="#waitlist">
             <span class="glassbtn__title">申请早期访问</span>
             <span class="glassbtn__circle" aria-hidden="true"></span>
@@ -67,10 +70,10 @@
 
     <section class="sr mission isle grain" id="idea">
       <div class="wrap">
-        <p class="k">Our Idea</p>
+        <p class="k">我们的想法</p>
         <h2>我们的使命是为人类的新纪元搭建学习基础设施</h2>
         <p class="statement" style="font-family:var(--serif);font-size:clamp(22px,3vw,30px);line-height:1.32;max-width:760px;font-weight:400;letter-spacing:-.015em">
-          我们正在搭建一个面向终生学习者的学习平台。我们将 AI 作为手段而不是目的，
+          我们正在搭建一个面向终生学习者的学习平台。我们将 <span class="mark">AI 作为手段而不是目的</span>，
           确保用户可以自己输出完整的思维链条。
         </p>
         <p style="max-width:640px;margin:24px auto 0;color:var(--text);font-size:var(--fs-text);line-height:1.7">
@@ -85,32 +88,48 @@
 
   </div>
 
-  <section class="sr" id="founders" style="padding:var(--pad-act) 0">
-    <div class="wrap" style="max-width:880px">
-      <p class="k" style="text-align:center">Founders</p>
-      <h2 style="text-align:center">两位创始人</h2>
-      <div class="founders">
-        <figure class="founder-photo">
-          <img src="../assets/founders/founder-studio.jpg" alt="Ceaser Zhao" loading="lazy" decoding="async" width="720" height="960">
-          <figcaption>
-            <b>Ceaser Zhao</b>
-            Lemma AI 联合创始人。Oasis Company 创始人，OITS（Oasis Institute of Technology Science）创始人。
-          </figcaption>
+    <section class="sr founders" id="founders">
+    <div class="founders__head">
+      <p class="k">Founders</p>
+      <h2>我们两个人</h2>
+    </div>
+    <div class="founders__list">
+
+      <div class="fpair">
+        <figure class="fpair__photo">
+          <img src="../assets/founders/founder-studio.jpg" alt="Ceaser Zhao，Lemma AI 联合创始人" loading="lazy" decoding="async" width="720" height="960">
         </figure>
-        <figure class="founder-photo">
-          <img src="../assets/founders/founder-street.jpg" alt="Yikai Sun" loading="lazy" decoding="async" width="720" height="960">
-          <figcaption>
-            <b>Yikai Sun</b>
-            Lemma AI 创始人。
-          </figcaption>
+        <div class="fpair__bio">
+          <p class="name">Ceaser Zhao</p>
+          <p class="role">联合创始人 · Lemma AI</p>
+          <p class="text">Oasis Company 与 OITS（Oasis Institute of Technology &amp; Science）创始人——两家开放组织，Lemma 早期很多想法在这里成型。他相信我们做这些事不是因为「没有退路」，而是因为这本就是我们一直的渴望。</p>
+          <div class="links">
+            <a href="https://github.com/Oasis-Company" target="_blank" rel="noopener">Oasis Company</a>
+            <a href="https://github.com/Oasis-Institute-of-Technology-Science" target="_blank" rel="noopener">OITS</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fpair fpair--flip">
+        <div class="fpair__bio">
+          <p class="name">Yikai Sun</p>
+          <p class="role">创始人 · Lemma AI</p>
+          <p class="text">Lemma AI 创始人，Ceaser 的合伙人。2026 年杭州马拉松两人第一次线下见面，Lemma 从那次谈话里生长出来。</p>
+          <div class="links">
+            <a href="https://github.com/Oasis-AI-Lab" target="_blank" rel="noopener">Oasis AI Lab</a>
+          </div>
+        </div>
+        <figure class="fpair__photo">
+          <img src="../assets/founders/founder-street.jpg" alt="Yikai Sun，Lemma AI 创始人" loading="lazy" decoding="async" width="720" height="960">
         </figure>
       </div>
+
     </div>
   </section>
 
-  <section class="sr building isle" id="building">
+  <section class="sr building" id="building" style="background:var(--surface-2)">
     <div class="wrap">
-      <p class="k" style="text-align:center">The Platform</p>
+      <p class="k" style="text-align:center">我们在建什么</p>
       <h2 style="text-align:center">面向终生学习者的学习平台</h2>
       <p class="intro">
         三件事，构成我们和市面上所有工具的根本区别。
@@ -183,15 +202,15 @@
       </div>
 
       <p style="text-align:center;margin:48px auto 0;font-size:13.5px;color:var(--mut);letter-spacing:.05em">
-        声明：代码已在 GitHub 上开源
+        声明：代码已在 <a href="https://github.com/Lemma-AI-Projects/lemma-ai/tree/main" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">GitHub</a> 上开源
       </p>
     </div>
   </section>
 
   <section class="sr" id="letter" style="padding:var(--pad-compact) 0">
     <div class="wrap" style="max-width:920px">
-      <p class="k" style="text-align:center">From Founder</p>
-      <h2>A message from Ceaser</h2>
+      <p class="k" style="text-align:center">创始人来信</p>
+      <h2>一封来自 Ceaser 的信</h2>
       <div class="sheet">
         <p class="lede">Why Lemma?</p>
 
@@ -226,32 +245,32 @@
 
   <section class="sr facts" id="facts">
     <div class="wrap" style="max-width:var(--max-wide)">
-      <p class="k" style="text-align:center">More About Us</p>
+      <p class="k" style="text-align:center">了解更多</p>
       <h2 style="text-align:center">关于 Lemma</h2>
       <dl>
         <div class="row">
-          <dt>Founders</dt>
+          <dt>创始人</dt>
           <dd>Ceaser Zhao、Yikai Sun。2026 年于杭州相识。</dd>
         </div>
         <div class="row">
-          <dt>What it is</dt>
+          <dt>这是什么</dt>
           <dd>面向终生学习者的学习平台。我们将 AI 作为手段而非目的，让用户自己输出完整的思维链条。</dd>
         </div>
         <div class="row">
-          <dt>Mission</dt>
+          <dt>使命</dt>
           <dd>为人类的新纪元搭建学习基础设施。</dd>
         </div>
         <div class="row">
-          <dt>Open Source</dt>
-          <dd>核心代码已在 GitHub 开源，欢迎开发者、研究者参与共建。</dd>
+          <dt>开源</dt>
+          <dd>核心代码已在 <a href="https://github.com/Lemma-AI-Projects/lemma-ai/tree/main" target="_blank" rel="noopener">GitHub</a> 开源，欢迎开发者、研究者参与共建。</dd>
         </div>
         <div class="row">
-          <dt>Community</dt>
+          <dt>社群</dt>
           <dd><a href="https://discord.gg/dCyxYCPng" target="_blank" rel="noopener">Discord 社群</a> · 由 Oasis AI Lab 托管</dd>
         </div>
         <div class="row">
-          <dt>Contact</dt>
-          <dd><a href="mailto:hello@lemma.ai">hello@lemma.ai</a></dd>
+          <dt>联系</dt>
+          <dd><a href="mailto:zhaoceaser@gmail.com">zhaoceaser@gmail.com</a></dd>
         </div>
       </dl>
     </div>
@@ -259,28 +278,28 @@
 
   <section class="sr waitlist slab" id="waitlist" style="padding:var(--pad-act) 0 160px">
     <div class="wrap" style="text-align:center">
-      <p class="k">Get Early Access</p>
+      <p class="k">早期访问</p>
       <h2>申请早期访问</h2>
       <p>我们正在筹备首批内测席位。<br>把你的邮箱留给我们——内测开启时第一时间通知你。</p>
-      <a class="glassbtn glassbtn--lift" href="mailto:hello@lemma.ai?subject=Lemma%20Early%20Access">
+      <span class="magnetic"><a class="glassbtn glassbtn--lift" href="mailto:zhaoceaser@gmail.com?subject=Lemma%20Early%20Access">
         <span class="glassbtn__title">申请早期访问</span>
         <span class="glassbtn__circle" aria-hidden="true"></span>
-      </a>
+      </a></span>
     </div>
   </section>
 
   <section class="sr hiring" id="hiring" style="padding:var(--pad-act) 0">
     <div class="wrap" style="text-align:center">
-      <p class="k">Join Us</p>
-      <h2>You are hiring</h2>
+      <p class="k">加入我们</p>
+      <h2>我们在招聘</h2>
       <p>没有命中注定这一说——<br>因为你现在就可以加入。</p>
-      <a class="pill" href="mailto:hello@lemma.ai?subject=Lemma%20Hiring">了解角色</a>
+      <a class="pill" href="mailto:zhaoceaser@gmail.com?subject=Lemma%20Hiring">了解角色</a>
     </div>
   </section>
 
   <section class="sr community" id="community">
     <div class="wrap" style="text-align:center;max-width:760px">
-      <p class="k">Our Community</p>
+      <p class="k">社群</p>
       <h2>和我们在 Discord 见</h2>
       <p>这里有早期用户、贡献者、研究者——<br>以及所有相信「学习可以重新被设计」的人。</p>
       <div class="links">
