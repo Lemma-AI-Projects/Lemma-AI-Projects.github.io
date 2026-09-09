@@ -130,9 +130,12 @@ section[id],.story[id]{scroll-margin-top:76px}
 .brand__mark{width:18px;height:18px;display:inline-block}
 .nav__links{display:flex;gap:24px;margin-left:auto;align-items:center}
 .nav__links a{font-size:14.5px;color:var(--mut);text-decoration:none;transition:color 150ms ease}
-.nav__links a:not(.nav__cta){padding:14px 4px;margin:-14px -4px}
+.nav__links a:not(.nav__cta):not(.lang){padding:14px 4px;margin:-14px -4px}
 .nav__links a:hover{color:var(--ink)}
 .nav__links a.is-active{color:var(--ink);font-weight:500}
+.nav__links .lang{border:1px solid var(--hair);border-radius:var(--r-pill);padding:5px 11px;font-size:13px;color:var(--mut);font-weight:500;margin:0 2px;transition:color 150ms ease,border-color 150ms ease,background 150ms ease}
+.nav__links .lang:hover{color:var(--ink);border-color:var(--ink);background:rgba(10,10,11,.03)}
+@media(max-width:900px){.nav__links .lang{display:inline-block !important}}
 .nav__cta{
   background:var(--ink);color:#fff !important;padding:8px 18px;border-radius:var(--r-pill);
   font-weight:500;white-space:nowrap;transition:transform 160ms var(--ease),opacity 150ms ease;
