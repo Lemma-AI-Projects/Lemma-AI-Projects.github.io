@@ -351,7 +351,7 @@ section[id],.story[id]{scroll-margin-top:76px}
   font-family:var(--sans);font-weight:500;font-size:var(--fs-lede);line-height:1.4;letter-spacing:-.025em;text-wrap:balance}
 .mission-attr{display:block;margin-top:18px;font-style:normal;font-size:14.5px;color:var(--mut);font-weight:500}
 
-/* 创始人 —— 编辑式双人档案：照片保持 3:4 原比例，不裁头不淡出 */
+/* 创始人 —— 编辑式双人档案：插画肖像，无框融入页面 */
 .founders{padding:var(--pad-act) 0 0}
 .sr.founders>*{opacity:0;transition:opacity .6s var(--ease)}
 .sr.founders.in>*{opacity:1}
@@ -367,13 +367,26 @@ section[id],.story[id]{scroll-margin-top:76px}
   padding:clamp(36px,5vw,64px) 0;
 }
 .fpair + .fpair{border-top:1px solid var(--hair-2)}
-.fpair__photo{aspect-ratio:3/4;border-radius:var(--r-md);overflow:hidden;
-  box-shadow:var(--sh-photo);background:var(--surface-2);
-  grid-column:1;grid-row:1;min-width:0}
+.fpair__photo{
+  position:relative;aspect-ratio:4/5;border-radius:var(--r-md);
+  background:transparent;box-shadow:none;
+  grid-column:1;grid-row:1;min-width:0;
+}
+.fpair__photo img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 22%;
+  border-radius:var(--r-md);
+  transition:transform .8s var(--ease);
+}
+@media(hover:hover) and (pointer:fine){
+  .fpair:hover .fpair__photo img{transform:scale(1.015)}
+}
+@media(prefers-reduced-motion:reduce){
+  .fpair__photo img{transition:none}
+  .fpair:hover .fpair__photo img{transform:none}
+}
 .fpair__bio{grid-column:2;grid-row:1;min-width:0}
 .fpair--flip .fpair__photo{grid-column:2}
 .fpair--flip .fpair__bio{grid-column:1}
-.fpair__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 14%}
 .fpair__bio .name{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.8vw,46px);
   line-height:1.04;letter-spacing:-.025em;color:var(--ink);margin:0 0 12px}
 .fpair__bio .role{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
