@@ -248,6 +248,38 @@
     </div>
   </section>
 
+  <section class="sr film" id="film">
+    <div class="wrap wrap--wide">
+      <div class="film__head">
+        <p class="k">The Film</p>
+        <h2>See it move.</h2>
+      </div>
+      <div class="film__frame" data-film>
+        <video class="film__video" poster="assets/video/lemma-film-poster.jpg" data-src="assets/video/lemma-film.mp4"
+               muted loop playsinline preload="none" aria-label="Lemma AI — a short film. 24 seconds, silent by default."></video>
+        <button class="film__sound" type="button" data-film-sound aria-pressed="false" data-label-off="Sound off" data-label-on="Sound on">
+          <svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M16 9.5 21 15"/><path d="M21 9.5 16 15"/>
+          </svg>
+          <svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/>
+          </svg>
+          <span data-film-label>Sound off</span>
+        </button>
+        <button class="film__play" type="button" data-film-play>
+          <span>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+            Play film
+          </span>
+        </button>
+      </div>
+      <p class="film__meta">
+        <span>Lemma AI · a short film</span>
+        <span><b>00:24</b> · Hangzhou, 2026</span>
+      </p>
+    </div>
+  </section>
+
   <section class="sr facts" id="facts">
     <div class="wrap" style="max-width:var(--max-wide)">
       <p class="k" style="text-align:center">More About Us</p>
@@ -349,6 +381,7 @@
       <a href="#idea">The Idea</a>
       <a href="#building">Building</a>
       <a href="#letter">Letter</a>
+      <a href="#film">Film</a>
       <a href="#facts">About</a>
       <a href="#community">Community</a>
       <a href="zh/" lang="zh-CN">中文</a>

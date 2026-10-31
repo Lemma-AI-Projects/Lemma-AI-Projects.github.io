@@ -43,7 +43,81 @@
     v.parentNode.insertBefore(img, v);
     v.remove();
   };
-  if (reduced) document.querySelectorAll('video').forEach(swapToPoster);
+  if (reduced) document.querySelectorAll('video:not(.film__video)').forEach(swapToPoster);
+
+  /* ── 短片 Film：进视口才加载，静音循环，可开声 ───────────────────── */
+  var filmFrame = document.querySelector('[data-film]');
+  if (filmFrame) {
+    var filmVideo = filmFrame.querySelector('video');
+    var soundBtn = filmFrame.querySelector('[data-film-sound]');
+    var playBtn = filmFrame.querySelector('[data-film-play]');
+    var soundLabel = filmFrame.querySelector('[data-film-label]');
+    var filmSrc = filmVideo && filmVideo.getAttribute('data-src');
+    var filmLoaded = false;
+    var failed = false;
+
+    var setLabel = function (muted) {
+      if (!soundLabel || !soundBtn) return;
+      var t = soundBtn.getAttribute(muted ? 'data-label-off' : 'data-label-on');
+      if (t) soundLabel.textContent = t;
+    };
+    var loadFilm = function () {
+      if (filmLoaded || failed || !filmVideo || !filmSrc) return;
+      filmLoaded = true;
+      filmVideo.src = filmSrc;
+    };
+    var playFilm = function () {
+      if (!filmVideo || failed) return;
+      loadFilm();
+      var p = filmVideo.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    var setSound = function (on) {
+      if (!filmVideo || failed) return;
+      filmVideo.muted = !on;
+      filmFrame.classList.toggle('is-sound', on);
+      if (soundBtn) soundBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      setLabel(!on);
+    };
+    var failToPoster = function () {
+      failed = true;
+      filmFrame.classList.add('is-failed');
+      var img = document.createElement('img');
+      img.className = 'film__video';
+      img.src = filmVideo.getAttribute('poster') || '';
+      img.alt = filmVideo.getAttribute('aria-label') || '';
+      filmVideo.parentNode.insertBefore(img, filmVideo);
+      filmVideo.remove();
+      filmVideo = null;
+    };
+
+    if (filmVideo) filmVideo.addEventListener('error', failToPoster);
+
+    if (reduced) {
+      /* 减弱动效：只留封面，点一下才播（这是用户手势，可以直接开声） */
+      filmFrame.classList.add('is-static');
+      if (playBtn) playBtn.addEventListener('click', function () {
+        filmFrame.classList.remove('is-static');
+        setSound(true);
+        playFilm();
+      });
+    } else if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) playFilm();
+          else if (filmLoaded && filmVideo) filmVideo.pause();
+        });
+      }, { threshold: 0.25 }).observe(filmFrame);
+    } else {
+      playFilm();
+    }
+
+    if (soundBtn) soundBtn.addEventListener('click', function () {
+      if (!filmVideo) return;
+      setSound(!!filmVideo.muted);
+      if (filmVideo.paused) playFilm();
+    });
+  }
 
   /* ── 关键短语 marker 下划线扫过（IO 触发）──────────────────────── */
   var marks = document.querySelectorAll('.mark');

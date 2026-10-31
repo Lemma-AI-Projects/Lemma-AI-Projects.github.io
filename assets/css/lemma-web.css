@@ -491,3 +491,67 @@ footer.site .legal{color:var(--mut-2);font-size:12.5px;letter-spacing:.02em}
 @media(max-width:900px){
   .hero{padding:120px 0 64px;display:grid;align-content:center}
 }
+/* ── Film —— 一台放在纸面上的放映机 ──────────────────────────────── */
+.film{padding:clamp(44px,6vw,80px) 0 clamp(52px,7vw,92px)}
+.film__head{text-align:center;max-width:720px;margin:0 auto clamp(28px,4vw,44px)}
+.film__head h2{font-size:var(--fs-h-xl);line-height:1.06;letter-spacing:-.025em;margin:0}
+.film__frame{
+  position:relative;display:block;width:100%;
+  aspect-ratio:1728/1078;
+  border-radius:var(--r-md);overflow:hidden;
+  background:var(--ink);
+  box-shadow:var(--sh-photo);
+  isolation:isolate;
+}
+.film__frame::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.10);
+}
+.film__video{width:100%;height:100%;object-fit:cover;display:block;background:var(--ink)}
+.film__sound{
+  position:absolute;right:14px;bottom:14px;z-index:2;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:8px 15px 8px 12px;border:1px solid rgba(255,255,255,.24);border-radius:var(--r-pill);
+  background:rgba(10,10,11,.40);color:#fff;-webkit-backdrop-filter:blur(14px) saturate(130%);
+  backdrop-filter:blur(14px) saturate(130%);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;transition:background 180ms ease,border-color 180ms ease,opacity 200ms ease;
+}
+.film__sound:hover{background:rgba(10,10,11,.62);border-color:rgba(255,255,255,.45)}
+.film__sound svg{width:14px;height:14px;flex:0 0 14px;display:block}
+.film__sound .ico-off{display:none}
+.film__frame.is-sound .film__sound .ico-on{display:none}
+.film__frame.is-sound .film__sound .ico-off{display:block}
+.film__play{
+  position:absolute;inset:0;z-index:3;width:100%;height:100%;
+  display:none;place-items:center;
+  background:rgba(10,10,11,.28);
+  border:0;padding:0;cursor:pointer;color:#fff;
+}
+.film__play span{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:14px 26px 14px 22px;border-radius:var(--r-pill);
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+}
+.film__play svg{width:15px;height:15px}
+.film__frame.is-static .film__play{display:grid}
+.film__frame.is-static .film__sound{display:none}
+.film__meta{
+  display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap;
+  margin:16px 2px 0;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mut-2);
+}
+.film__meta b{font-weight:400;color:var(--mut)}
+@media(max-width:640px){
+  .film__sound{right:10px;bottom:10px;padding:7px 12px 7px 10px;font-size:10px}
+  .film__meta{font-size:10px;letter-spacing:.1em;margin-top:12px}
+}
+.film__frame.is-failed .film__sound{display:none}
+.film .wrap--wide{max-width:1120px}
+@media(max-width:640px){
+  .film .wrap--wide{padding:0}
+  .film__frame{border-radius:0;box-shadow:none}
+  .film__head,.film__meta{padding:0 24px}
+}

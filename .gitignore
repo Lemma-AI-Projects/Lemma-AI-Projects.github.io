@@ -1,0 +1,17 @@
+# Local agent / workspace data
+.workbuddy/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs and temp output
+*.log
+*.tmp
